@@ -37,7 +37,13 @@
                         <tr article='@json($item)'>
                             <th scope="row">{{$key}}</th>
                             <th>{{$item->user_account}}({{$item->user_nick_name}})</th>
-                            <th><a href="/article_audit?parent_id={{$item->id}}">{{$item->title}}</a></th>
+                            <th>
+                                @if(is_null($item->parent_id))
+                                    <span>{{$item->title}}</span>
+                                @else
+                                    <a href="/article?parent_id={{$item->parent_id}}">{{$item->title}}</a>
+                                @endif
+                            </th>
                             <th><textarea id="contentId" class="form-control" rows="5" name="content" readonly>{{$item->context}}</textarea></th>
                             <th>
                                 @if($item->audit == 1)

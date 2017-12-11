@@ -15,7 +15,7 @@
         @yield('content')
     </div>
     <footer class="main-footer">
-        @include('adminlte::include.footer')
+        @include('template::include.footer')
     </footer>
     <aside class="control-sidebar control-sidebar-dark">
         @include('adminlte::include.sidebar')

@@ -1,6 +1,7 @@
 <?php
 namespace Modules\Forum\Services;
 
+use Modules\Entrust\Utilities\SessionManager;
 use Modules\Forum\Entities\Article;
 use Modules\Forum\Entities\Forum;
 
@@ -10,7 +11,11 @@ class ForumService
     {
         /** @var \Illuminate\Database\Eloquent\Builder $article */
         $article = new Article;
-        $articles = $article->orderNew()->where('audit', 0)->where('forum_id', $forumId)->paginate(35);
+        $articles = $article->orderNew()->where(function ($query) use ($forumId) {
+            $query->where('audit', 0)->where('forum_id', $forumId);
+        })->orWhere(function ($query) use ($forumId) {
+            $query->where('user_id', SessionManager::getUserId())->where('forum_id', $forumId);
+        })->paginate(35);
         return $articles;
     }
 

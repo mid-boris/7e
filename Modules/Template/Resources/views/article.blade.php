@@ -17,7 +17,7 @@
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">文章</h3>
-                @if(!is_null($parentId))
+                @if(!is_null($parentId) && $article->audit == 0)
                     <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#articleCreateModal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 回復</button>
                 @endif
             </div>

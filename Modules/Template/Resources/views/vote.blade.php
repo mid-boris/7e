@@ -46,12 +46,18 @@
                     </thead>
                     <tbody>
                     @foreach($data as $key => $item)
-                        <tr data='@json($item)'>
+                        <tr data='@json($item)' @if($item->audit == 1) bgcolor="#f5f5f5" @endif>
                             <th scope="row">{{$key}}</th>
                             @if(isset($item->name))
                                 <td><a href="/vote?parent_id={{$item->id}}">{{$item->name}}</a></td>
                             @else
-                                <td><a href="/article?parent_id={{$item->id}}&forum_id={{$item->forum_id}}">{{$item->title}}</a></td>
+                                <td>
+                                    @if($item->audit == 0)
+                                        <a href="/article?parent_id={{$item->id}}&forum_id={{$item->forum_id}}">{{$item->title}}</a>
+                                    @else
+                                        <span>{{$item->title}}</span>
+                                    @endif
+                                </td>
                             @endif
                             @isset($item->user_account)
                                 <th>{{$item->user_account}}</th>
