@@ -1,0 +1,16 @@
+{
+    "name": "Error",
+    "alias": "error",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Error\\Providers\\ErrorServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

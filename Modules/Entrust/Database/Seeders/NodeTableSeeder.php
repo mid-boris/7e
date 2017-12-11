@@ -1,0 +1,39 @@
+<?php
+
+namespace Modules\Entrust\Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
+use Modules\Entrust\Repositories\NodeRepository;
+
+class NodeTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        Model::unguard();
+
+        /** @var NodeRepository $nodeRepo */
+        $nodeRepo = \App::make(NodeRepository::class);
+
+        $nodeRepo->create('系統設置', 'fa-dashboard');
+        $nodeRepo->create('權限管理', 'fa-circle-o', '/permission', '系統設置');
+        $nodeRepo->create('帳號管理', 'fa-circle-o', '/account', '系統設置');
+        $nodeRepo->create('角色管理', 'fa-circle-o', '/role', '系統設置');
+
+        $nodeRepo->create('資料設置', 'fa-files-o');
+        $nodeRepo->create('地區管理', 'fa-circle-o', '/area', '資料設置');
+        $nodeRepo->create('商家管理', 'fa-circle-o', '/shop', '資料設置');
+        $nodeRepo->create('菜單管理', 'fa-circle-o', '/menu', '資料設置', 0);
+        $nodeRepo->create('討論版管理', 'fa-circle-o', '/forum', '資料設置');
+        $nodeRepo->create('文章審核', 'fa-circle-o', '/article_audit', '資料設置');
+
+        $nodeRepo->create('資料呈現', 'fa-desktop');
+        $nodeRepo->create('投票專區', 'fa-circle-o', '/vote', '資料呈現');
+        $nodeRepo->create('項目討論', 'fa-circle-o', '/board', '資料呈現');
+    }
+}

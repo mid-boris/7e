@@ -1,0 +1,16 @@
+{
+    "name": "Entrust",
+    "alias": "entrust",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Entrust\\Providers\\EntrustServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

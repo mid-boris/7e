@@ -1,0 +1,15 @@
+{
+    "name": "nwidart/adminlte",
+    "description": "artisan vendor:publish --tag=adminLTERes --force",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Modules\\AdminLTE\\": ""
+        }
+    }
+}
