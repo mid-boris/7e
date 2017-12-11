@@ -18,7 +18,7 @@ class AreaTableSeeder extends Seeder
         Model::unguard();
 
         $areaData = [
-            '台灣區' => [
+            '台灣' => [
                 '台中市' => [
                     '南區',
                     '北區',
