@@ -47,9 +47,9 @@
                             </td>
                             <td><textarea id="contentId" class="form-control" rows="5" name="content" readonly>{{$item->context}}</textarea></td>
                             <td>
-                                @if($item->vote_max_count == 1)
+                                @if($item->vote_max_count == 1 && $item->voteOption->count() > 0)
                                     <h6>單選</h6>
-                                @else
+                                @elseif($item->vote_max_count > 1 && $item->voteOption->count() > 0)
                                     <h6>複選: 一人最多{{$item->vote_max_count}}票</h6>
                                 @endif
                                 @foreach($item->voteOption as $option)
