@@ -29,6 +29,7 @@ class CreateShopTable extends BaseMigration
 
             $table->unsignedTinyInteger('special')->default(0);
             $table->unsignedTinyInteger('status')->default(1);
+            $table->unsignedTinyInteger('i_pass')->default(0);
 
             $table->unsignedInteger('area_id')->nullable();
 

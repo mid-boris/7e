@@ -30,6 +30,8 @@ class CreateArticleTable extends BaseMigration
             $table->string('audit_user_account', 32)->nullable();
             $table->string('audit_user_nick_name', 16)->nullable();
 
+            $table->unsignedTinyInteger('vote_max_count')->default(1)->comment('每人最大票數');
+
             $table->timestamps();
 
             $table->index('forum_id');

@@ -32,14 +32,20 @@ class ArticleRepository extends ForumBaseRepository
     {
         /** @var \Eloquent $article */
         $article = new Article;
-        return $article->where('audit', 1)->orWhereNotNull('audit_user_id')->orderBy('id', 'DESC')->paginate(35);
+        return $article->with(['voteOption'])->where('audit', 1)->orWhereNotNull('audit_user_id')
+            ->orderBy('id', 'DESC')->paginate(35);
     }
 
+    /**
+     * 前台用
+     * @param int $parentId
+     * @return \Illuminate\Database\Eloquent\Model|null|\Illuminate\Database\Eloquent\Builder
+     */
     public function getArticleByParentId(int $parentId)
     {
         /** @var \Illuminate\Database\Eloquent\Builder $article */
         $article = new Article;
-        $articles = $article->where('id', $parentId)->where('audit', 0)->first();
+        $articles = $article->with(['voteOption', 'voteItem'])->where('id', $parentId)->where('audit', 0)->first();
         return $articles;
     }
 
@@ -57,14 +63,35 @@ class ArticleRepository extends ForumBaseRepository
         return $reports;
     }
 
-    public function create(string $title, string $text, int $forumId, $audit = 0, int $parentId = null)
+    public function voteCreateMany(Article $article, array $vote)
     {
+        $article->voteOption()->createMany($vote);
+        return $article;
+    }
+
+    /**
+     * @param string $title
+     * @param string $text
+     * @param int $forumId
+     * @param int $audit
+     * @param int $voteMaxCount
+     * @param null $parentId
+     * @return \Illuminate\Database\Eloquent\Builder|Article
+     * @internal param int|null $parentId
+     */
+    public function create(string $title, string $text, int $forumId, $audit = 0, $voteMaxCount = 1, $parentId = null)
+    {
+        // 回覆加上prefix string
+        if (!is_null($parentId)) {
+            $title = $this->reportPrefixStr . $title;
+        }
         $data = [
             'title' => $title,
             'context' => $text,
             'forum_id' => $forumId,
             'parent_id' => $parentId,
             'audit' => $audit,
+            'vote_max_count' => $voteMaxCount,
 
             'user_id' => SessionManager::getUser()['id'],
             'user_account' => SessionManager::getUser()['account'],

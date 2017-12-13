@@ -27,6 +27,7 @@ class ShopRepository extends ShopBaseRepository
         $endTime,
         $special,
         $status,
+        $iPass,
         array $closedDay,
         $address,
         $x,
@@ -45,6 +46,7 @@ class ShopRepository extends ShopBaseRepository
             'business_hours_end_time' => $endTime,
             'special' => $special,
             'status' => $status,
+            'i_pass' => $iPass,
             'area_id' => $areaId,
             'closed_day' => json_encode($closedDay),
         ];
@@ -64,6 +66,7 @@ class ShopRepository extends ShopBaseRepository
         $endTime,
         $special,
         $status,
+        $iPass,
         array $closedDay,
         $address,
         $x,
@@ -82,6 +85,7 @@ class ShopRepository extends ShopBaseRepository
             'business_hours_end_time' => $endTime,
             'special' => $special,
             'status' => $status,
+            'i_pass' => $iPass,
             'area_id' => $areaId,
             'closed_day' => json_encode($closedDay),
         ];

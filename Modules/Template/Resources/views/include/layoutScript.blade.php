@@ -3,7 +3,10 @@
         // tr 點擊會反選該row的checkbox
         $('table.trToggleCheckbox tbody tr').click(function(event) {
             if (event.target.type !== 'checkbox') {
-                $(':checkbox', this).trigger('click');
+                var selector = $(':checkbox', this);
+                if (selector.length == 1) {
+                    selector.trigger('click');
+                }
             }
         });
 

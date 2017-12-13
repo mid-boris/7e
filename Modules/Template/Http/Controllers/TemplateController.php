@@ -7,6 +7,7 @@ use Modules\Area\Repositories\AreaRepository;
 use Modules\Entrust\Repositories\RoleRepository;
 use Modules\Entrust\Services\RoleNodeService;
 use Modules\Entrust\Utilities\SessionManager;
+use Modules\Forum\Http\Requests\Board;
 use Modules\Forum\Repositories\ArticleRepository;
 use Modules\Forum\Repositories\ForumRepository;
 use Modules\Forum\Services\ForumService;
@@ -151,10 +152,23 @@ class TemplateController extends Controller
         ]);
     }
 
-    public function board()
+    public function board(Board $request)
     {
-        $forumRepo = app()->make(ForumRepository::class);
-        $forum = $forumRepo->getPaginationWithIdOrNull(ForumRepository::BOARD_ID);
+        if (is_null($request->input('parent_id'))) {
+            // 沒上層ID時則拿留言板
+            $forumRepo = app()->make(ForumRepository::class);
+            $data = $forumRepo->getBoardForum();
+        } else {
+            // 有上層ID時拿取內文訊息
+            $forumServ = app()->make(ForumService::class);
+            $data = $forumServ->getArticle($request->input('parent_id'));
+        }
+        return $this->render('board', [
+            'data' => $data,
+            'parameter' => $request->except('page'),
+            'name' => $request->input('name'),
+            'parentId' => $request->input('parent_id'),
+        ]);
     }
 
     public function article(Article $request)

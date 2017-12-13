@@ -39,7 +39,16 @@ class ArticleController extends Controller
         $title = $request->input('title');
         $text = $request->input('content');
         $parentId = $request->input('parent_id');
-        $this->articleRepo->create($title, $text, $forumId, $needReview, $parentId);
+        $voteMaxCount = $request->input('vote_max_count') ?? 1;
+        $article = $this->articleRepo->create($title, $text, $forumId, $needReview, $voteMaxCount, $parentId);
+        // 如果有投票項目
+        if (!is_null($request->input('vote_option'))) {
+            $vote = [];
+            foreach ($request->input('vote_option') as $item) {
+                $vote[] = ['option_name' => $item];
+            }
+            $this->articleRepo->voteCreateMany($article, $vote);
+        }
         return redirect()->back();
     }
 

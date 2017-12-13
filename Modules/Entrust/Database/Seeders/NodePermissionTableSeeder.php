@@ -56,6 +56,7 @@ class NodePermissionTableSeeder extends Seeder
         $nodePmServ->addUriPermissionToNode('/forum/delete', '資料設置.討論版管理');
 
         $nodePmServ->addUriPermissionToNode('/vote', '資料呈現.投票專區');
+        $nodePmServ->addUriPermissionToNode('/vote/add', '資料呈現.投票專區');
         $nodePmServ->addUriPermissionToNode('/article', '資料呈現.投票專區');
         $nodePmServ->addUriPermissionToNode('/article/create', '資料呈現.投票專區');
         $nodePmServ->addUriPermissionToNode('/article/update', '資料呈現.投票專區');

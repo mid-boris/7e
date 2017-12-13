@@ -4,13 +4,13 @@
 
 @section('content')
     <section class="content-header">
-        <h1 id="pageTitle" name="投票專區">
-            投票專區
+        <h1 id="pageTitle" name="項目討論">
+            項目討論
             <small></small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="/home"><i class="fa fa-dashboard"></i> 首頁</a></li>
-            <li class="active">投票專區</li>
+            <li class="active">項目討論</li>
         </ol>
     </section>
     <section class="content">
@@ -18,7 +18,7 @@
             <div class="box-header">
                 <h3 class="box-title">
                     @if(is_null($name))
-                        投票專區
+                        項目討論
                     @else
                         {{$name}}
                     @endif
@@ -49,7 +49,7 @@
                         <tr data='@json($item)' @if($item->audit == 1) bgcolor="#f5f5f5" @endif>
                             <th scope="row">{{$key}}</th>
                             @if(isset($item->name))
-                                <td><a href="/vote?parent_id={{$item->id}}&vote=1">{{$item->name}}</a></td>
+                                <td><a href="/board?parent_id={{$item->id}}">{{$item->name}}</a></td>
                             @else
                                 <td>
                                     @if($item->audit == 0)
@@ -88,8 +88,8 @@
 
                 <div class="modal-body">
                     <div class="">
+                        <form class="form-horizontal" method="post" action="/article/create">
                         <div class="box-body">
-                            <form class="form-horizontal" method="post" action="/article/create" id="voteForm">
                                 <div class="form-group">
                                     <label for="titleId" class="col-sm-2 control-label">標題</label>
                                     <div class="col-sm-10">
@@ -103,28 +103,12 @@
                                         <textarea id="contentId" class="form-control" rows="20" name="content"></textarea>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="contentId" class="col-sm-2 control-label">投票項目</label>
-                                    <div class="col-sm-10" id="voteOptionCollection">
-                                        <input type="text" class="form-control" placeholder="一人最多選幾項" name="vote_max_count">
-                                    </div>
-                                </div>
-                            </form>
-                            <div class="form-group">
-                                <label for="contentId" class="col-sm-2 control-label"></label>
-                                <div class="col-sm-10">
-                                    <form id="voteOptionForm">
-                                        <input type="text" class="form-control" placeholder="Add vote option" id="voteOption">
-                                        <button class="form-control" id="voteOptionBtn"type="submit">新增項目</button>
-                                    </form>
-                                </div>
-                            </div>
                         </div>
                         <div class="box-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                            <button class="btn btn-primary pull-right" id="voteFormSubmit">送出</button>
-                            <input type="text" class="form-control hidden voteOptionSample" name="vote_option[]" readonly>
+                            <button class="btn btn-primary pull-right">送出</button>
                         </div>
+                        </form>
                     </div>
                 </div>
 
@@ -137,25 +121,6 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $('button#voteFormSubmit').click(function () {
-                $('form#voteForm').submit();
-            });
-
-            $('form#voteOptionForm').submit(function () {
-                addVoteOption();
-                return false;
-            });
-
-            function addVoteOption() {
-                var option = $('input#voteOption').val();
-                if (option == '') {
-                    return;
-                }
-                $('input#voteOption').val('');
-                var clone = $('.voteOptionSample').clone();
-                clone.val(option);
-                clone.removeClass('voteOptionSample').removeClass('hidden').appendTo('#voteOptionCollection');
-            }
         });
     </script>
 @endsection

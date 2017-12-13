@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\Template\Http\Requests;
+namespace Modules\Forum\Http\Requests;
 
 use Modules\Base\Contract\FormRequest\BaseFormRequest;
 
-class Vote extends BaseFormRequest
+class Board extends BaseFormRequest
 {
     /**
      * Get the validation rules that apply to the request.

@@ -180,6 +180,15 @@
                                 </div>
                                     <div class="form-group">
                                         <label for="inputPassword3" class="col-sm-2 control-label"></label>
+                                        <div class="col-sm-10 checkbox">
+                                            <label>
+                                                <input name="i_pass" type="checkbox" value="1">
+                                                一卡通
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-2 control-label"></label>
                                         <div class="col-sm-10 checkbox" id="area_collection">
                                         </div>
                                     </div>
@@ -322,6 +331,15 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="inputPassword3" class="col-sm-2 control-label"></label>
+                                        <div class="col-sm-10 checkbox">
+                                            <label>
+                                                <input name="i_pass" type="checkbox" value="1">
+                                                一卡通
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-2 control-label"></label>
                                         <div class="col-sm-10 checkbox" id="area_update_collection">
                                         </div>
                                     </div>
@@ -390,6 +408,7 @@
                 $('#timepicker_e1').data("DateTimePicker").date(shop.business_hours_end_time);
                 $(':checkbox[name="special"]', modal).prop("checked", shop.special);
                 $(':checkbox[name="status"]', modal).prop("checked", shop.status);
+                $(':checkbox[name="i_pass"]', modal).prop("checked", shop.i_pass);
                 var closedDay = JSON.parse(shop.closed_day);
                 for (i = 0; i < 7; i++) {
                     $('#inlineCheckbox' + i).prop("checked", false);

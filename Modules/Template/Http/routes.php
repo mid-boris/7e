@@ -138,6 +138,16 @@ Route::group(['middleware' => 'api'], function () {
         });
     });
 
+    Route::group([
+        'prefix' => 'vote',
+        'namespace' => 'Modules\Forum\Http\Controllers'
+    ], function () {
+        /* 需完整權限 (登入、角色的節點權限) */
+        Route::group(['middleware' => 'permission',], function () {
+            Route::post('add', 'VoteController@add');
+        });
+    });
+
 
     //-------------------------------------------------//
     //                 ajax 資料處理

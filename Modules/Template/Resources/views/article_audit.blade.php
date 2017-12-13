@@ -26,6 +26,7 @@
                         <th>發文者</th>
                         <th>標題</th>
                         <th>內文</th>
+                        <th>投票項目</th>
                         <th></th>
                         <th>發文時間</th>
                         <th>審核者</th>
@@ -35,17 +36,27 @@
                     <tbody>
                     @foreach($article as $key => $item)
                         <tr article='@json($item)'>
-                            <th scope="row">{{$key}}</th>
-                            <th>{{$item->user_account}}({{$item->user_nick_name}})</th>
-                            <th>
+                            <td scope="row">{{$key}}</td>
+                            <td>{{$item->user_account}}({{$item->user_nick_name}})</td>
+                            <td>
                                 @if(is_null($item->parent_id))
                                     <span>{{$item->title}}</span>
                                 @else
                                     <a href="/article?parent_id={{$item->parent_id}}">{{$item->title}}</a>
                                 @endif
-                            </th>
-                            <th><textarea id="contentId" class="form-control" rows="5" name="content" readonly>{{$item->context}}</textarea></th>
-                            <th>
+                            </td>
+                            <td><textarea id="contentId" class="form-control" rows="5" name="content" readonly>{{$item->context}}</textarea></td>
+                            <td>
+                                @if($item->vote_max_count == 1)
+                                    <h6>單選</h6>
+                                @else
+                                    <h6>複選: 一人最多{{$item->vote_max_count}}票</h6>
+                                @endif
+                                @foreach($item->voteOption as $option)
+                                    <input type="text" class="form-control" value="{{$option->option_name}}" readonly/>
+                                @endforeach
+                            </td>
+                            <td>
                                 @if($item->audit == 1)
                                     <form method="post" action="/article_audit/auditPass">
                                         <input type="hidden" name="id" value="{{$item->id}}">
@@ -54,13 +65,16 @@
                                 @else
                                     <button type="submit" class="btn btn-danger" disabled>通過</button>
                                 @endif
-                            </th>
-                            <td>{{$item->updated_at}}</td>
+                            </td>
+                            <td>
+                                <h6>{{date('Y-m-d', strtotime($item->updated_at->toDateTimeString()))}}</h6>
+                                <h6>{{date('H:i:s', strtotime($item->updated_at->toDateTimeString()))}}</h6>
+                            </td>
                             <td>
                                 @if(is_null($item->audit_user_id))
                                     Non
                                 @else
-                                    {{$item->audit_user_account}}({{$item->audit_user_nick_name}})
+                                    {{$item->audit_user_account}}
                                 @endif
                             </td>
                             <td>

@@ -13,7 +13,7 @@ class Article extends ForumBaseModel
     protected $touches = ['parent'];
 
     protected $fillable = [
-        'forum_id', 'parent_id', 'title', 'context', 'audit',
+        'forum_id', 'parent_id', 'title', 'context', 'audit', 'vote_max_count',
         'user_id', 'user_account', 'user_nick_name',
         'audit_user_id', 'audit_user_account', 'audit_user_nick_name',
     ];
@@ -26,5 +26,20 @@ class Article extends ForumBaseModel
     public function children()
     {
         return $this->hasMany(static::class, 'parent_id');
+    }
+
+    public function voteOption()
+    {
+        return $this->hasMany(Vote::class, 'article_id');
+    }
+
+    public function voteItem()
+    {
+        return $this->hasMany(VoteItem::class, 'article_id');
+    }
+
+    public function test()
+    {
+        return $this->hasMany(VoteItem::class, 'article_id');
     }
 }

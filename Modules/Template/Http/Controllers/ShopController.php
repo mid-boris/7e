@@ -27,9 +27,10 @@ class ShopController extends Controller
         $busHours = date('H:i:s', $startTime) . " ~ " . date('H:i:s', $endTime);
         $special = $request->input('special') ?? 0;
         $status = $request->input('status') ?? 0;
+        $iPass = $request->input('i_pass') ?? 0;
         $closedDay = $request->input('closed_day') ?? [];
         $areaId = $request->input('area_id');
-        $shop = $this->shopRepo->create(
+        $this->shopRepo->create(
             $request->input('name'),
             $request->input('telphone'),
             $request->input('phone'),
@@ -38,6 +39,7 @@ class ShopController extends Controller
             $request->input('end_time'),
             $special,
             $status,
+            $iPass,
             $closedDay,
             $request->input('address'),
             null,
@@ -54,6 +56,7 @@ class ShopController extends Controller
         $busHours = date('H:i:s', $startTime) . " ~ " . date('H:i:s', $endTime);
         $special = $request->input('special') ?? 0;
         $status = $request->input('status') ?? 0;
+        $iPass = $request->input('i_pass') ?? 0;
         $closedDay = $request->input('closed_day') ?? [];
         $areaId = $request->input('area_id');
         $this->shopRepo->update(
@@ -66,6 +69,7 @@ class ShopController extends Controller
             $request->input('end_time'),
             $special,
             $status,
+            $iPass,
             $closedDay,
             $request->input('address'),
             null,
