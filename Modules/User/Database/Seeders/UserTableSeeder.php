@@ -27,6 +27,10 @@ class UserTableSeeder extends Seeder
         $userSv = \App::make(UserService::class);
         $userSv->accountAddRole('admin', 'admin');
 
+        // 網站管理員
+        $userRepo->create('7eapp', 'aa1234', '網站管理員');
+        $userSv->accountAddRole('7eapp', 'webmaster');
+
         // 測試會員
         $userRepo->create('member', 'member', '會員一號');
         $userSv->accountAddRole('member', '榮耀會員');

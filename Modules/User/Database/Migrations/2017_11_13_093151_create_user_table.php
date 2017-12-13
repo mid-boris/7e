@@ -20,9 +20,14 @@ class CreateUserTable extends BaseMigration
 
             $table->string('account', 32)->comment('帳號');
             $table->string('password', 32)->comment('密碼');
-            $table->string('nick_name', 16)->comment('暱稱');
+            $table->string('nick_name', 16)->nullable()->comment('暱稱');
 
             $table->unsignedTinyInteger('status')->default(1)->comment('狀態');
+
+            $table->string('mail')->nullable()->comment('信箱');
+            $table->string('phone')->nullable()->comment('手機');
+            $table->unsignedInteger('area_id')->nullable();
+            $table->unsignedTinyInteger('gender')->default(0)->comment('性別, 0:男、1:女');
 
             $table->timestamps();
 

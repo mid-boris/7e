@@ -20,5 +20,6 @@ class RoleNodeTableSeeder extends Seeder
         /** @var RoleNodeService $roleNodeServ */
         $roleNodeServ = app()->make(RoleNodeService::class);
         $roleNodeServ->addAllNodeToRole('admin');
+        $roleNodeServ->addAllNodeToRole('webmaster');
     }
 }

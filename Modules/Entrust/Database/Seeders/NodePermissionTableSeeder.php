@@ -17,6 +17,7 @@ class NodePermissionTableSeeder extends Seeder
     {
         Model::unguard();
 
+        // 把路徑賦予給節點, 之後路徑便依賴節點權限控管
         /** @var NodePermissionService $nodePmServ */
         $nodePmServ = app()->make(NodePermissionService::class);
         $nodePmServ->addUriPermissionToNode('/permission', '系統設置.權限管理');
