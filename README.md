@@ -248,12 +248,8 @@
             "title": "無投票測試",
             "context": "無投票測試\r\n無投票測試\r\n無投票測試無投票測試\r\n無投票測試無投票測試\r\n無投票測試無投票測試\r\n\r\n無投票測試\r\n無投票測試無投票測試\r\n無投票測試",
             "audit": 0,
-            "user_id": 1,
             "user_account": "admin",
             "user_nick_name": "admin",
-            "audit_user_id": null,
-            "audit_user_account": null,
-            "audit_user_nick_name": null,
             "vote_max_count": 1,
             "vote_option": [],
             "vote_item": []
@@ -268,12 +264,8 @@
                     "title": "RE: 無投票測試",
                     "context": "回文測試6",
                     "audit": 0,
-                    "user_id": 1,
                     "user_account": "admin",
                     "user_nick_name": "admin",
-                    "audit_user_id": null,
-                    "audit_user_account": null,
-                    "audit_user_nick_name": null,
                     "vote_max_count": 1
                 },
                 {
@@ -283,12 +275,8 @@
                     "title": "RE: 無投票測試",
                     "context": "回文測試5",
                     "audit": 0,
-                    "user_id": 1,
                     "user_account": "admin",
                     "user_nick_name": "admin",
-                    "audit_user_id": null,
-                    "audit_user_account": null,
-                    "audit_user_nick_name": null,
                     "vote_max_count": 1
                 },
                 {
@@ -298,12 +286,8 @@
                     "title": "RE: 無投票測試",
                     "context": "回文測試4\r\n回文測試2\r\n回文測試2",
                     "audit": 0,
-                    "user_id": 1,
                     "user_account": "admin",
                     "user_nick_name": "admin",
-                    "audit_user_id": null,
-                    "audit_user_account": null,
-                    "audit_user_nick_name": null,
                     "vote_max_count": 1
                 },
                 {
@@ -313,12 +297,8 @@
                     "title": "RE: 無投票測試",
                     "context": "回文測試3",
                     "audit": 0,
-                    "user_id": 1,
                     "user_account": "admin",
                     "user_nick_name": "admin",
-                    "audit_user_id": null,
-                    "audit_user_account": null,
-                    "audit_user_nick_name": null,
                     "vote_max_count": 1
                 },
                 {
@@ -328,12 +308,8 @@
                     "title": "RE: 無投票測試",
                     "context": "回文測試2",
                     "audit": 0,
-                    "user_id": 1,
                     "user_account": "admin",
                     "user_nick_name": "admin",
-                    "audit_user_id": null,
-                    "audit_user_account": null,
-                    "audit_user_nick_name": null,
                     "vote_max_count": 1
                 },
                 {
@@ -343,12 +319,8 @@
                     "title": "RE: 無投票測試",
                     "context": "回文測試\r\n回文測試回文測試\r\n回文測試\r\n\r\n回文測試\r\n回文測試回文測試\r\n\r\n回文測試回文測試回文測試",
                     "audit": 0,
-                    "user_id": 1,
                     "user_account": "admin",
                     "user_nick_name": "admin",
-                    "audit_user_id": null,
-                    "audit_user_account": null,
-                    "audit_user_nick_name": null,
                     "vote_max_count": 1
                 }
             ],

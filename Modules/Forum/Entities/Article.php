@@ -18,6 +18,11 @@ class Article extends ForumBaseModel
         'audit_user_id', 'audit_user_account', 'audit_user_nick_name',
     ];
 
+    protected $hidden = [
+        'created_at', 'updated_at',
+        'audit_user_id', 'audit_user_account', 'audit_user_nick_name', 'user_id',
+    ];
+
     public function parent()
     {
         return $this->belongsTo(static::class, 'id', 'parent_id');
