@@ -27,7 +27,7 @@ class CreateUserTable extends BaseMigration
             $table->string('mail')->nullable()->comment('信箱');
             $table->string('phone')->nullable()->comment('手機');
             $table->unsignedInteger('area_id')->nullable();
-            $table->unsignedTinyInteger('gender')->default(0)->comment('性別, 0:男、1:女');
+            $table->unsignedTinyInteger('gender')->nullable()->comment('性別, 0:男、1:女');
 
             $table->timestamps();
 

@@ -15,8 +15,17 @@ class Area extends AreaBaseModel
         'parent_id', 'name',
     ];
 
+    protected $hidden = [
+        'status', 'created_at', 'updated_at',
+    ];
+
     public function parent()
     {
-        return $this->belongsTo(static::class, 'parent_id');
+        return $this->belongsTo(static::class, 'id', 'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(static::class, 'parent_id');
     }
 }

@@ -25,6 +25,18 @@ class AreaRepository extends AreaBaseRepository
         return $area->like('name', $name)->with(['parent'])->get();
     }
 
+    /**
+     * App端用
+     * @param null $parentId
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public function getWithChildrenCount($parentId = null)
+    {
+        /** @var \Illuminate\Database\Eloquent\Builder $area */
+        $area = new Area;
+        return $area->withCount(['children'])->where('status', 1)->where('parent_id', $parentId)->get();
+    }
+
     public function create(string $name, string $parentName = null, $status = 1)
     {
         $data = ['name' => $name];

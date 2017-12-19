@@ -23,6 +23,7 @@ class Auth
         }
         Session::put('user', $result->toArray());
         Session::save();
+        return $result;
     }
 
     public static function logout()

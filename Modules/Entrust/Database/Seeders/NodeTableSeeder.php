@@ -38,5 +38,7 @@ class NodeTableSeeder extends Seeder
         $nodeRepo->create('資料呈現', 'fa-desktop');
         $nodeRepo->create('投票專區', 'fa-circle-o', '/vote', '資料呈現');
         $nodeRepo->create('項目討論', 'fa-circle-o', '/board', '資料呈現');
+
+        $nodeRepo->create('會員app', 'fa-circle-o', null, null, 0);
     }
 }

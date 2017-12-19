@@ -23,7 +23,7 @@ class ArticleCreate extends BaseFormRequest
                 'min:1',
                 $this->getExists('article', 'id'),
             ],
-            'vote_max_count' => 'sometimes|integer|min:1',
+            'vote_max_count' => 'sometimes|integer|nullable|min:1',
             'vote_option' => 'sometimes|array|min:1|max:10',
             'vote_option.*' => 'sometimes|string|max:32',
         ];

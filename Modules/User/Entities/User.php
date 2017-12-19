@@ -13,7 +13,11 @@ class User extends UserBaseModel
     protected $table = 'user';
 
     protected $fillable = [
-        'account', 'password', 'nick_name', 'status',
+        'account', 'password', 'nick_name', 'status', 'mail', 'phone', 'gender', 'area_id',
+    ];
+
+    protected $hidden = [
+        'password', 'status'
     ];
 
     public function role()

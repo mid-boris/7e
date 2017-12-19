@@ -21,5 +21,6 @@ class RoleNodeTableSeeder extends Seeder
         $roleNodeServ = app()->make(RoleNodeService::class);
         $roleNodeServ->addAllNodeToRole('admin');
         $roleNodeServ->addAllNodeToRole('webmaster');
+        $roleNodeServ->addNodeToRole('榮耀會員', '會員app');
     }
 }

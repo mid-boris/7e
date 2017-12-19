@@ -49,7 +49,7 @@ class ArticleRepository extends ForumBaseRepository
         return $articles;
     }
 
-    public function getReportByParentId(int $parentId)
+    public function getReportByParentId(int $parentId, $sort = 'ASC')
     {
         /** @var \Illuminate\Database\Eloquent\Builder $article */
         $article = new Article;
@@ -59,7 +59,7 @@ class ArticleRepository extends ForumBaseRepository
         })->orWhere(function ($query) use ($parentId) {
             /** @var \Illuminate\Database\Eloquent\Builder $query */
             $query->where('parent_id', $parentId)->where('user_id', SessionManager::getUserId());
-        })->orderBy('id', 'ASC')->paginate(35);
+        })->orderBy('id', $sort)->paginate(35);
         return $reports;
     }
 
