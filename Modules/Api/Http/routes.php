@@ -22,6 +22,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'api'], function () {
 
                 // 文章
                 Route::group(['prefix' => 'article'], function () {
+                    Route::get('index', 'ArticleController@index');
                     Route::get('show', 'ArticleController@show');
                 });
             });

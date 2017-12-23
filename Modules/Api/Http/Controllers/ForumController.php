@@ -35,7 +35,7 @@ class ForumController extends Controller
             // 拿取所有討論版
             /** @var ForumRepository $forumRepo */
             $forumRepo = app()->make(ForumRepository::class);
-            $data = $forumRepo->getVoteForum();
+            $data = $forumRepo->getBoardForum();
         } else {
             // 拿取特定討論版的文章
             /** @var ForumService $forumServ */

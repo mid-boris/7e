@@ -1,0 +1,16 @@
+{
+    "name": "CommonTools",
+    "alias": "commontools",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\CommonTools\\Providers\\CommonToolsServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}
