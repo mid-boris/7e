@@ -226,7 +226,59 @@
         "total": 2
     }
     
-#### 取得文章
+#### 取得文章列表
+
+| 項目                      | 內容                       | 類型         | 說明                                  |
+|---------------------------|----------------------------|--------------|---------------------------------------|
+| <b>路徑</b>               | /api/1.0/article/index     |              |                                       |
+| <b>方法</b>               | GET                        |              |                                       |
+| <b>權限</b>               | 檢視                       |              | READ                                  |
+| <b>必填參數</b>           |                            |              |                                       |
+|                           | forum_id                   | id           | 討論版id                              |
+| <b>選填參數</b>           |                            |              |                                       |
+|                           | 無                         |              |                                       |
+
+> 回應
+
+    {
+        "current_page": 1,
+        "data": [
+            {
+                "id": 2,
+                "forum_id": 4,
+                "parent_id": null,
+                "title": "測試文章二號",
+                "context": "測試文章二號測試文章二號\r\n測試文章二號測試文章二號測試文章二號\r\n測試文章二號測試文章二號\r\n測試文章二號\r\n\r\n測試文章二號測試文章二號\r\n測試文章二號測試文章二號測試文章二號\r\n\r\n測試文章二號\r\n測試文章二號\r\n測試文章二號\r\n測試文章二號",
+                "audit": 0,
+                "user_account": "admin",
+                "user_nick_name": "ffhh",
+                "vote_max_count": 1
+            },
+            {
+                "id": 1,
+                "forum_id": 4,
+                "parent_id": null,
+                "title": "測試文章",
+                "context": "測試文章測試文章\r\n測試文章測試文章測試文章\r\n\r\n測試文章測試文章測試文章\r\n測試文章測試文章\r\n\r\n測試文章測試文章測試文章",
+                "audit": 0,
+                "user_account": "admin",
+                "user_nick_name": "ffhh",
+                "vote_max_count": 1
+            }
+        ],
+        "first_page_url": "http://7eapp.honor-financial.com/api/1.0/article/index?page=1",
+        "from": 1,
+        "last_page": 1,
+        "last_page_url": "http://7eapp.honor-financial.com/api/1.0/article/index?page=1",
+        "next_page_url": null,
+        "path": "http://7eapp.honor-financial.com/api/1.0/article/index",
+        "per_page": 35,
+        "prev_page_url": null,
+        "to": 2,
+        "total": 2
+    }
+
+#### 取得目標文章
 
 | 項目                      | 內容                       | 類型         | 說明                                  |
 |---------------------------|----------------------------|--------------|---------------------------------------|
