@@ -9,6 +9,10 @@ Route::group(['middleware' => 'api'], function () {
     ], function () {
         Route::get('/', 'TemplateController@index');
         Route::get('/login', 'TemplateController@login');
+
+        // test
+        Route::get('/test', 'TemplateController@test');
+
         Route::group(['middleware' => 'login'], function () {
             Route::get('/home', 'TemplateController@home');
         });

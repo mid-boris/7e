@@ -24,6 +24,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'api'], function () {
                 Route::group(['prefix' => 'article'], function () {
                     Route::get('index', 'ArticleController@index');
                     Route::get('show', 'ArticleController@show');
+                    Route::post('create', 'ArticleController@create');
                 });
             });
         });

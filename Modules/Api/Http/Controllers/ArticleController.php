@@ -6,6 +6,7 @@ use Illuminate\Routing\Controller;
 use Modules\Api\Http\Requests\ArticleIndex;
 use Modules\Api\Http\Requests\ArticleShow;
 use Modules\Base\Utilities\Response\BaseResponse;
+use Modules\Forum\Http\Requests\ArticleCreate;
 use Modules\Forum\Repositories\ArticleRepository;
 use Modules\Forum\Services\ForumService;
 
@@ -31,5 +32,29 @@ class ArticleController extends Controller
             'article' => $article,
             'reports' => $reports,
         ]);
+    }
+
+    public function create(ArticleCreate $request)
+    {
+        /** @var ForumService $forumServ */
+        $forumServ = app()->make(ForumService::class);
+        $forumId = $request->input('forum_id');
+        $needReview = $forumServ->needToReview($forumId);
+
+        $articleRepo = app()->make(ArticleRepository::class);
+        $title = $request->input('title');
+        $text = $request->input('content');
+        $parentId = $request->input('parent_id');
+        $voteMaxCount = $request->input('vote_max_count') ?? 1;
+        $article = $articleRepo->create($title, $text, $forumId, $needReview, $voteMaxCount, $parentId);
+        // 如果有投票項目
+        if (!is_null($request->input('vote_option'))) {
+            $vote = [];
+            foreach ($request->input('vote_option') as $item) {
+                $vote[] = ['option_name' => $item];
+            }
+            $articleRepo->voteCreateMany($article, $vote);
+        }
+        return BaseResponse::response(['data' => true]);
     }
 }

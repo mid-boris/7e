@@ -187,6 +187,11 @@ class TemplateController extends Controller
         ]);
     }
 
+    public function test()
+    {
+        return view('template::test');
+    }
+
     private function render(string $tag, array $exData = [])
     {
         $menu = $this->getMenu();
