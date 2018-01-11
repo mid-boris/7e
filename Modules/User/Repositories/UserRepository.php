@@ -40,17 +40,24 @@ class UserRepository extends UserBaseRepository
      * @param string $password
      * @param string $nickName
      * @param int $status
-     * @return bool
+     * @return User
      */
     public function create(string $account, string $password, string $nickName, $status = 1)
     {
-        $user = new User;
-        return $user->fill([
+        $userData = [
             'account' => $account,
             'password' => md5($password),
             'nick_name' => $nickName,
             'status' => $status,
-        ])->save();
+        ];
+        return $this->createAttributes($userData);
+    }
+
+    public function createAttributes(array $attributes)
+    {
+        $user = new User;
+        $user->fill($attributes)->save();
+        return $user;
     }
 
     public function update(array $data, int $id)

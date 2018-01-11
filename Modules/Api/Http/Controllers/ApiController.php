@@ -20,6 +20,14 @@ class ApiController extends Controller
         return BaseResponse::response($user);
     }
 
+    public function remoteLogin(ApiLogin $request)
+    {
+        $account = $request->input('user');
+        $password = $request->input('password');
+        $user = \Modules\RemoteSystem\Entrust\Utilities\Auth::login($account, $password);
+        return BaseResponse::response($user);
+    }
+
     public function logout()
     {
         Auth::logout();

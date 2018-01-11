@@ -3,7 +3,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'api'], function () {
     Route::group(['prefix' => '1.0'], function () {
         Route::group(['namespace' => 'Modules\Api\Http\Controllers'], function () {
             // login, logout
-            Route::post('/login', 'ApiController@login');
+            Route::post('/login', 'ApiController@remoteLogin');
             Route::get('/logout', 'ApiController@logout');
             Route::get('/isLogin', 'ApiController@isLogin');
 

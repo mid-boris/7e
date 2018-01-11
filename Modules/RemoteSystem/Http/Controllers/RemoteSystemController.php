@@ -3,14 +3,16 @@
 namespace Modules\RemoteSystem\Http\Controllers;
 
 use Illuminate\Routing\Controller;
-use Modules\RemoteSystem\Src\Connection;
+use Modules\RemoteSystem\Src\GloryConnection;
 
 class RemoteSystemController extends Controller
 {
     public function index()
     {
-        /** @var Connection $connection */
-        $connection = app()->make(Connection::class);
-        $connection->getToken();
+        /** @var GloryConnection $connection */
+        $connection = app()->make(GloryConnection::class);
+        $user = 'tuohoi87';
+        $password = '123456';
+        $connection->sendToken($user, $password)->sendUserInfo()->getUserInfo();
     }
 }

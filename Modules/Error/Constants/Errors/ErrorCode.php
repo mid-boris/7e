@@ -7,6 +7,7 @@ class ErrorCode
     /** Module Base */
     const BASE_MODEL_NOT_FOUND = 1000;      // 找不到model in base repository
     const BASE_PARAMETER_INVALID = 1001;    // 無效的參數
+    const BASE_MIGRATE_MODE_ERROR = 1002;   // migrate 的 mode 錯誤
 
     /** Module Entrust */
     const ENTRUST_USER_VALIDATE_ERROR = 10001;      // 登入驗證錯誤
@@ -23,5 +24,8 @@ class ErrorCode
     const FORUM_VOTE_INVALID_OPTION_ID = 20003;      // 已投過票
 
     /** Module RemoteSystem */
-    const REMOTE_SYSTEM_GET_TOKEN_ERROR = 30001;     // 獲得遠端token時錯誤
+    const REMOTE_SYSTEM_GET_TOKEN_ERROR = 30001;     // 獲得遠端token時錯誤, http code error
+    const REMOTE_SYSTEM_GET_DATA_ERROR = 30002;     // 獲得遠端token時錯誤, 回傳資料為空
+    const REMOTE_SYSTEM_DATA_DECODER_ERROR = 30003;     // 獲得遠端token時錯誤, 資料反解錯誤
+    const REMOTE_SYSTEM_NORMAL_ERROR = 30004;     // 獲得遠端token時錯誤, 錯誤代碼error用
 }

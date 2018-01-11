@@ -2,7 +2,6 @@
 
 namespace Modules\Entrust\Utilities;
 
-use Lang;
 use Modules\Base\Exception\BaseException;
 use Session;
 use Modules\Error\Constants\ErrorCode;
