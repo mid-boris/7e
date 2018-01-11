@@ -21,6 +21,16 @@ class ForumRepository extends ForumBaseRepository
         return $forum->where('parent_id', $id)->orderBy('sort', 'DESC')->paginate(35);
     }
 
+    public function getVoteId()
+    {
+        return self::VOTE_ID;
+    }
+
+    public function getBoardId()
+    {
+        return self::BOARD_ID;
+    }
+
     /**
      * 前台用
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
@@ -39,7 +49,7 @@ class ForumRepository extends ForumBaseRepository
         return $this->getPaginationForumById(self::BOARD_ID);
     }
 
-    protected function getPaginationForumById(int $forumId)
+    public function getPaginationForumById(int $forumId)
     {
         /** @var \Eloquent $forum */
         $forum = new Forum;

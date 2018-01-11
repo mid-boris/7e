@@ -63,7 +63,7 @@ class BaseResponse
                 exit;
             }
             $code = $code == 0 ? $statusCode : $code;
-            $str = 'Error({' . $code . '}): ' . $message;
+            $str = 'Error({' . $code . '}): ';
             echo '<script>alert("' . $str .'");history.go(-1);</script>';
             exit;
         }

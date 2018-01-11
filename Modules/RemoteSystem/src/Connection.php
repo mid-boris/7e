@@ -21,11 +21,16 @@ class Connection
 
     public function getToken()
     {
-        $curl = new Curl($this->domain);
+        $curl = new Curl($this->getTokenUrl);
         $curl->post($this->getTokenUrl, [
-            'account' => 'test',
+            'account' => 'tuohoi87',
             'password' => '123456',
         ]);
-        dd($this->getTokenUrl, $curl->response);
+
+        dd($this->getTokenUrl, $curl->response->error);
+    }
+
+    private function getCurl()
+    {
     }
 }

@@ -14,34 +14,40 @@ class ForumController extends Controller
     public function vote(Vote $request)
     {
         $forumId = $request->input('forum_id');
+        /** @var ForumRepository $forumRepo */
+        $forumRepo = app()->make(ForumRepository::class);
         if (is_null($forumId)) {
-            // 拿取所有投票版
-            /** @var ForumRepository $forumRepo */
-            $forumRepo = app()->make(ForumRepository::class);
-            $data = $forumRepo->getVoteForum();
-        } else {
-            // 拿取特定投票版的文章
-            /** @var ForumService $forumServ */
-            $forumServ = app()->make(ForumService::class);
-            $data = $forumServ->getArticleWithChildren($forumId);
+            $forumId = $forumRepo->getVoteId();
         }
-        return BaseResponse::response($data);
+        // 拿取指定投票版
+        $forums = $forumRepo->getPaginationForumById($forumId);
+        // 拿取特定投票版的文章
+        /** @var ForumService $forumServ */
+        $forumServ = app()->make(ForumService::class);
+        $articles = $forumServ->getArticleWithChildren($forumId);
+        return BaseResponse::response([
+            'forum' => $forums,
+            'article' => $articles,
+        ]);
     }
 
     public function board(Board $request)
     {
         $forumId = $request->input('forum_id');
+        /** @var ForumRepository $forumRepo */
+        $forumRepo = app()->make(ForumRepository::class);
         if (is_null($forumId)) {
-            // 拿取所有討論版
-            /** @var ForumRepository $forumRepo */
-            $forumRepo = app()->make(ForumRepository::class);
-            $data = $forumRepo->getBoardForum();
-        } else {
-            // 拿取特定討論版的文章
-            /** @var ForumService $forumServ */
-            $forumServ = app()->make(ForumService::class);
-            $data = $forumServ->getArticleWithChildren($forumId);
+            $forumId = $forumRepo->getBoardId();
         }
-        return BaseResponse::response($data);
+        // 拿取指定討論版
+        $forums = $forumRepo->getPaginationForumById($forumId);
+        // 拿取特定討論版的文章
+        /** @var ForumService $forumServ */
+        $forumServ = app()->make(ForumService::class);
+        $articles = $forumServ->getArticleWithChildren($forumId);
+        return BaseResponse::response([
+            'forum' => $forums,
+            'article' => $articles,
+        ]);
     }
 }

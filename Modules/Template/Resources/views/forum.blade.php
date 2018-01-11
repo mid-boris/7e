@@ -17,7 +17,7 @@
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">討論版</h3>
-                @if(in_array($parentId ,[1, 2]))
+                @if(!is_null($parentId))
                 <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#forumCreateModal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新增</button>
                 @endif
             </div>

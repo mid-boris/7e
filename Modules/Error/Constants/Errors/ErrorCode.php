@@ -21,4 +21,7 @@ class ErrorCode
     const FORUM_VOTE_INVALID_COUNT = 20001;      // 投票數大於文章設定的最大投票數
     const FORUM_VOTE_VOTED = 20002;      // 已投過票
     const FORUM_VOTE_INVALID_OPTION_ID = 20003;      // 已投過票
+
+    /** Module RemoteSystem */
+    const REMOTE_SYSTEM_GET_TOKEN_ERROR = 30001;     // 獲得遠端token時錯誤
 }
