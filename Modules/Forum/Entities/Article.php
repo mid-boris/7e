@@ -19,7 +19,7 @@ class Article extends ForumBaseModel
     ];
 
     protected $hidden = [
-        'created_at', 'updated_at',
+        'created_at',
         'audit_user_id', 'audit_user_account', 'audit_user_nick_name', 'user_id',
     ];
 

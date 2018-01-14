@@ -25,18 +25,22 @@ class ForumService
     {
         /** @var \Illuminate\Database\Eloquent\Builder $article */
         $article = new Article;
-        $articles = $article->orderNew()->with(['children' => function ($query) use ($childrenCount) {
-            /** @var \Illuminate\Database\Query\Builder $query */
-            $query->orderBy('updated_at', 'DESC')->take($childrenCount);
-        }])->where(function ($query) use ($forumId) {
-            /** @var \Illuminate\Database\Query\Builder $query */
-            $query->whereNull('parent_id')->where('audit', 0)->where('forum_id', $forumId);
-        })->orWhere(function ($query) use ($forumId) {
-            /** @var \Illuminate\Database\Query\Builder $query */
-            $query->whereNull('parent_id')->where('user_id', SessionManager::getUserId())->where('forum_id', $forumId);
-        })->paginate(35);
+        $articles = $article->orderNew()
+            ->withCount(['children'])
+            ->with(['children' => function ($query) use ($childrenCount) {
+                /** @var \Illuminate\Database\Query\Builder $query */
+                $query->orderBy('updated_at', 'DESC')->take($childrenCount);
+            }])->where(function ($query) use ($forumId) {
+                /** @var \Illuminate\Database\Query\Builder $query */
+                $query->whereNull('parent_id')->where('audit', 0)->where('forum_id', $forumId);
+            })->orWhere(function ($query) use ($forumId) {
+                /** @var \Illuminate\Database\Query\Builder $query */
+                $query->whereNull('parent_id')
+                    ->where('user_id', SessionManager::getUserId())
+                    ->where('forum_id', $forumId);
+            })->paginate(35);
 
-        return $articles;
+            return $articles;
     }
 
     public function needToReview(int $forumId)
