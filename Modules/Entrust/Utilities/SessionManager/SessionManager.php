@@ -25,6 +25,16 @@ class SessionManager
         return self::getUser()['id'];
     }
 
+    public static function getUserAccount() : string
+    {
+        return self::getUser()['account'];
+    }
+
+    public static function getUserNickName() : string
+    {
+        return self::getUser()['nick_name'];
+    }
+
     public static function isLogin() : bool
     {
         return Session::has('user');

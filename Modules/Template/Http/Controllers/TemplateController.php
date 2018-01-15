@@ -12,12 +12,14 @@ use Modules\Forum\Repositories\ArticleRepository;
 use Modules\Forum\Repositories\ForumRepository;
 use Modules\Forum\Services\ForumService;
 use Modules\Menu\Repositories\MenuRepository;
+use Modules\Message\Repository\MessageRepository;
 use Modules\Shop\Repositories\ShopRepository;
 use Modules\Template\Http\Requests\Area;
 use Modules\Template\Http\Requests\Article;
 use Modules\Template\Http\Requests\ArticleAudit;
 use Modules\Template\Http\Requests\Forum;
 use Modules\Template\Http\Requests\Menu;
+use Modules\Template\Http\Requests\Message;
 use Modules\Template\Http\Requests\Vote;
 use Modules\User\Repositories\UserRepository;
 
@@ -184,6 +186,17 @@ class TemplateController extends Controller
             'name' => $request->input('name'),
             'parentId' => $request->input('parent_id'),
             'forumId' => $request->input('forum_id'),
+        ]);
+    }
+
+    public function message(Message $request)
+    {
+        $account = $request->input('account');
+        $messageRepo = app()->make(MessageRepository::class);
+        $results = $messageRepo->getByFuzzy($account);
+        return $this->render('message', [
+            'message' => $results,
+            'parameter' => $request->except('page'),
         ]);
     }
 

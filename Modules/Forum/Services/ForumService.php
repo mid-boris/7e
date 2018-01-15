@@ -35,7 +35,7 @@ class ForumService
                 ->where('forum_id', $forumId);
         })->paginate(35);
 
-        $childrenCount = $childrenCount * $articles->total();
+        $childrenCount *= $articles->total();
         $articles->load(['children' => function ($query) use ($childrenCount) {
             /** @var \Illuminate\Database\Query\Builder $query */
             $query->orderBy('updated_at', 'DESC')->limit($childrenCount);

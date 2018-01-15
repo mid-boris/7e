@@ -19,6 +19,7 @@ class ForumUpdate extends BaseFormRequest
             'name' => 'required|string|min:1|max:128',
             'status' => 'sometimes|required|in:1',
             'audit' => 'sometimes|required|in:1',
+            'sort' => 'sometimes|required|integer',
         ];
     }
 }

@@ -26,6 +26,19 @@ Route::group(['middleware' => 'api', 'prefix' => 'api'], function () {
                     Route::get('show', 'ArticleController@show');
                     Route::post('create', 'ArticleController@create');
                 });
+
+                // 投票
+                Route::group(['prefix' => 'vote'], function () {
+                    Route::post('add', 'VoteController@add');
+                });
+
+                // 聯絡客服
+                Route::group([
+                    'prefix' => 'message'
+                ], function () {
+                    Route::get('index', 'MessageController@list');
+                    Route::post('create', 'MessageController@create');
+                });
             });
         });
     });

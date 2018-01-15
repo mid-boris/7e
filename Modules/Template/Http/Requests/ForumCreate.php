@@ -18,6 +18,7 @@ class ForumCreate extends BaseFormRequest
             'parent_id' => 'sometimes|integer|nullable',
             'status' => 'sometimes|required|in:1',
             'audit' => 'sometimes|required|in:1',
+            'sort' => 'sometimes|required|integer',
         ];
     }
 }

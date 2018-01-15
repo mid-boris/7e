@@ -29,7 +29,7 @@
                         <th>名稱</th>
                         <th>需審核</th>
                         <th>狀態</th>
-                        <th>排序</th>
+                        <th>置頂</th>
                         <th></th>
                         <th>最後修改時間</th>
                         <th></th>
@@ -42,7 +42,7 @@
                             <td><a href="/forum?parent_id={{$item->id}}&name={{$item->name}}">{{$item->name}}</a></td>
                             <td>{{$item->audit == 0 ? 'X' : 'V'}}</td>
                             <td>{{$item->status == 0 ? 'X' : 'V'}}</td>
-                            <td>{{$item->sort}}</td>
+                            <td>{{$item->sort == 9 ? 'V' : 'X'}}</td>
                             <th>
                                 @if($item->id > 2)
                                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#forumEditModal">修改</button>
@@ -97,9 +97,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">排序</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" placeholder="Sort" name="sort">
+                                    <label for="inputPassword3" class="col-sm-2 control-label"></label>
+                                    <div class="col-sm-10 checkbox">
+                                        <label>
+                                            <input name="sort" type="checkbox" value="9">
+                                            置頂
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -163,9 +166,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">排序</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" placeholder="Sort" name="sort">
+                                    <label class="col-sm-2 control-label"></label>
+                                    <div class="col-sm-10 checkbox">
+                                        <label>
+                                            <input name="sort" type="checkbox" value="9">
+                                            置頂
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -210,9 +216,9 @@
                 var modal = $(this);
                 modal.find('.modal-body input[name="id"]').val(forum.id);
                 modal.find('.modal-body input[name="name"]').val(forum.name);
+                $(':checkbox[name=sort]', modal).prop("checked", forum.sort == 9);
                 $(':checkbox[name=status]', modal).prop("checked", forum.status);
                 $(':checkbox[name=audit]', modal).prop("checked", forum.audit);
-                modal.find('.modal-body input[name="sort"]').val(forum.sort);
             });
         });
     </script>

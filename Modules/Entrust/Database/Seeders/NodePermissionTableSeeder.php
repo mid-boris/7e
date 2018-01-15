@@ -65,6 +65,9 @@ class NodePermissionTableSeeder extends Seeder
 
         $nodePmServ->addUriPermissionToNode('/board', '資料呈現.項目討論');
 
+        $nodePmServ->addUriPermissionToNode('/message', '客服專區');
+        $nodePmServ->addUriPermissionToNode('/message/create', '客服專區.客服信件');
+
         // 會員app端權限
         $memberPermissionName = '會員app';
         $nodePmServ->addUriPermissionToNode('/api/1.0/user/edit', $memberPermissionName);
@@ -74,5 +77,8 @@ class NodePermissionTableSeeder extends Seeder
         $nodePmServ->addUriPermissionToNode('/api/1.0/article/index', $memberPermissionName);
         $nodePmServ->addUriPermissionToNode('/api/1.0/article/show', $memberPermissionName);
         $nodePmServ->addUriPermissionToNode('/api/1.0/article/create', $memberPermissionName);
+        $nodePmServ->addUriPermissionToNode('/api/1.0/vote/add', $memberPermissionName);
+        $nodePmServ->addUriPermissionToNode('/api/1.0/message/index', $memberPermissionName);
+        $nodePmServ->addUriPermissionToNode('/api/1.0/message/create', $memberPermissionName);
     }
 }
