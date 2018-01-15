@@ -48,6 +48,7 @@
                         <tr class="hidden reportForm">
                             <th></th>
                             <td></td>
+                            <td></td>
                             <td>
                                 <form class="form-horizontal" method="post" action="/message/create">
                                     <input type="text" name="content" class="form-control">
