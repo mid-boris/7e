@@ -194,6 +194,9 @@
 
 > 回應
 
+| 項目                      | 內容                       | 類型         | 說明                                  |
+|                           | sort                       | integer      | 為 9 時是置頂, 其餘一般               |
+
     {
         "current_page": 1,
         "data": [
@@ -424,6 +427,106 @@
 |                           | vote_ids                   | array        | 投票目標ids                           |
 |                           | vote_ids.*                 | id           | 投票目標id                            |
 |                           | article_id                 | id           | 文章id                                |
+| <b>選填參數</b>           |                            |              |                                       |
+|                           | 無                         |              |                                       |
+
+> 回應
+
+    {
+        "data": true
+    }
+
+#### 獲得聯絡客服list
+
+| 項目                      | 內容                       | 類型         | 說明                                  |
+|---------------------------|----------------------------|--------------|---------------------------------------|
+| <b>路徑</b>               | /api/1.0/message/index     |              |                                       |
+| <b>方法</b>               | GET                        |              |                                       |
+| <b>權限</b>               | 檢視                       |              | READ                                  |
+| <b>必填參數</b>           |                            |              |                                       |
+|                           | 無                         |              |                                       |
+| <b>選填參數</b>           |                            |              |                                       |
+|                           | 無                         |              |                                       |
+
+> 回應
+
+    {
+        "data": {
+            "current_page": 1,
+            "data": [
+                {
+                    "id": 5,
+                    "content": "回覆測試回覆測試回覆測試回覆測試",
+                    "target_id": 4,
+                    "target_account": "tuohoi87",
+                    "target_nick_name": "測試會員",
+                    "user_id": 1,
+                    "user_account": "admin",
+                    "user_nick_name": "admin"
+                },
+                {
+                    "id": 3,
+                    "content": "毛毛hen棒毛毛hen棒毛毛hen棒毛毛hen棒毛毛hen棒毛毛hen棒毛毛hen棒毛毛hen棒",
+                    "target_id": 4,
+                    "target_account": "tuohoi87",
+                    "target_nick_name": "測試會員",
+                    "user_id": 4,
+                    "user_account": "tuohoi87",
+                    "user_nick_name": "測試會員"
+                },
+                {
+                    "id": 4,
+                    "content": "毛毛hen棒毛毛hen棒毛毛hen棒毛毛hen棒毛毛hen棒毛毛hen棒毛毛hen棒毛毛hen棒",
+                    "target_id": 4,
+                    "target_account": "tuohoi87",
+                    "target_nick_name": "測試會員",
+                    "user_id": 4,
+                    "user_account": "tuohoi87",
+                    "user_nick_name": "測試會員"
+                },
+                {
+                    "id": 2,
+                    "content": "毛毛hen棒毛毛hen棒毛毛hen棒毛毛hen棒毛毛hen棒毛毛hen棒毛毛hen棒毛毛hen棒",
+                    "target_id": 4,
+                    "target_account": "tuohoi87",
+                    "target_nick_name": "測試會員",
+                    "user_id": 4,
+                    "user_account": "tuohoi87",
+                    "user_nick_name": "測試會員"
+                },
+                {
+                    "id": 1,
+                    "content": "留言測試留言測試留言測試留言測試留言測試留言測試",
+                    "target_id": 4,
+                    "target_account": "tuohoi87",
+                    "target_nick_name": "測試會員",
+                    "user_id": 4,
+                    "user_account": "tuohoi87",
+                    "user_nick_name": "測試會員"
+                }
+            ],
+            "first_page_url": "http://7e.net/api/1.0/message/index?page=1",
+            "from": 1,
+            "last_page": 1,
+            "last_page_url": "http://7e.net/api/1.0/message/index?page=1",
+            "next_page_url": null,
+            "path": "http://7e.net/api/1.0/message/index",
+            "per_page": 35,
+            "prev_page_url": null,
+            "to": 7,
+            "total": 7
+        }
+    }
+
+#### 新增聯絡客服留言
+
+| 項目                      | 內容                       | 類型         | 說明                                  |
+|---------------------------|----------------------------|--------------|---------------------------------------|
+| <b>路徑</b>               | /api/1.0/message/create    |              |                                       |
+| <b>方法</b>               | POST                       |              |                                       |
+| <b>權限</b>               | 新增                       |              | CREATE                                |
+| <b>必填參數</b>           |                            |              |                                       |
+|                           | content                    |              | 內文                                  |
 | <b>選填參數</b>           |                            |              |                                       |
 |                           | 無                         |              |                                       |
 
