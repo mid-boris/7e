@@ -27,7 +27,7 @@ class ForumService
         $article = new Article;
         $articles = $article
             ->orderNew()
-            ->withCount(['children', 'voteOption', 'voteItem'])
+            ->withCount(['children'])
             ->where(function ($query) use ($forumId) {
             /** @var \Illuminate\Database\Query\Builder $query */
                 $query->whereNull('parent_id')->where('audit', 0)->where('forum_id', $forumId);
@@ -42,7 +42,7 @@ class ForumService
             $articles->load(['children' => function ($query) use ($childrenCount) {
                 /** @var \Illuminate\Database\Query\Builder $query */
                 $query->orderBy('updated_at', 'DESC')->limit($childrenCount);
-            }]);
+            }, 'voteOption', 'voteItem']);
 
             return $articles;
     }
