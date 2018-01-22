@@ -28,4 +28,14 @@ class ErrorCode
     const REMOTE_SYSTEM_GET_DATA_ERROR = 30002;     // 獲得遠端token時錯誤, 回傳資料為空
     const REMOTE_SYSTEM_DATA_DECODER_ERROR = 30003;     // 獲得遠端token時錯誤, 資料反解錯誤
     const REMOTE_SYSTEM_NORMAL_ERROR = 30004;     // 獲得遠端token時錯誤, 錯誤代碼error用
+
+    /** Module RemoteSystem By Google map */
+    const REMOTE_SYSTEM_GOOGLE_MAP_PARAMETER_ERROR = 40001;     // 需帶地址給map查詢
+    const REMOTE_SYSTEM_GOOGLE_MAP_GET_DATA_ERROR = 40002;     // 回傳資料為空
+    const REMOTE_SYSTEM_GOOGLE_MAP_DATA_DECODER_ERROR = 40003;     // 資料反解錯誤
+    const REMOTE_SYSTEM_GOOGLE_MAP_NORMAL_ERROR = 40004;     // 錯誤代碼error用
+    const REMOTE_SYSTEM_GOOGLE_MAP_CAN_NOT_GET_RESULT = 40005;     // 獲得不到資料結構內的results
+
+    /** Module Shop */
+    const SHOP_DATA_MAP_INFO_INVALID = 50001;      // 地圖資訊錯誤
 }

@@ -191,6 +191,17 @@ Route::group(['middleware' => 'api'], function () {
     });
 
     Route::group([
+        'prefix' => 'api/shop',
+        'namespace' => 'Modules\Template\Http\Controllers'
+    ], function () {
+        /* 需完整權限 (登入、角色的節點權限) */
+        Route::group(['middleware' => 'permission',], function () {
+            // 地址查詢 by google map
+            Route::post('map', 'ShopController@mapInfo');
+        });
+    });
+
+    Route::group([
         'prefix' => 'api/article',
         'namespace' => 'Modules\Forum\Http\Controllers'
     ], function () {

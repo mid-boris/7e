@@ -30,14 +30,15 @@ class ShopRepository extends ShopBaseRepository
         $iPass,
         array $closedDay,
         $address,
-        $x,
-        $y,
+        $lat,
+        $lng,
+        $components,
         $areaId = null
     ) {
         $data = [
             'name' => $name,
-            'x' => $x,
-            'y' => $y,
+            'shop_lat' => $lat,
+            'shop_lng' => $lng,
             'telphone' => $tel,
             'phone' => $phone,
             'address' => $address,
@@ -52,7 +53,10 @@ class ShopRepository extends ShopBaseRepository
         ];
         /** @var \Eloquent $shop */
         $shop = new Shop;
+        \DB::connection($shop->getConnectionName())->beginTransaction();
         $shop->fill($data)->save();
+        $shop->googleArea()->createMany($components);
+        \DB::connection($shop->getConnectionName())->commit();
         return $shop;
     }
 
@@ -69,14 +73,15 @@ class ShopRepository extends ShopBaseRepository
         $iPass,
         array $closedDay,
         $address,
-        $x,
-        $y,
+        $lat,
+        $lng,
+        $components,
         $areaId = null
     ) {
         $data = [
             'name' => $name,
-            'x' => $x,
-            'y' => $y,
+            'shop_lat' => $lat,
+            'shop_lng' => $lng,
             'telphone' => $tel,
             'phone' => $phone,
             'address' => $address,
@@ -91,6 +96,15 @@ class ShopRepository extends ShopBaseRepository
         ];
         /** @var \Eloquent $shop */
         $shop = new Shop;
+        \DB::connection($shop->getConnectionName())->beginTransaction();
+        $shop->where('id', $id)->update($data);
+
+        // relate updated
+        /** @var Shop $shop */
+        $shop = Shop::where('id', $id)->first();
+        $shop->googleArea()->delete();
+        $shop->googleArea()->createMany($components);
+        \DB::connection($shop->getConnectionName())->commit();
         return $shop->where('id', $id)->update($data);
     }
 

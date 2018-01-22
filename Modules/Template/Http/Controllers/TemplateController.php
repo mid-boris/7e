@@ -94,8 +94,10 @@ class TemplateController extends Controller
     {
         $shopRepo = app()->make(ShopRepository::class);
         $shop = $shopRepo->getPagination();
+        $googleMapKey = config('remotesystem.googleMapApiKey');
         return $this->render('shop', [
             'shop' => $shop,
+            'googleMapKey' => $googleMapKey,
         ]);
     }
 

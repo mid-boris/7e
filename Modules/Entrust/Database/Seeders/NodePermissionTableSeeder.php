@@ -40,6 +40,7 @@ class NodePermissionTableSeeder extends Seeder
         $nodePmServ->addUriPermissionToNode('/shop/update', '資料設置.商家管理');
         $nodePmServ->addUriPermissionToNode('/shop/delete', '資料設置.商家管理');
         $nodePmServ->addUriPermissionToNode('/api/area/search/fuzzy', '資料設置.商家管理');
+        $nodePmServ->addUriPermissionToNode('/api/shop/map', '資料設置.商家管理');
 
         $nodePmServ->addUriPermissionToNode('/menu', '資料設置.菜單管理');
         $nodePmServ->addUriPermissionToNode('/menu/create', '資料設置.菜單管理');

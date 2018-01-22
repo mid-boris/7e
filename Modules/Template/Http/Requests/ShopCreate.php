@@ -26,6 +26,7 @@ class ShopCreate extends BaseFormRequest
             'closed_day' => 'sometimes|required|array',
             'closed_day.*' => 'sometimes|required|integer|min:0',
             'area_id' => 'sometimes|required|integer|min:1',
+            'mapInfo' => 'required|string',
         ];
     }
 }

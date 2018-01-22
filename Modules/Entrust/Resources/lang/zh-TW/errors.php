@@ -9,4 +9,9 @@ return [
     ErrorCode::ENTRUST_ROLE_NOT_FOUND       => '找不到角色',
     ErrorCode::ENTRUST_USER_LOGIN_ERROR     => '尚未登入',
     ErrorCode::ENTRUST_USER_PERMISSION_ERROR     => '權限錯誤',
+
+    ErrorCode::REMOTE_SYSTEM_GOOGLE_MAP_PARAMETER_ERROR     => '地址不能為空',
+    ErrorCode::REMOTE_SYSTEM_GOOGLE_MAP_CAN_NOT_GET_RESULT     => '獲取不到 google map 的結果',
+
+    ErrorCode::SHOP_DATA_MAP_INFO_INVALID => '地圖資訊不合法',
 ];

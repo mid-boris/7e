@@ -4,15 +4,15 @@ namespace Modules\RemoteSystem\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Modules\RemoteSystem\Src\GloryConnection;
+use Modules\RemoteSystem\Src\GoogleMapConnection;
 
 class RemoteSystemController extends Controller
 {
     public function index()
     {
-        /** @var GloryConnection $connection */
-        $connection = app()->make(GloryConnection::class);
-        $user = 'tuohoi87';
-        $password = '123456';
-        $connection->sendToken($user, $password)->sendUserInfo()->getUserInfo();
+        /** @var GoogleMapConnection $connection */
+        $connection = app()->make(GoogleMapConnection::class);
+        $connection->getMapInfoFromAddress('台中市西區公益路276號');
+        dd($connection->getResults());
     }
 }
