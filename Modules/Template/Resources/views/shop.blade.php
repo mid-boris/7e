@@ -50,8 +50,8 @@
                                     {{$item->area->name}}
                                 @endif
                             </td>
-                            <td>{{$item->special == 0 ? '' : 'V'}}</td>
-                            <td>{{$item->status == 0 ? 'X' : ''}}</td>
+                            <td>{{$item->special == 1 ? 'V' : ''}}</td>
+                            <td>{{$item->status == 1 ? 'V' : ''}}</td>
                             <td>{{$item->i_pass == 1 ? 'V' : ''}}</td>
                             <th><button type="button" class="btn btn-default" data-toggle="modal" data-target="#shopEditModal">修改</button></th>
                             <td>{{$item->updated_at}}</td>
