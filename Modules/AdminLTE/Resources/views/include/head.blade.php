@@ -1,4 +1,4 @@
-<?php $src_pre = 'vendor/adminLTE/'; ?>
+<?php $src_pre = 'modules/adminLTE/src/'; ?>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>7E Manager @yield('title')</title>
@@ -28,6 +28,8 @@
 <link rel="stylesheet" href="{{$src_pre}}bower_components/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css">
 <!-- bootstrap wysihtml5 - text editor -->
 <link rel="stylesheet" href="{{$src_pre}}plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+<!-- bootstrap image upload -->
+<link rel="stylesheet" href="{{$src_pre}}plugins/image-upload/bootstrap-imageupload.min.css">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

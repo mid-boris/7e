@@ -29,9 +29,9 @@
                         <th class="col-xs-1">手機</th>
                         <th>營業時間</th>
                         <th class="col-xs-1">地區</th>
-                        <th class="col-xs-1">特約</th>
                         <th class="col-xs-1">狀態</th>
-                        <th class="col-xs-1">一卡通</th>
+                        <th class="col-xs-1">圖檔</th>
+                        <th class="col-xs-1">菜單</th>
                         <th class="col-xs-1"></th>
                         <th class="col-xs-1">最後修改時間</th>
                         <th class="col-xs-1"></th>
@@ -50,9 +50,9 @@
                                     {{$item->area->name}}
                                 @endif
                             </td>
-                            <td>{{$item->special == 1 ? 'V' : ''}}</td>
                             <td>{{$item->status == 1 ? 'V' : ''}}</td>
-                            <td>{{$item->i_pass == 1 ? 'V' : ''}}</td>
+                            <td><a href="/shopImages?id={{$item->id}}" class="btn btn-info">Images</a></td>
+                            <td><a href="#" class="btn btn-info">Menus</a></td>
                             <th><button type="button" class="btn btn-default" data-toggle="modal" data-target="#shopEditModal">修改</button></th>
                             <td>{{$item->updated_at}}</td>
                             <td>
@@ -86,7 +86,6 @@
 
                 <div class="modal-body">
                     <div class="">
-
                             <div class="box-body">
                                 <form id="shopCreateForm" class="form-horizontal" method="post" action="/shop/create">
                                     <div class="form-group">
@@ -174,7 +173,7 @@
                                                 特約
                                             </label>
                                             <label class="checkbox-inline">
-                                                <input name="status" type="checkbox" value="1" checked>
+                                                <input name="status" type="checkbox" value="1">
                                                 啟用
                                             </label>
                                             <label class="checkbox-inline">
@@ -377,7 +376,6 @@
 
         $(document).ready(function() {
             datetimepickerInit();
-//            initMap('google-map');
 
             $('#shopCreateBtn').click(function () {
                 $('#shopCreateForm').submit();

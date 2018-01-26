@@ -39,6 +39,13 @@ Route::group(['middleware' => 'api', 'prefix' => 'api'], function () {
                     Route::get('index', 'MessageController@list');
                     Route::post('create', 'MessageController@create');
                 });
+
+                // 獲得商家
+                Route::group([
+                    'prefix' => 'shop'
+                ], function () {
+                    Route::get('index', 'ShopController@index');
+                });
             });
         });
     });

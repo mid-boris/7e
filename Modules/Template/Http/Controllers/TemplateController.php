@@ -20,6 +20,7 @@ use Modules\Template\Http\Requests\ArticleAudit;
 use Modules\Template\Http\Requests\Forum;
 use Modules\Template\Http\Requests\Menu;
 use Modules\Template\Http\Requests\Message;
+use Modules\Template\Http\Requests\ShopImages;
 use Modules\Template\Http\Requests\Vote;
 use Modules\User\Repositories\UserRepository;
 
@@ -98,6 +99,16 @@ class TemplateController extends Controller
         return $this->render('shop', [
             'shop' => $shop,
             'googleMapKey' => $googleMapKey,
+        ]);
+    }
+
+    public function shopImages(ShopImages $request)
+    {
+        $shopRepo = app()->make(ShopRepository::class);
+        $shop = $shopRepo->getShop($request->input('id'));
+        return $this->render('shopImages', [
+            'shop' => $shop,
+            'shopId' => $request->input('id'),
         ]);
     }
 

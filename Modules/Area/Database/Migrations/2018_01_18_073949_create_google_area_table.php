@@ -24,9 +24,6 @@ class CreateGoogleAreaTable extends BaseMigration
 
             $table->index('shop_id', 'idx_shop_id');
             $table->index('name', 'idx_name');
-
-            $table->foreign('shop_id', 'fk_shop_id')
-                ->references('id')->on('shop')->onDelete('cascade');
         };
     }
 }

@@ -4,7 +4,12 @@ namespace Modules\Shop\Entities;
 
 use Modules\Area\Entities\Area;
 use Modules\Area\Entities\GoogleArea;
+use Modules\Image\Entities\ImageFile;
 
+/**
+ * Class Shop
+ * @package Modules\Shop\Entities
+ */
 class Shop extends ShopBaseModel
 {
     protected $table = 'shop';
@@ -24,5 +29,24 @@ class Shop extends ShopBaseModel
     public function googleArea()
     {
         return $this->hasMany(GoogleArea::class, 'shop_id');
+    }
+
+    public function images()
+    {
+        return $this->belongsToMany(ImageFile::class, 'shop_image_file', 'shop_id', 'image_id');
+    }
+
+    public function trademark()
+    {
+        return $this
+            ->belongsToMany(ImageFile::class, 'shop_image_file', 'shop_id', 'image_id')
+            ->wherePivot('trademark', 1);
+    }
+
+    public function preview()
+    {
+        return $this
+            ->belongsToMany(ImageFile::class, 'shop_image_file', 'shop_id', 'image_id')
+            ->wherePivot('trademark', 0);
     }
 }

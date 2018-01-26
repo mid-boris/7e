@@ -1,4 +1,4 @@
-<?php $src_pre = 'vendor/adminLTE/'; ?>
+<?php $src_pre = 'modules/adminlte/src/'; ?>
 <!-- jQuery 3 -->
 <script src="{{$src_pre}}bower_components/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -31,5 +31,7 @@
 <script src="{{$src_pre}}bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="{{$src_pre}}bower_components/fastclick/fastclick.min.js"></script>
+<!-- image upload -->
+<script src="{{$src_pre}}plugins/image-upload/bootstrap-imageupload.min.js"></script>
 <!-- AdminLTE App -->
 <script src="{{$src_pre}}bower_components/theme/adminlte.min.js"></script>

@@ -538,7 +538,200 @@
         "data": true
     }
 
+#### 獲得商家列表
 
+| 項目                      | 內容                       | 類型         | 說明                                  |
+|---------------------------|----------------------------|--------------|---------------------------------------|
+| <b>路徑</b>               | /api/1.0/shop/index        |              |                                       |
+| <b>方法</b>               | GET                        |              |                                       |
+| <b>權限</b>               | 檢視                       |              | READ                                  |
+| <b>必填參數</b>           |                            |              |                                       |
+|                           | 無                         |              |                                       |
+| <b>選填參數</b>           |                            |              |                                       |
+|                           | 無                         |              |                                       |
+
+> 回應
+
+#### 參數說明
+| 項目                      | 內容                       | 類型         | 說明                                  |
+|---------------------------|----------------------------|--------------|---------------------------------------|
+|                           | business_hours             | string       | 營業時間                              |
+|                           | business_hours_start_time  | string       | 開始營業時間                          |
+|                           | business_hours_end_time    | string       | 結束營業時間                          |
+|                           | closed_day                 | string,array | 休息日                                |
+|                           | special                    | integer      | 是否為特約                            |
+|                           | status                     | integer      | 是否啟用 (無須顯示)                   |
+|                           | i_pass                     | integer      | 是否能用一卡通                        |
+|                           | shop_lat                   | float        | 經度                                  |
+|                           | shop_lng                   | float        | 緯度                                  |
+|                           | trademark                  | array        | 商標 (至多1筆)                        |
+| 圖片位置 (範例)           |                            |              | /images/1516957367.jpg                |
+|                           | preview                    | array        | 預覽圖 (至多3筆)                      |
+| 圖片位置 (範例)           |                            |              | /images/1516957367.jpg                |
+
+    {
+        "data": {
+            "current_page": 1,
+            "data": [
+                {
+                    "id": 2,
+                    "name": "一般店家",
+                    "telphone": "0966 834 114",
+                    "phone": "0966 834 114",
+                    "address": "台中市西屯區慶和街75號",
+                    "business_hours": "15:00:00 ~ 01:00:00",
+                    "business_hours_start_time": "3:00 PM",
+                    "business_hours_end_time": "1:00 AM",
+                    "closed_day": "[]",
+                    "special": 1,
+                    "status": 1,
+                    "i_pass": 0,
+                    "area_id": 6,
+                    "shop_lat": 24.18,
+                    "shop_lng": 120.65,
+                    "trademark": [
+                        {
+                            "id": 9,
+                            "saved_uri": "1516957367.jpg",
+                            "image_size": 22100,
+                            "created_at": "2018-01-26 09:02:47",
+                            "updated_at": "2018-01-26 09:02:47",
+                            "image_width": 256,
+                            "image_height": 256,
+                            "pivot": {
+                                "shop_id": 2,
+                                "image_id": 9
+                            }
+                        }
+                    ],
+                    "preview": [
+                        {
+                            "id": 10,
+                            "saved_uri": "1516957376.jpg",
+                            "image_size": 67445,
+                            "created_at": "2018-01-26 09:02:56",
+                            "updated_at": "2018-01-26 09:02:56",
+                            "image_width": 1024,
+                            "image_height": 500,
+                            "pivot": {
+                                "shop_id": 2,
+                                "image_id": 10
+                            }
+                        },
+                        {
+                            "id": 11,
+                            "saved_uri": "1516957383.jpg",
+                            "image_size": 55624,
+                            "created_at": "2018-01-26 09:03:03",
+                            "updated_at": "2018-01-26 09:03:03",
+                            "image_width": 1024,
+                            "image_height": 500,
+                            "pivot": {
+                                "shop_id": 2,
+                                "image_id": 11
+                            }
+                        },
+                        {
+                            "id": 14,
+                            "saved_uri": "1516958919.jpg",
+                            "image_size": 55624,
+                            "created_at": "2018-01-26 09:28:39",
+                            "updated_at": "2018-01-26 09:28:39",
+                            "image_width": 1024,
+                            "image_height": 500,
+                            "pivot": {
+                                "shop_id": 2,
+                                "image_id": 14
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": 1,
+                    "name": "測試店家",
+                    "telphone": "04 2305 2799",
+                    "phone": "0912345678",
+                    "address": "台中市西區公益路235號",
+                    "business_hours": "10:00:00 ~ 21:00:00",
+                    "business_hours_start_time": "10:00 AM",
+                    "business_hours_end_time": "9:00 PM",
+                    "closed_day": "[]",
+                    "special": 0,
+                    "status": 1,
+                    "i_pass": 0,
+                    "area_id": 6,
+                    "shop_lat": 24.15,
+                    "shop_lng": 120.66,
+                    "trademark": [
+                        {
+                            "id": 5,
+                            "saved_uri": "1516957130.jpg",
+                            "image_size": 36040,
+                            "created_at": "2018-01-26 08:58:50",
+                            "updated_at": "2018-01-26 08:58:50",
+                            "image_width": 256,
+                            "image_height": 256,
+                            "pivot": {
+                                "shop_id": 1,
+                                "image_id": 5
+                            }
+                        }
+                    ],
+                    "preview": [
+                        {
+                            "id": 6,
+                            "saved_uri": "1516957209.jpg",
+                            "image_size": 127941,
+                            "created_at": "2018-01-26 09:00:09",
+                            "updated_at": "2018-01-26 09:00:09",
+                            "image_width": 1024,
+                            "image_height": 500,
+                            "pivot": {
+                                "shop_id": 1,
+                                "image_id": 6
+                            }
+                        },
+                        {
+                            "id": 7,
+                            "saved_uri": "1516957216.jpg",
+                            "image_size": 281890,
+                            "created_at": "2018-01-26 09:00:16",
+                            "updated_at": "2018-01-26 09:00:16",
+                            "image_width": 1024,
+                            "image_height": 500,
+                            "pivot": {
+                                "shop_id": 1,
+                                "image_id": 7
+                            }
+                        },
+                        {
+                            "id": 8,
+                            "saved_uri": "1516957224.jpg",
+                            "image_size": 173112,
+                            "created_at": "2018-01-26 09:00:24",
+                            "updated_at": "2018-01-26 09:00:24",
+                            "image_width": 1024,
+                            "image_height": 500,
+                            "pivot": {
+                                "shop_id": 1,
+                                "image_id": 8
+                            }
+                        }
+                    ]
+                }
+            ],
+            "first_page_url": "http://7e.net/api/1.0/shop/index?page=1",
+            "from": 1,
+            "last_page": 1,
+            "last_page_url": "http://7e.net/api/1.0/shop/index?page=1",
+            "next_page_url": null,
+            "path": "http://7e.net/api/1.0/shop/index",
+            "per_page": 35,
+            "prev_page_url": null,
+            "to": 2,
+            "total": 2
+        }
+    }
 
 
 #### 

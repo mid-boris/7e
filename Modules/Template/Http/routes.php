@@ -23,6 +23,7 @@ Route::group(['middleware' => 'api'], function () {
             Route::get('/role', 'TemplateController@role');
             Route::get('/area', 'TemplateController@area');
             Route::get('/shop', 'TemplateController@shop');
+            Route::get('/shopImages', 'TemplateController@shopImages');
             Route::get('/menu', 'TemplateController@menu');
             Route::get('/forum', 'TemplateController@forum');
             Route::get('/article', 'TemplateController@article');
@@ -93,6 +94,18 @@ Route::group(['middleware' => 'api'], function () {
             Route::post('create', 'ShopController@create');
             Route::post('update', 'ShopController@update');
             Route::get('delete', 'ShopController@delete');
+            Route::post('tradeMark/create', 'ShopController@trademarkUpload');
+            Route::post('preview/create', 'ShopController@previewUpload');
+        });
+    });
+
+    Route::group([
+        'prefix' => 'image',
+        'namespace' => 'Modules\Image\Http\Controllers'
+    ], function () {
+        /* 需完整權限 (登入、角色的節點權限) */
+        Route::group(['middleware' => 'permission',], function () {
+            Route::get('destroy', 'ImageController@destroy');
         });
     });
 

@@ -36,11 +36,16 @@ class NodePermissionTableSeeder extends Seeder
         $nodePmServ->addUriPermissionToNode('/area/delete', '資料設置.地區管理');
 
         $nodePmServ->addUriPermissionToNode('/shop', '資料設置.商家管理');
+        $nodePmServ->addUriPermissionToNode('/shopImages', '資料設置.商家管理');
+        $nodePmServ->addUriPermissionToNode('/shop/tradeMark/create', '資料設置.商家管理');
+        $nodePmServ->addUriPermissionToNode('/shop/preview/create', '資料設置.商家管理');
         $nodePmServ->addUriPermissionToNode('/shop/create', '資料設置.商家管理');
         $nodePmServ->addUriPermissionToNode('/shop/update', '資料設置.商家管理');
         $nodePmServ->addUriPermissionToNode('/shop/delete', '資料設置.商家管理');
         $nodePmServ->addUriPermissionToNode('/api/area/search/fuzzy', '資料設置.商家管理');
         $nodePmServ->addUriPermissionToNode('/api/shop/map', '資料設置.商家管理');
+
+        $nodePmServ->addUriPermissionToNode('/image/destroy', '資料設置.商家管理');
 
         $nodePmServ->addUriPermissionToNode('/menu', '資料設置.菜單管理');
         $nodePmServ->addUriPermissionToNode('/menu/create', '資料設置.菜單管理');
@@ -81,5 +86,6 @@ class NodePermissionTableSeeder extends Seeder
         $nodePmServ->addUriPermissionToNode('/api/1.0/vote/add', $memberPermissionName);
         $nodePmServ->addUriPermissionToNode('/api/1.0/message/index', $memberPermissionName);
         $nodePmServ->addUriPermissionToNode('/api/1.0/message/create', $memberPermissionName);
+        $nodePmServ->addUriPermissionToNode('/api/1.0/shop/index', $memberPermissionName);
     }
 }

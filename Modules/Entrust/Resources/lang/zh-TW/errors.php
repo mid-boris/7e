@@ -14,4 +14,6 @@ return [
     ErrorCode::REMOTE_SYSTEM_GOOGLE_MAP_CAN_NOT_GET_RESULT     => '獲取不到 google map 的結果',
 
     ErrorCode::SHOP_DATA_MAP_INFO_INVALID => '地圖資訊不合法',
+    ErrorCode::SHOP_HAS_TRADEMARK_IMAGE => '該商家已擁有商標, 請先刪除後再嘗試',
+    ErrorCode::SHOP_PREVIEW_COUNT_INVALID => '該商家預覽圖超過三筆',
 ];

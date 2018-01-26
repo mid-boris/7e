@@ -63,7 +63,11 @@ class BaseResponse
                 exit;
             }
             $code = $code == 0 ? $statusCode : $code;
-            $str = 'Error({' . $code . '}): ';
+            $hasSql = strpos($message, 'SQL');
+            if ($hasSql !== false) {
+                $message = 'SQL Error.';
+            }
+            $str = 'Error({' . $code . '}): ' . $message;
             echo '<script>alert("' . $str .'");history.go(-1);</script>';
             exit;
         }

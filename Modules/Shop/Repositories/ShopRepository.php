@@ -11,6 +11,35 @@ class ShopRepository extends ShopBaseRepository
         parent::__construct();
     }
 
+    /**
+     * 會員端用
+     * @param int $perpage
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function getPaginationWithImages(int $perpage = 35)
+    {
+        /** @var \Eloquent $shop */
+        $shop = new Shop;
+        return $shop->with(['trademark', 'preview'])->where('status', 1)->orderBy('id', 'DESC')->paginate($perpage);
+    }
+
+    /**
+     * 後臺呈現用
+     * @param int $id
+     * @return Shop|\Eloquent
+     */
+    public function getShop(int $id)
+    {
+        /** @var \Eloquent $shop */
+        $shop = new Shop;
+        return $shop->with(['trademark', 'preview'])->where('id', $id)->first();
+    }
+
+    /**
+     * 後臺呈現用
+     * @param int $perpage
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
     public function getPagination(int $perpage = 35)
     {
         /** @var \Eloquent $shop */
