@@ -1,4 +1,4 @@
-<?php $src_pre = 'modules/adminLTE/src/'; ?>
+<?php $src_pre = 'modules/adminlte/src/'; ?>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>7E Manager @yield('title')</title>
