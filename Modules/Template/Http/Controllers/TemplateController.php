@@ -13,6 +13,7 @@ use Modules\Forum\Repositories\ForumRepository;
 use Modules\Forum\Services\ForumService;
 use Modules\Menu\Repositories\MenuRepository;
 use Modules\Message\Repository\MessageRepository;
+use Modules\Shop\Constants\ShopType;
 use Modules\Shop\Repositories\ShopRepository;
 use Modules\Template\Http\Requests\Area;
 use Modules\Template\Http\Requests\Article;
@@ -20,6 +21,7 @@ use Modules\Template\Http\Requests\ArticleAudit;
 use Modules\Template\Http\Requests\Forum;
 use Modules\Template\Http\Requests\Menu;
 use Modules\Template\Http\Requests\Message;
+use Modules\Template\Http\Requests\Shop;
 use Modules\Template\Http\Requests\ShopImages;
 use Modules\Template\Http\Requests\Vote;
 use Modules\User\Repositories\UserRepository;
@@ -91,13 +93,14 @@ class TemplateController extends Controller
         ]);
     }
 
-    public function shop()
+    public function shop(Shop $request)
     {
         $shopRepo = app()->make(ShopRepository::class);
-        $shop = $shopRepo->getPagination();
+        $shop = $shopRepo->getPagination($request->input('fuzzy_name'));
         $googleMapKey = config('remotesystem.googleMapApiKey');
         return $this->render('shop', [
             'shop' => $shop,
+            'fuzzyName' => $request->input('fuzzy_name'),
             'googleMapKey' => $googleMapKey,
         ]);
     }
@@ -114,9 +117,13 @@ class TemplateController extends Controller
 
     public function menu(Menu $request)
     {
+        /** @var ShopRepository $shopRepo */
+        $shopRepo = app()->make(ShopRepository::class);
+        $shop = $shopRepo->getShop($request->input('id'));
         $menuRepo = app()->make(MenuRepository::class);
         $menu = $menuRepo->getPaginationWithIdOrNull($request->input('id'));
         return $this->render('menu', [
+            'shop' => $shop,
             'menu' => $menu,
             'parameter' => $request->except('page'),
             'name' => $request->input('name'),

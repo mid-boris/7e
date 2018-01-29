@@ -16,8 +16,9 @@ class ShopCreate extends BaseFormRequest
         return [
             'name' => 'required|string|max:128',
             'address' => 'required|string|max:256',
-            'telphone' => 'required|string|max:32',
-            'phone' => 'required|string|max:32',
+            'telphone' => 'sometimes|string|nullable|max:32',
+            'phone' => 'sometimes|string|nullable|max:32',
+            'type' => 'required|integer|min:0|max:6',
             'start_time' => 'required|string|max:64',
             'end_time' => 'required|string|max:64',
             'special' => 'sometimes|required|in:1',

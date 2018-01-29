@@ -16,7 +16,7 @@
     <section class="content">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">菜單</h3>
+                <h3 class="box-title">{{$shop->name}}</h3>
                 <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#menuCreateModal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新增</button>
             </div>
             <div class="box-body table-responsive">
@@ -27,6 +27,8 @@
                         <th>名稱</th>
                         <th>價格</th>
                         <th>素食</th>
+                        <th>置頂</th>
+                        <th>熱門</th>
                         <th>狀態</th>
                         <th></th>
                         <th>最後修改時間</th>
@@ -37,14 +39,16 @@
                     @foreach($menu as $key => $item)
                         <tr menu='@json($item)'>
                             <th scope="row">{{$key}}</th>
-                            <td><a href="/menu?id={{$item->id}}&name={{$item->name}}">{{$item->name}}</a></td>
+                            <td>{{$item->name}}</td>
                             <td>{{$item->price}}</td>
-                            <td>{{$item->vegetarian == 1 ? 'O' : ''}}</td>
+                            <td>{{$item->vegetarian == 1 ? '素' : ''}}</td>
+                            <td>{{$item->height_light == 0 ? 'X' : 'V'}}</td>
+                            <td>{{$item->hot == 0 ? 'X' : 'V'}}</td>
                             <td>{{$item->status == 0 ? 'X' : 'V'}}</td>
-                            <th>{{--<button type="button" class="btn btn-default" data-toggle="modal" data-target="#menuEditModal">修改</button>--}}</th>
+                            <th><button type="button" class="btn btn-default" data-toggle="modal" data-target="#menuEditModal">修改</button></th>
                             <td>{{$item->updated_at}}</td>
                             <td>
-                                <form method="get" action="/area/delete">
+                                <form method="get" action="/menu/delete">
                                     <input type="hidden" name="id" value="{{$item->id}}">
                                     <button type="submit" class="btn btn-danger">刪除</button>
                                 </form>
@@ -84,22 +88,33 @@
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-2 control-label">價格</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" placeholder="Name" name="price">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">上層名稱</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" placeholder="{{$name}}" readonly value="{{$name}}">
-                                        <input type="hidden" name="parent_id" readonly value="{{$id}}">
+                                        <input type="text" class="form-control" placeholder="Price" name="price">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputPassword3" class="col-sm-2 control-label"></label>
                                     <div class="col-sm-10 checkbox">
                                         <label>
-                                            <input name="vegetarian" type="checkbox" value="1" checked>
+                                            <input name="vegetarian" type="checkbox" value="1">
                                             素食
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label"></label>
+                                    <div class="col-sm-10 checkbox">
+                                        <label>
+                                            <input name="height_light" type="checkbox" value="1">
+                                            置頂
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label"></label>
+                                    <div class="col-sm-10 checkbox">
+                                        <label>
+                                            <input name="hot" type="checkbox" value="1">
+                                            熱門
                                         </label>
                                     </div>
                                 </div>
@@ -112,6 +127,7 @@
                                         </label>
                                     </div>
                                 </div>
+                                <input type="hidden" name="shop_id" value="{{$shop->id}}">
                             </div>
                             <div class="box-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
@@ -149,13 +165,7 @@
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-2 control-label">價格</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" placeholder="Name" name="price">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">上層名稱</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="parent_name" placeholder="{{$name}}" readonly value="{{$name}}">
+                                        <input type="text" class="form-control" placeholder="Price" name="price">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -171,11 +181,30 @@
                                     <label for="inputPassword3" class="col-sm-2 control-label"></label>
                                     <div class="col-sm-10 checkbox">
                                         <label>
+                                            <input name="height_light" type="checkbox" value="1">
+                                            置頂
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label"></label>
+                                    <div class="col-sm-10 checkbox">
+                                        <label>
+                                            <input name="hot" type="checkbox" value="1">
+                                            熱門
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label"></label>
+                                    <div class="col-sm-10 checkbox">
+                                        <label>
                                             <input name="status" type="checkbox" id="statusChk" value="1" checked>
                                             啟用
                                         </label>
                                     </div>
                                 </div>
+                                <input type="hidden" value="" name="id">
                             </div>
                             <div class="box-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
@@ -194,13 +223,17 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $('#areaEditModal').on('show.bs.modal', function (event) {
+            $('#menuEditModal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget);
-                var area = JSON.parse(button.parent().parent().attr('area'));
+                var menu = JSON.parse(button.parent().parent().attr('menu'));
                 var modal = $(this);
-                modal.find('.modal-body input[name="id"]').val(area.id);
-                modal.find('.modal-body input[name="name"]').val(area.name);
-                $(':checkbox', modal).prop("checked", area.status);
+                modal.find('.modal-body input[name="id"]').val(menu.id);
+                modal.find('.modal-body input[name="name"]').val(menu.name);
+                modal.find('.modal-body input[name="price"]').val(menu.price);
+                $('input[name=vegetarian]:checkbox', modal).prop("checked", menu.vegetarian);
+                $('input[name=height_light]:checkbox', modal).prop("checked", menu.height_light);
+                $('input[name=hot]:checkbox', modal).prop("checked", menu.hot);
+                $('input[name=status]:checkbox', modal).prop("checked", menu.status);
             });
         });
     </script>

@@ -11,11 +11,11 @@ class MenuRepository extends MenuBaseRepository
         parent::__construct();
     }
 
-    public function getPaginationWithIdOrNull($id = null)
+    public function getPaginationWithIdOrNull($shopId = null)
     {
         /** @var \Eloquent $menu */
         $menu = new Menu;
-        return $menu->where('parent_id', $id)->orderBy('id', 'DESC')->paginate(35);
+        return $menu->where('shop_id', $shopId)->orderBy('height_light', 'DESC')->orderBy('id', 'DESC')->paginate(35);
     }
 
     public function create(array $data)
@@ -23,5 +23,19 @@ class MenuRepository extends MenuBaseRepository
         /** @var \Eloquent $menu */
         $menu = new Menu;
         return $menu->fill($data)->save();
+    }
+
+    public function update(array $data, int $menuId)
+    {
+        /** @var \Eloquent $menu */
+        $menu = new Menu;
+        return $menu->where('id', $menuId)->update($data);
+    }
+
+    public function delete(int $menuId)
+    {
+        /** @var \Eloquent $menu */
+        $menu = new Menu;
+        return $menu->where('id', $menuId)->delete();
     }
 }

@@ -4,12 +4,12 @@ namespace Modules\Template\Http\Requests;
 
 use Modules\Base\Contract\FormRequest\BaseFormRequest;
 
-class Menu extends BaseFormRequest
+class Shop extends BaseFormRequest
 {
     public function rules()
     {
         return [
-            'id' => $this->idValidate('shop'),
+            'fuzzy_name' => 'sometimes|string|nullable',
         ];
     }
 }

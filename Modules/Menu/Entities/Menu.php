@@ -11,7 +11,7 @@ class Menu extends Model
 
     protected $fillable = [
         'shop_id', 'parent_id',
-        'name', 'price', 'vegetarian',
+        'name', 'price', 'vegetarian', 'height_light', 'hot',
     ];
 
     public function shop()

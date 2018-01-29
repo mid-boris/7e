@@ -16,7 +16,11 @@
     <section class="content">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">商家</h3>
+                <div class="col-md-3">
+                    <form method="get" action="/shop">
+                        <input class="form-control" type="text" name="fuzzy_name" placeholder="Search Name" value="{{$fuzzyName}}">
+                    </form>
+                </div>
                 <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#shopCreateModal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新增</button>
             </div>
             <div class="box-body table-responsive">
@@ -25,8 +29,8 @@
                     <tr>
                         <th class="col-xs-1">#</th>
                         <th>名稱</th>
-                        <th class="col-xs-1">電話</th>
-                        <th class="col-xs-1">手機</th>
+                        <th class="col-xs-1">電話/手機</th>
+                        <th class="col-xs-1">類型</th>
                         <th>營業時間</th>
                         <th class="col-xs-1">地區</th>
                         <th class="col-xs-1">狀態</th>
@@ -42,8 +46,8 @@
                         <tr shop='@json($item)'>
                             <th scope="row">{{$key}}</th>
                             <td>{{$item->name}}</td>
-                            <td>{{$item->telphone}}</td>
-                            <td>{{$item->phone}}</td>
+                            <td>{{$item->telphone}}<br>{{$item->phone}}</td>
+                            <td>{{ShopType::getTypeName($item->shop_type)}}</td>
                             <td>{{$item->business_hours}}</td>
                             <td>
                                 @if(!is_null($item->area))
@@ -52,7 +56,7 @@
                             </td>
                             <td>{{$item->status == 1 ? 'V' : ''}}</td>
                             <td><a href="/shopImages?id={{$item->id}}" class="btn btn-info">Images</a></td>
-                            <td><a href="#" class="btn btn-info">Menus</a></td>
+                            <td><a href="/menu?id={{$item->id}}" class="btn btn-info">Menus</a></td>
                             <th><button type="button" class="btn btn-default" data-toggle="modal" data-target="#shopEditModal">修改</button></th>
                             <td>{{$item->updated_at}}</td>
                             <td>
@@ -113,6 +117,20 @@
                                         <label class="col-sm-2 control-label">手機</label>
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control" placeholder="Phone" name="phone">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">類型</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="type">
+                                                <option value="0">未選擇</option>
+                                                <option value="1">食</option>
+                                                <option value="2">衣</option>
+                                                <option value="3">住</option>
+                                                <option value="4">行</option>
+                                                <option value="5">育</option>
+                                                <option value="6">樂</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -263,6 +281,20 @@
                                         <label class="col-sm-2 control-label">手機</label>
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control" placeholder="Phone" name="phone">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">類型</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="type">
+                                                <option value="0">未選擇</option>
+                                                <option value="1">食</option>
+                                                <option value="2">衣</option>
+                                                <option value="3">住</option>
+                                                <option value="4">行</option>
+                                                <option value="5">育</option>
+                                                <option value="6">樂</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group">

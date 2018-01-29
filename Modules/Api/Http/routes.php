@@ -45,6 +45,12 @@ Route::group(['middleware' => 'api', 'prefix' => 'api'], function () {
                     'prefix' => 'shop'
                 ], function () {
                     Route::get('index', 'ShopController@index');
+                    Route::get('food', 'ShopController@food');
+                    Route::get('clothing', 'ShopController@clothing');
+                    Route::get('housing', 'ShopController@housing');
+                    Route::get('transportation', 'ShopController@transportation');
+                    Route::get('education', 'ShopController@education');
+                    Route::get('entertainment', 'ShopController@entertainment');
                 });
             });
         });

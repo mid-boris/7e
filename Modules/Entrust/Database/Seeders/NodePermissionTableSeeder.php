@@ -47,10 +47,10 @@ class NodePermissionTableSeeder extends Seeder
 
         $nodePmServ->addUriPermissionToNode('/image/destroy', '資料設置.商家管理');
 
-        $nodePmServ->addUriPermissionToNode('/menu', '資料設置.菜單管理');
-        $nodePmServ->addUriPermissionToNode('/menu/create', '資料設置.菜單管理');
-        $nodePmServ->addUriPermissionToNode('/menu/update', '資料設置.菜單管理');
-        $nodePmServ->addUriPermissionToNode('/menu/delete', '資料設置.菜單管理');
+        $nodePmServ->addUriPermissionToNode('/menu', '資料設置.商家管理');
+        $nodePmServ->addUriPermissionToNode('/menu/create', '資料設置.商家管理');
+        $nodePmServ->addUriPermissionToNode('/menu/update', '資料設置.商家管理');
+        $nodePmServ->addUriPermissionToNode('/menu/delete', '資料設置.商家管理');
 
         $nodePmServ->addUriPermissionToNode('/article_audit', '資料設置.文章審核');
         $nodePmServ->addUriPermissionToNode('/article_audit/auditPass', '資料設置.文章審核');
@@ -87,5 +87,11 @@ class NodePermissionTableSeeder extends Seeder
         $nodePmServ->addUriPermissionToNode('/api/1.0/message/index', $memberPermissionName);
         $nodePmServ->addUriPermissionToNode('/api/1.0/message/create', $memberPermissionName);
         $nodePmServ->addUriPermissionToNode('/api/1.0/shop/index', $memberPermissionName);
+        $nodePmServ->addUriPermissionToNode('/api/1.0/shop/food', $memberPermissionName);
+        $nodePmServ->addUriPermissionToNode('/api/1.0/shop/clothing', $memberPermissionName);
+        $nodePmServ->addUriPermissionToNode('/api/1.0/shop/housing', $memberPermissionName);
+        $nodePmServ->addUriPermissionToNode('/api/1.0/shop/transportation', $memberPermissionName);
+        $nodePmServ->addUriPermissionToNode('/api/1.0/shop/education', $memberPermissionName);
+        $nodePmServ->addUriPermissionToNode('/api/1.0/shop/entertainment', $memberPermissionName);
     }
 }

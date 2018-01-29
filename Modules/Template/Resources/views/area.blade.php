@@ -16,7 +16,7 @@
     <section class="content">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">地區</h3>
+                <h3 class="box-title">{{$name ?? '地區'}}</h3>
                 <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#areaCreateModal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新增</button>
             </div>
             <div class="box-body table-responsive">

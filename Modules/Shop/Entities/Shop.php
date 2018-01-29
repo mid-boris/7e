@@ -5,6 +5,7 @@ namespace Modules\Shop\Entities;
 use Modules\Area\Entities\Area;
 use Modules\Area\Entities\GoogleArea;
 use Modules\Image\Entities\ImageFile;
+use Modules\Menu\Entities\Menu;
 
 /**
  * Class Shop
@@ -18,7 +19,7 @@ class Shop extends ShopBaseModel
         'name', 'telphone', 'phone', 'business_hours',
         'business_hours_start_time', 'business_hours_end_time',
         'special', 'area_id', 'address', 'closed_day', 'i_pass',
-        'shop_lat', 'shop_lng',
+        'shop_lat', 'shop_lng', 'shop_type',
     ];
 
     public function area()
@@ -29,6 +30,11 @@ class Shop extends ShopBaseModel
     public function googleArea()
     {
         return $this->hasMany(GoogleArea::class, 'shop_id');
+    }
+
+    public function menu()
+    {
+        return $this->hasMany(Menu::class, 'shop_id')->where('status', 1)->orderByDesc('height_light');
     }
 
     public function images()

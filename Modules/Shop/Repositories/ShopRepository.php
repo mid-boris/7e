@@ -20,7 +20,27 @@ class ShopRepository extends ShopBaseRepository
     {
         /** @var \Eloquent $shop */
         $shop = new Shop;
-        return $shop->with(['trademark', 'preview'])->where('status', 1)->orderBy('id', 'DESC')->paginate($perpage);
+        return $shop->with(['trademark', 'preview', 'menu'])
+            ->where('status', 1)
+            ->orderBy('id', 'DESC')
+            ->paginate($perpage);
+    }
+
+    /**
+     * 會員端用
+     * @param int $type
+     * @param int $perpage
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function getPaginationByTypeWithRelate(int $type, int $perpage = 35)
+    {
+        /** @var \Eloquent $shop */
+        $shop = new Shop;
+        return $shop->with(['trademark', 'preview', 'menu'])
+            ->where('shop_type', $type)
+            ->where('status', 1)
+            ->orderByDesc('id')
+            ->paginate($perpage);
     }
 
     /**
@@ -37,13 +57,17 @@ class ShopRepository extends ShopBaseRepository
 
     /**
      * 後臺呈現用
+     * @param null $fuzzyName
      * @param int $perpage
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getPagination(int $perpage = 35)
+    public function getPagination($fuzzyName = null, int $perpage = 35)
     {
         /** @var \Eloquent $shop */
         $shop = new Shop;
+        if (!is_null($fuzzyName)) {
+            $shop = $shop->like('name', $fuzzyName);
+        }
         return $shop->with(['area'])->orderBy('id', 'DESC')->paginate($perpage);
     }
 
@@ -51,6 +75,7 @@ class ShopRepository extends ShopBaseRepository
         string $name,
         $tel,
         $phone,
+        $type,
         $busHours,
         $startTime,
         $endTime,
@@ -70,6 +95,7 @@ class ShopRepository extends ShopBaseRepository
             'shop_lng' => $lng,
             'telphone' => $tel,
             'phone' => $phone,
+            'shop_type' => $type,
             'address' => $address,
             'business_hours' => $busHours,
             'business_hours_start_time' => $startTime,
@@ -94,6 +120,7 @@ class ShopRepository extends ShopBaseRepository
         string $name,
         $tel,
         $phone,
+        $type,
         $busHours,
         $startTime,
         $endTime,
@@ -113,6 +140,7 @@ class ShopRepository extends ShopBaseRepository
             'shop_lng' => $lng,
             'telphone' => $tel,
             'phone' => $phone,
+            'shop_type' => $type,
             'address' => $address,
             'business_hours' => $busHours,
             'business_hours_start_time' => $startTime,

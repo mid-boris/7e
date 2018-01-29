@@ -1,15 +1,20 @@
 <?php
 
-namespace Modules\Template\Http\Requests;
+namespace Modules\Menu\Http\Requests;
 
 use Modules\Base\Contract\FormRequest\BaseFormRequest;
 
-class MenuCreate extends BaseFormRequest
+class MenuUpdate extends BaseFormRequest
 {
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
     public function rules()
     {
         return [
-            'shop_id' => $this->idValidate('shop', 'id'),
+            'id' => $this->idValidate('menu'),
             'name' => 'required|string|max:32',
             'price' => 'sometimes|numeric|nullable|min:0',
             'status' => 'sometimes|required|in:1',
