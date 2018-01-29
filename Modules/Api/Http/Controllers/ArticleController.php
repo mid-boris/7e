@@ -41,12 +41,14 @@ class ArticleController extends Controller
         $forumId = $request->input('forum_id');
         $needReview = $forumServ->needToReview($forumId);
 
+        /** @var ArticleRepository $articleRepo */
         $articleRepo = app()->make(ArticleRepository::class);
         $title = $request->input('title');
         $text = $request->input('content');
         $parentId = $request->input('parent_id');
         $voteMaxCount = $request->input('vote_max_count') ?? 1;
-        $article = $articleRepo->create($title, $text, $forumId, $needReview, $voteMaxCount, $parentId);
+        $voteEndTime = $request->input('vote_end_time');
+        $article = $articleRepo->create($title, $text, $forumId, $needReview, $voteMaxCount, $parentId, $voteEndTime);
         // 如果有投票項目
         if (!is_null($request->input('vote_option'))) {
             $vote = [];

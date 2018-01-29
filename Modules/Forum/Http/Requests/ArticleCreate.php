@@ -26,6 +26,7 @@ class ArticleCreate extends BaseFormRequest
             'vote_max_count' => 'sometimes|integer|nullable|min:1',
             'vote_option' => 'sometimes|array|min:1|max:10',
             'vote_option.*' => 'sometimes|string|max:32',
+            'vote_end_time' => 'sometimes|integer',
         ];
     }
 }

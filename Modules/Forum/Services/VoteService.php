@@ -24,6 +24,17 @@ class VoteService
             );
         }
 
+        // 是否超過投票時間
+        $voteEndTime = $article->vote_end_time;
+        if (!is_null($voteEndTime)) {
+            if (time() > $voteEndTime) {
+                throw new BaseException(
+                    'vote end time expired.',
+                    ErrorCode::FORUM_VOTE_END_TIME_EXPIRED
+                );
+            }
+        }
+
         // 那些Ids是否存在
         $voteOptions = $article->voteOption()->whereIn('id', $voteIds)->get();
         if ($voteOptions->count() != count($voteIds)) {

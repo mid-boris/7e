@@ -75,12 +75,20 @@ class ArticleRepository extends ForumBaseRepository
      * @param int $forumId
      * @param int $audit
      * @param int $voteMaxCount
-     * @param null $parentId
+     * @param int|null $parentId
+     * @param int|null $voteEndTime
      * @return \Illuminate\Database\Eloquent\Builder|Article
      * @internal param int|null $parentId
      */
-    public function create(string $title, string $text, int $forumId, $audit = 0, $voteMaxCount = 1, $parentId = null)
-    {
+    public function create(
+        string $title,
+        string $text,
+        int $forumId,
+        $audit = 0,
+        $voteMaxCount = 1,
+        $parentId = null,
+        $voteEndTime = null
+    ) {
         // 回覆加上prefix string
         if (!is_null($parentId)) {
             $title = $this->reportPrefixStr . $title;
@@ -92,6 +100,7 @@ class ArticleRepository extends ForumBaseRepository
             'parent_id' => $parentId,
             'audit' => $audit,
             'vote_max_count' => $voteMaxCount,
+            'vote_end_time' => $voteEndTime,
 
             'user_id' => SessionManager::getUser()['id'],
             'user_account' => SessionManager::getUser()['account'],

@@ -410,6 +410,7 @@
 |                           | parent_id                  | id           | 文章id                                |
 |                           | vote_option                | array        | 投票項目                              |
 |                           | vote_option.*              | string       | 投票項目文字                          |
+|                           | vote_end_time              | integer      | 投票截止時間 (unix time)              |
 
 > 回應
 
