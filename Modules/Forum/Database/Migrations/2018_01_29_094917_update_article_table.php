@@ -7,7 +7,7 @@ class UpdateArticleTable extends BaseMigration
 {
     protected $table = 'article';
 
-    protected $tableComment = '加入 __ ';
+    protected $mode = 'update';
 
     protected function tableSchema(): \Closure
     {
