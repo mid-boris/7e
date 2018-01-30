@@ -589,6 +589,7 @@
 |                           | special                    | integer      | 是否為特約                            |
 |                           | status                     | integer      | 是否啟用 (無須顯示)                   |
 |                           | i_pass                     | integer      | 是否能用一卡通                        |
+|                           | distance                   | float        | 距離 (附近商家功能才有)               |
 |                           | trademark                  | array        | 商標 (至多1筆)                        |
 | 圖片位置 (範例)           |                            |              | /images/1516957367.jpg                |
 |                           | preview                    | array        | 預覽圖 (至多3筆)                      |
@@ -618,6 +619,8 @@
                     "status": 1,
                     "i_pass": 0,
                     "area_id": 6,
+                    "shop_type": 1,
+                    "distance": 3.0438860349537524,
                     "trademark": [
                         {
                             "id": 9,
@@ -689,6 +692,8 @@
                     "status": 1,
                     "i_pass": 0,
                     "area_id": 6,
+                    "shop_type": 1,
+                    "distance": 3.0438860349537524,
                     "trademark": [
                         {
                             "id": 5,
