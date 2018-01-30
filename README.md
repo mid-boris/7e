@@ -557,6 +557,26 @@
 | <b>選填參數</b>           |                              |              |                                       |
 |                           | 無                           |              |                                       |
 
+#### 獲得附近商家列表
+
+| 項目                      | 內容                               | 類型         | 說明                                  |
+|---------------------------|------------------------------------|--------------|---------------------------------------|
+| <b>路徑</b>               | /api/1.0/nearByShop/index          |              |                                       |
+|                           | /api/1.0/nearByShop/food           |              | 食                                    |
+|                           | /api/1.0/nearByShop/clothing       |              | 衣                                    |
+|                           | /api/1.0/nearByShop/housing        |              | 住                                    |
+|                           | /api/1.0/nearByShop/transportation |              | 行                                    |
+|                           | /api/1.0/nearByShop/education      |              | 育                                    |
+|                           | /api/1.0/nearByShop/entertainment  |              | 樂                                    |
+| <b>方法</b>               | POST                               |              |                                       |
+| <b>權限</b>               | 檢視                               |              | READ                                  |
+| <b>必填參數</b>           |                                    |              |                                       |
+|                           | lat                                | float        | 經度 (為加速運算, 至小數下二位)       |
+|                           | lng                                | float        | 緯度 (為加速運算, 至小數下二位)       |
+|                           | radius                             | integer      | 半徑 (驗證範圍 1~30)                  |
+| <b>選填參數</b>           |                                    |              |                                       |
+|                           | 無                                 |              |                                       |
+
 > 回應
 
 #### 參數說明
@@ -569,8 +589,6 @@
 |                           | special                    | integer      | 是否為特約                            |
 |                           | status                     | integer      | 是否啟用 (無須顯示)                   |
 |                           | i_pass                     | integer      | 是否能用一卡通                        |
-|                           | shop_lat                   | float        | 經度                                  |
-|                           | shop_lng                   | float        | 緯度                                  |
 |                           | trademark                  | array        | 商標 (至多1筆)                        |
 | 圖片位置 (範例)           |                            |              | /images/1516957367.jpg                |
 |                           | preview                    | array        | 預覽圖 (至多3筆)                      |
@@ -600,8 +618,6 @@
                     "status": 1,
                     "i_pass": 0,
                     "area_id": 6,
-                    "shop_lat": 24.18,
-                    "shop_lng": 120.65,
                     "trademark": [
                         {
                             "id": 9,
@@ -673,8 +689,6 @@
                     "status": 1,
                     "i_pass": 0,
                     "area_id": 6,
-                    "shop_lat": 24.15,
-                    "shop_lng": 120.66,
                     "trademark": [
                         {
                             "id": 5,
