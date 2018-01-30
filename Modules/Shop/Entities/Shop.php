@@ -22,6 +22,10 @@ class Shop extends ShopBaseModel
         'shop_lat', 'shop_lng', 'shop_type',
     ];
 
+    protected $hidden = [
+        'created_at', 'updated_at', 'shop_lat', 'shop_lng',
+    ];
+
     public function area()
     {
         return $this->belongsTo(Area::class)->with(['parent']);

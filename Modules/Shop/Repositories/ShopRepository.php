@@ -44,6 +44,110 @@ class ShopRepository extends ShopBaseRepository
     }
 
     /**
+     * 會員端用
+     * @param float $lat
+     * @param float $lng
+     * @param int $radius
+     * @param null $type
+     * @param int $perpage
+     * @return mixed
+     */
+    public function getPaginationByTypeLatLngWithRelate(
+        float $lat,
+        float $lng,
+        int $radius,
+        $type = null,
+        $perpage = 35
+    ) {
+        /** @var \Eloquent $shop */
+        $shop = new Shop;
+        $connectionName = $shop->getConnectionName();
+        $subWhereCondition = " status = 1";
+        if ($type) {
+            $subWhereCondition .= " AND shop_type = {$type}";
+        }
+
+        // 經緯度計算公式
+        \DB::connection($connectionName)->statement(
+            "SET @orig_latitude = {$lat},@orig_longitude = {$lng},@radius = {$radius};"
+        );
+        $subQuery = $shop->select(
+            '*',
+            \DB::raw("
+                6371 * ACOS(
+                     COS(RADIANS(@orig_latitude)) * COS(RADIANS(`shop_lat`)) * COS(
+                         RADIANS(@orig_longitude) - RADIANS(`shop_lng`)
+                     ) + SIN(RADIANS(@orig_latitude)) * SIN(RADIANS(`shop_lat`))
+                ) AS `distance`
+            ")
+        )->whereRaw("`shop_lat` BETWEEN @orig_latitude - (@radius / 111)")
+            ->whereRaw("@orig_latitude + (@radius / 111)")
+            ->whereRaw("
+                `shop_lng` BETWEEN @orig_longitude - (
+                    @radius / (
+                        111 * COS(RADIANS(@orig_latitude))
+                    )
+                )
+            ")
+            ->whereRaw("
+                @orig_longitude + (
+                    @radius / (
+                        111 * COS(RADIANS(@orig_latitude))
+                    )
+                )
+            ")
+            ->whereRaw("$subWhereCondition");
+
+        /** @var \Eloquent $shop */
+        $nearByShop = new Shop;
+        $result = $nearByShop
+            ->with(['trademark', 'preview', 'menu'])
+            ->from(\DB::raw("({$subQuery->toSql()}) as r"))
+            ->whereRaw("`distance` < @radius")
+            ->orderBy('distance')
+            ->paginate($perpage);
+
+        /** 原始公式 */
+//        $result = \DB::connection($connectionName)->select("
+//            SELECT
+//                *
+//            FROM
+//                (
+//                    SELECT
+//                        `id`,
+//                        `name`,
+//                        6371 * ACOS(
+//                            COS(RADIANS(@orig_latitude)) * COS(RADIANS(`shop_lat`)) * COS(
+//                                RADIANS(@orig_longitude) - RADIANS(`shop_lng`)
+//                            ) + SIN(RADIANS(@orig_latitude)) * SIN(RADIANS(`shop_lat`))
+//                        ) AS `distance`
+//                    FROM
+//                        `shop`
+//                    WHERE
+//                        `shop_lat` BETWEEN @orig_latitude - (@radius / 111)
+//                    AND @orig_latitude + (@radius / 111)
+//                    AND `shop_lng` BETWEEN @orig_longitude - (
+//                        @radius / (
+//                            111 * COS(RADIANS(@orig_latitude))
+//                        )
+//                    )
+//                    AND @orig_longitude + (
+//                        @radius / (
+//                            111 * COS(RADIANS(@orig_latitude))
+//                        )
+//                    )
+//                    {$subWhereCondition}
+//                ) r
+//            WHERE
+//                `distance` < @radius
+//            ORDER BY
+//                `distance` ASC;
+//        ");
+
+        return $result;
+    }
+
+    /**
      * 後臺呈現用
      * @param int $id
      * @return Shop|\Eloquent

@@ -52,6 +52,19 @@ Route::group(['middleware' => 'api', 'prefix' => 'api'], function () {
                     Route::get('education', 'ShopController@education');
                     Route::get('entertainment', 'ShopController@entertainment');
                 });
+
+                // 附近商家
+                Route::group([
+                    'prefix' => 'nearbyShop'
+                ], function () {
+                    Route::post('index', 'NearByShopController@index');
+                    Route::post('food', 'NearByShopController@food');
+                    Route::post('clothing', 'NearByShopController@clothing');
+                    Route::post('housing', 'NearByShopController@housing');
+                    Route::post('transportation', 'NearByShopController@transportation');
+                    Route::post('education', 'NearByShopController@education');
+                    Route::post('entertainment', 'NearByShopController@entertainment');
+                });
             });
         });
     });

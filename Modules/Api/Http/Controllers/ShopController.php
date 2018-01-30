@@ -8,7 +8,7 @@ use Modules\Shop\Repositories\ShopRepository;
 
 class ShopController extends Controller
 {
-    private $type = [
+    protected $type = [
         'food' => 1,
         'clothing' => 2,
         'housing' => 3,
@@ -27,52 +27,37 @@ class ShopController extends Controller
 
     public function food()
     {
-        $type = $this->type[\Request::route()->getActionMethod()];
-        /** @var ShopRepository $shopRepo */
-        $shopRepo = app()->make(ShopRepository::class);
-        $shop = $shopRepo->getPaginationByTypeWithRelate($type);
-        return BaseResponse::response(['data' => $shop]);
+        return $this->shopFilter(\Request::route()->getActionMethod());
     }
 
     public function clothing()
     {
-        $type = $this->type[\Request::route()->getActionMethod()];
-        /** @var ShopRepository $shopRepo */
-        $shopRepo = app()->make(ShopRepository::class);
-        $shop = $shopRepo->getPaginationByTypeWithRelate($type);
-        return BaseResponse::response(['data' => $shop]);
+        return $this->shopFilter(\Request::route()->getActionMethod());
     }
 
     public function housing()
     {
-        $type = $this->type[\Request::route()->getActionMethod()];
-        /** @var ShopRepository $shopRepo */
-        $shopRepo = app()->make(ShopRepository::class);
-        $shop = $shopRepo->getPaginationByTypeWithRelate($type);
-        return BaseResponse::response(['data' => $shop]);
+        return $this->shopFilter(\Request::route()->getActionMethod());
     }
 
     public function transportation()
     {
-        $type = $this->type[\Request::route()->getActionMethod()];
-        /** @var ShopRepository $shopRepo */
-        $shopRepo = app()->make(ShopRepository::class);
-        $shop = $shopRepo->getPaginationByTypeWithRelate($type);
-        return BaseResponse::response(['data' => $shop]);
+        return $this->shopFilter(\Request::route()->getActionMethod());
     }
 
     public function education()
     {
-        $type = $this->type[\Request::route()->getActionMethod()];
-        /** @var ShopRepository $shopRepo */
-        $shopRepo = app()->make(ShopRepository::class);
-        $shop = $shopRepo->getPaginationByTypeWithRelate($type);
-        return BaseResponse::response(['data' => $shop]);
+        return $this->shopFilter(\Request::route()->getActionMethod());
     }
 
     public function entertainment()
     {
-        $type = $this->type[\Request::route()->getActionMethod()];
+        return $this->shopFilter(\Request::route()->getActionMethod());
+    }
+
+    protected function shopFilter(string $typeName)
+    {
+        $type = $this->type[$typeName];
         /** @var ShopRepository $shopRepo */
         $shopRepo = app()->make(ShopRepository::class);
         $shop = $shopRepo->getPaginationByTypeWithRelate($type);
