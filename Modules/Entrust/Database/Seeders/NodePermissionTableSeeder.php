@@ -39,6 +39,7 @@ class NodePermissionTableSeeder extends Seeder
         $nodePmServ->addUriPermissionToNode('/shopImages', '資料設置.商家管理');
         $nodePmServ->addUriPermissionToNode('/shop/tradeMark/create', '資料設置.商家管理');
         $nodePmServ->addUriPermissionToNode('/shop/preview/create', '資料設置.商家管理');
+        $nodePmServ->addUriPermissionToNode('/shop/qrcode/create', '資料設置.商家管理');
         $nodePmServ->addUriPermissionToNode('/shop/create', '資料設置.商家管理');
         $nodePmServ->addUriPermissionToNode('/shop/update', '資料設置.商家管理');
         $nodePmServ->addUriPermissionToNode('/shop/delete', '資料設置.商家管理');
@@ -87,6 +88,7 @@ class NodePermissionTableSeeder extends Seeder
         $nodePmServ->addUriPermissionToNode('/api/1.0/message/index', $memberPermissionName);
         $nodePmServ->addUriPermissionToNode('/api/1.0/message/create', $memberPermissionName);
         $nodePmServ->addUriPermissionToNode('/api/1.0/shop/index', $memberPermissionName);
+        $nodePmServ->addUriPermissionToNode('/api/1.0/shop/show', $memberPermissionName);
         $nodePmServ->addUriPermissionToNode('/api/1.0/shop/food', $memberPermissionName);
         $nodePmServ->addUriPermissionToNode('/api/1.0/shop/clothing', $memberPermissionName);
         $nodePmServ->addUriPermissionToNode('/api/1.0/shop/housing', $memberPermissionName);

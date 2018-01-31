@@ -45,7 +45,7 @@
                     @foreach($shop as $key => $item)
                         <tr shop='@json($item)'>
                             <th scope="row">{{$key}}</th>
-                            <td>{{$item->name}}</td>
+                            <td><a href="#" data-toggle="modal" data-target="#showQRCodeModal">{{$item->name}}</a></td>
                             <td>{{$item->telphone}}<br>{{$item->phone}}</td>
                             <td>{{ShopType::getTypeName($item->shop_type)}}</td>
                             <td>{{$item->business_hours}}</td>
@@ -397,6 +397,28 @@
         </div>
     </div>
 
+    <div class="modal fade" id="showQRCodeModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img id="shopQRCodeImg" class="img-thumbnail" alt="尚未產生QRCode">
+                </div>
+                <div class="modal-footer">
+                    <form action="/shop/qrcode/create" method="post">
+                        <input type="hidden" name="id">
+                        <button type="submit" class="btn btn-primary">產生QRCcode</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @section('script')
@@ -414,6 +436,17 @@
             });
             $('#shopUpdateBtn').click(function () {
                 $('#shopUpdateForm').submit();
+            });
+
+            // QR code 顯示按鈕
+            $('#showQRCodeModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var modal = $(this);
+                var shop = JSON.parse(button.parent().parent().attr('shop'));
+
+                modal.find('.modal-title').text(shop.name);
+                modal.find('input[name=id]').val(shop.id);
+                modal.find('img#shopQRCodeImg').attr('src', 'qrcodes/' + shop.id + '.png');
             });
 
             // 修改按鈕

@@ -96,6 +96,7 @@ Route::group(['middleware' => 'api'], function () {
             Route::get('delete', 'ShopController@delete');
             Route::post('tradeMark/create', 'ShopController@trademarkUpload');
             Route::post('preview/create', 'ShopController@previewUpload');
+            Route::post('qrcode/create', 'ShopController@makeQRCode');
         });
     });
 

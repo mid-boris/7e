@@ -167,6 +167,7 @@ return [
         /*
          * Package Service Providers...
          */
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -229,6 +230,7 @@ return [
 
         /** custom helper */
         'ShopType' => Modules\Shop\Constants\ShopType::class,
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
 
     ],
 

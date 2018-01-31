@@ -11,6 +11,7 @@ use Modules\Shop\Http\Requests\ImageTrademarkUpload;
 use Modules\Shop\Repositories\ShopRepository;
 use Modules\Shop\Service\ShopService;
 use Modules\Shop\Tools\GoogleMapInfoProcess;
+use Modules\Template\Http\Requests\MakeQRCode;
 use Modules\Template\Http\Requests\MapInfo;
 use Modules\Template\Http\Requests\ShopCreate;
 use Modules\Template\Http\Requests\ShopDelete;
@@ -136,6 +137,14 @@ class ShopController extends Controller
             );
         }
         $shopServ->imageUpload($shopId, $image);
+        return redirect()->back();
+    }
+
+    public function makeQRCode(MakeQRCode $request)
+    {
+        $shopId = $request->input('id');
+        $shopServ = app()->make(ShopService::class);
+        $shopServ->makeQRCode($shopId);
         return redirect()->back();
     }
 }

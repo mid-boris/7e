@@ -95,6 +95,7 @@ class TemplateController extends Controller
 
     public function shop(Shop $request)
     {
+        /** @var ShopRepository $shopRepo */
         $shopRepo = app()->make(ShopRepository::class);
         $shop = $shopRepo->getPagination($request->input('fuzzy_name'));
         $googleMapKey = config('remotesystem.googleMapApiKey');

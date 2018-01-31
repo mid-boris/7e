@@ -5,6 +5,7 @@ use Illuminate\Http\UploadedFile;
 use Modules\Image\Entities\ImageFile;
 use Modules\RemoteSystem\Src\GoogleMapConnection;
 use Modules\Shop\Entities\Shop;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ShopService
 {
@@ -66,5 +67,18 @@ class ShopService
             });
         }
         return $result ? true : false;
+    }
+
+    public function makeQRCode(int $shopId)
+    {
+        /** @var Shop $shop */
+        $shop = Shop::find($shopId);
+        $codeData = [
+            'id' => $shop->id,
+            'time' => time(),
+        ];
+        $destinationPath = public_path('/qrcodes');
+        $path = $destinationPath . "/{$shop->id}.png";
+        QrCode::format('png')->size(250)->generate(json_encode($codeData), $path);
     }
 }

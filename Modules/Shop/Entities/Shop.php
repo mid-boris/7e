@@ -9,6 +9,8 @@ use Modules\Menu\Entities\Menu;
 
 /**
  * Class Shop
+ * @property int id
+ * @property string name
  * @package Modules\Shop\Entities
  */
 class Shop extends ShopBaseModel

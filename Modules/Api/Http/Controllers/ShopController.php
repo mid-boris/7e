@@ -3,6 +3,7 @@
 namespace Modules\Api\Http\Controllers;
 
 use Illuminate\Routing\Controller;
+use Modules\Api\Http\Requests\ShopShow;
 use Modules\Base\Utilities\Response\BaseResponse;
 use Modules\Shop\Repositories\ShopRepository;
 
@@ -16,6 +17,15 @@ class ShopController extends Controller
         'education' => 5,
         'entertainment' => 6,
     ];
+
+    public function show(ShopShow $request)
+    {
+        $shopId = $request->input('id');
+        /** @var ShopRepository $shopRepo */
+        $shopRepo = app()->make(ShopRepository::class);
+        $shop = $shopRepo->getShop($shopId);
+        return BaseResponse::response(['data' => $shop]);
+    }
 
     public function index()
     {
