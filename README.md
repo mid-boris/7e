@@ -12,6 +12,9 @@
 
     code → 0
 
+## Api System Required Package
+1. [Simple QrCode](https://www.simplesoftware.io/docs/simple-qrcode)
+
 ## Api Doc
 
 #### 登入
@@ -124,6 +127,7 @@
 |                           | phone                      | string(10)   | 手機                                  |
 |                           | gender                     | string(0/1)  | 性別                                  |
 |                           | area_id                    | id           | 地區 id                               |
+|                           | language                   | string       | 語系code [附件](https://github.com/mid-boris/7e#語系附件)                     |
 | <b>選填參數</b>           |                            |              |                                       |
 |                           | 無                         |              |                                       |
 
@@ -778,6 +782,120 @@
 | <b>選填參數</b>           |                              |              |                                       |
 |                           | 無                           |              |                                       |
 
+#### 獲得指定商家
+
+| 項目                      | 內容                         | 類型         | 說明                                  |
+|---------------------------|------------------------------|--------------|---------------------------------------|
+| <b>路徑</b>               | /api/1.0/shop/show           |              |                                       |
+| <b>方法</b>               | POST                         |              |                                       |
+| <b>權限</b>               | 檢視                         |              | READ                                  |
+| <b>必填參數</b>           |                              |              |                                       |
+|                           | id                           | integer      | 商家id                                |
+| <b>選填參數</b>           |                              |              |                                       |
+|                           | 無                           |              |                                       |
+
+> 回應
+
+#### 參數說明
+| 項目                      | 內容                       | 類型         | 說明                                  |
+|---------------------------|----------------------------|--------------|---------------------------------------|
+|                           | carousel                   | array        | 輪播圖                                |
+|                           | marquee                    | array        | 跑馬燈                                |
+|                           | announcement               | array        | 公告                                  |
+|                           | *.start_time               | unix time    | 開始日期                              |
+|                           | *.end_time                 | unix time    | 結束日期                              |
+|                           | *.high_light               | integer      | 是否置頂 (0 / 9)                      |
+|                           | *.content                  | array        | 內文                                  |
+|                           | *.content.title            | string       | 標題                                  |
+|                           | *.content.content          | string       | 內文                                  |
+|                           | *.images                   | array        | 圖片                                  |
+| 圖片位置 (範例)           |                            |              | /images/announcement/1517581910.jpg   |
+
+    {
+        "carousel": {
+            "current_page": 1,
+            "data": [
+                {
+                    "id": 2,
+                    "status": 1,
+                    "start_time": 1517414400,
+                    "end_time": 1519056000,
+                    "type": 1,
+                    "high_light": 0,
+                    "content": [
+                        {
+                            "id": 2,
+                            "announcement_id": 2,
+                            "language": "en",
+                            "title": "title testqwfwq",
+                            "content": "<p>content testwqfw</p>"
+                        }
+                    ],
+                    "images": [
+                        {
+                            "id": 19,
+                            "saved_uri": "1517581910.jpg",
+                            "image_size": 55624,
+                            "created_at": "2018-02-02 22:31:50",
+                            "updated_at": "2018-02-02 22:31:50",
+                            "image_width": 1024,
+                            "image_height": 500,
+                            "pivot": {
+                                "announcement_id": 2,
+                                "image_id": 19
+                            }
+                        }
+                    ]
+                }
+            ],
+            "first_page_url": "http://7e.net/api/1.0/announcement/index?page=1",
+            "from": 1,
+            "last_page": 1,
+            "last_page_url": "http://7e.net/api/1.0/announcement/index?page=1",
+            "next_page_url": null,
+            "path": "http://7e.net/api/1.0/announcement/index",
+            "per_page": 35,
+            "prev_page_url": null,
+            "to": 1,
+            "total": 1
+        },
+        "marquee": {
+            "current_page": 1,
+            "data": [],
+            "first_page_url": "http://7e.net/api/1.0/announcement/index?page=1",
+            "from": null,
+            "last_page": 1,
+            "last_page_url": "http://7e.net/api/1.0/announcement/index?page=1",
+            "next_page_url": null,
+            "path": "http://7e.net/api/1.0/announcement/index",
+            "per_page": 35,
+            "prev_page_url": null,
+            "to": null,
+            "total": 0
+        },
+        "announcement": {
+            "current_page": 1,
+            "data": [],
+            "first_page_url": "http://7e.net/api/1.0/announcement/index?page=1",
+            "from": null,
+            "last_page": 1,
+            "last_page_url": "http://7e.net/api/1.0/announcement/index?page=1",
+            "next_page_url": null,
+            "path": "http://7e.net/api/1.0/announcement/index",
+            "per_page": 35,
+            "prev_page_url": null,
+            "to": null,
+            "total": 0
+        }
+    }
 
 
-#### 
+#### 語系附件
+
+| 項目                      | 內容                         | 類型         | 說明                                  |
+|---------------------------|------------------------------|--------------|---------------------------------------|
+| <b>變數</b>               | language                     | string       | 語系code                              |
+|                           | zh-TW                        |              | 繁中                                  |
+|                           | en                           |              | 英文                                  |
+
+####

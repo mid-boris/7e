@@ -53,6 +53,10 @@ class NodePermissionTableSeeder extends Seeder
         $nodePmServ->addUriPermissionToNode('/menu/update', '資料設置.商家管理');
         $nodePmServ->addUriPermissionToNode('/menu/delete', '資料設置.商家管理');
 
+        $nodePmServ->addUriPermissionToNode('/announcement', '資料設置.公告管理');
+        $nodePmServ->addUriPermissionToNode('/announcement/create', '資料設置.公告管理');
+        $nodePmServ->addUriPermissionToNode('/announcement/update', '資料設置.公告管理');
+
         $nodePmServ->addUriPermissionToNode('/article_audit', '資料設置.文章審核');
         $nodePmServ->addUriPermissionToNode('/article_audit/auditPass', '資料設置.文章審核');
         $nodePmServ->addUriPermissionToNode('/article_audit/delete', '資料設置.文章審核');
@@ -102,5 +106,6 @@ class NodePermissionTableSeeder extends Seeder
         $nodePmServ->addUriPermissionToNode('/api/1.0/nearbyShop/transportation', $memberPermissionName);
         $nodePmServ->addUriPermissionToNode('/api/1.0/nearbyShop/education', $memberPermissionName);
         $nodePmServ->addUriPermissionToNode('/api/1.0/nearbyShop/entertainment', $memberPermissionName);
+        $nodePmServ->addUriPermissionToNode('/api/1.0/announcement/index', $memberPermissionName);
     }
 }

@@ -12,8 +12,7 @@ class UpdateUserTable extends BaseMigration
     protected function tableSchema(): \Closure
     {
         return function (Blueprint $table) {
-            $table->text('avatar')->nullable()->comment('大頭像');
-            $table->text('trivial')->nullable()->comment('存遠端主機送來的使用者資訊');
+            $table->string('language', 16)->nullable()->comment('使用者語系');
         };
     }
 }

@@ -29,6 +29,7 @@ Route::group(['middleware' => 'api'], function () {
             Route::get('/article', 'TemplateController@article');
             Route::get('/article_audit', 'TemplateController@articleAudit');
             Route::get('/message', 'TemplateController@message');
+            Route::get('/announcement', 'TemplateController@announcement');
 
             //資料呈現
             Route::get('/vote', 'TemplateController@vote');
@@ -175,6 +176,18 @@ Route::group(['middleware' => 'api'], function () {
         /* 需完整權限 (登入、角色的節點權限) */
         Route::group(['middleware' => 'permission',], function () {
             Route::post('create', 'MessageController@create');
+        });
+    });
+
+    // 公告
+    Route::group([
+        'prefix' => 'announcement',
+        'namespace' => 'Modules\Template\Http\Controllers'
+    ], function () {
+        /* 需完整權限 (登入、角色的節點權限) */
+        Route::group(['middleware' => 'permission',], function () {
+            Route::post('create', 'AnnouncementController@create');
+            Route::post('update', 'AnnouncementController@update');
         });
     });
 

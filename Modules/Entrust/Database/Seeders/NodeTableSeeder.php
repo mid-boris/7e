@@ -28,7 +28,7 @@ class NodeTableSeeder extends Seeder
         $nodeRepo->create('資料設置', 'fa-files-o');
         $nodeRepo->create('地區管理', 'fa-circle-o', '/area', '資料設置');
         $nodeRepo->create('商家管理', 'fa-circle-o', '/shop', '資料設置');
-        $nodeRepo->create('菜單管理', 'fa-circle-o', '/menu', '資料設置', 0);
+        $nodeRepo->create('公告管理', 'fa-circle-o', '/announcement', '資料設置');
         $nodeRepo->create('討論版管理', 'fa-circle-o', '/forum', '資料設置');
         $nodeRepo->create('文章審核', 'fa-circle-o', '/article_audit', '資料設置');
 

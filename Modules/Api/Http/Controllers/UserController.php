@@ -6,6 +6,7 @@ use Illuminate\Routing\Controller;
 use Modules\Api\Http\Requests\UserEdit;
 use Modules\Base\Utilities\Response\BaseResponse;
 use Modules\User\Repositories\UserRepository;
+use Session;
 
 class UserController extends Controller
 {
@@ -17,16 +18,24 @@ class UserController extends Controller
         $phone = $request->input('phone');
         $gender = $request->input('gender');
         $areaId = $request->input('area_id');
+        $language = $request->input('language');
         $updatedData = [
             'nick_name' => $nickName,
             'mail' => $mail,
             'phone' => $phone,
             'gender' => $gender,
             'area_id' => $areaId,
+            'language' => $language,
         ];
         /** @var UserRepository $userRepo */
         $userRepo = app()->make(UserRepository::class);
         $result = $userRepo->update($updatedData, $userId);
+        // update完成順便更新session manager
+        if ($result) {
+            $user = $userRepo->getWithRoleById($userId);
+            Session::put('user', $user->toArray());
+            Session::save();
+        }
         return BaseResponse::response(['data' => $result]);
     }
 }

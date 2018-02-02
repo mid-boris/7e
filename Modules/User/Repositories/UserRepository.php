@@ -24,6 +24,17 @@ class UserRepository extends UserBaseRepository
         return $user->with('role')->where('account', $account)->where('password', $password)->first();
     }
 
+    /**
+     * @param int $userId
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
+    public function getWithRoleById(int $userId)
+    {
+        /** @var \Eloquent $user */
+        $user = new User;
+        return $user->with('role')->where('id', $userId)->first();
+    }
+
     public function getPaginationWithRole(int $perpage = 50)
     {
         /** @var \Eloquent $user */

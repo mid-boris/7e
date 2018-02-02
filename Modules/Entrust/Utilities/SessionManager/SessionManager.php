@@ -25,6 +25,11 @@ class SessionManager
         return self::getUser()['id'];
     }
 
+    public static function getUserLanguage() : string
+    {
+        return self::getUser()['language'];
+    }
+
     public static function getUserAccount() : string
     {
         return self::getUser()['account'];

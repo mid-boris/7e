@@ -3,6 +3,8 @@
 namespace Modules\Template\Http\Controllers;
 
 use Illuminate\Routing\Controller;
+use Modules\Announcement\Constants\AnnouncementConstants;
+use Modules\Announcement\Repositories\AnnouncementRepository;
 use Modules\Area\Repositories\AreaRepository;
 use Modules\Entrust\Repositories\RoleRepository;
 use Modules\Entrust\Services\RoleNodeService;
@@ -15,6 +17,7 @@ use Modules\Menu\Repositories\MenuRepository;
 use Modules\Message\Repository\MessageRepository;
 use Modules\Shop\Constants\ShopType;
 use Modules\Shop\Repositories\ShopRepository;
+use Modules\Template\Http\Requests\Announcement;
 use Modules\Template\Http\Requests\Area;
 use Modules\Template\Http\Requests\Article;
 use Modules\Template\Http\Requests\ArticleAudit;
@@ -217,6 +220,19 @@ class TemplateController extends Controller
         $results = $messageRepo->getByFuzzy($account);
         return $this->render('message', [
             'message' => $results,
+            'parameter' => $request->except('page'),
+        ]);
+    }
+
+    public function announcement(Announcement $request)
+    {
+        /** @var AnnouncementRepository $annRepo */
+        $annRepo = app()->make(AnnouncementRepository::class);
+        $announcement = $annRepo->getPagination();
+        return $this->render('announcement', [
+            'announcement' => $announcement,
+            'languages' => AnnouncementConstants::getSupportLanguage(),
+            'type' => AnnouncementConstants::getAllWithView(),
             'parameter' => $request->except('page'),
         ]);
     }

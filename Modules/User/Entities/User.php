@@ -14,7 +14,7 @@ class User extends UserBaseModel
 
     protected $fillable = [
         'account', 'password', 'nick_name', 'status', 'mail', 'phone', 'gender', 'area_id',
-        'avatar', 'trivial',
+        'avatar', 'trivial', 'language',
     ];
 
     protected $hidden = [

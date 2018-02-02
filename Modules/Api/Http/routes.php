@@ -66,6 +66,13 @@ Route::group(['middleware' => 'api', 'prefix' => 'api'], function () {
                     Route::post('education', 'NearByShopController@education');
                     Route::post('entertainment', 'NearByShopController@entertainment');
                 });
+
+                // 公告
+                Route::group([
+                    'prefix' => 'announcement'
+                ], function () {
+                    Route::get('index', 'AnnouncementController@index');
+                });
             });
         });
     });
