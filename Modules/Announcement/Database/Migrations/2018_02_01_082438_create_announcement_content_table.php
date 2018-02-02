@@ -23,7 +23,6 @@ class CreateAnnouncementContentTable extends BaseMigration
             $table->timestamps();
 
             $table->index('language', 'idx_language');
-            $table->index('type', 'idx_type');
         };
     }
 }
