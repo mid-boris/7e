@@ -95,6 +95,13 @@ class AnnouncementService
         }
     }
 
+    public function delete(int $announcementId)
+    {
+        $this->imageIfExistsToDelete($announcementId);
+        $announcement = new Announcement;
+        $announcement->where('id', $announcementId)->delete();
+    }
+
     private function timeProcess(&$time, $plusDay = 0)
     {
         if (!is_null($time)) {

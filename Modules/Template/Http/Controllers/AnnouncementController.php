@@ -2,6 +2,7 @@
 namespace Modules\Template\Http\Controllers;
 
 use Illuminate\Routing\Controller;
+use Modules\Announcement\Http\Requests\AnnouncementDelete;
 use Modules\Announcement\Services\AnnouncementService;
 use Modules\Template\Http\Requests\AnnouncementCreate;
 use Modules\Template\Http\Requests\AnnouncementUpdate;
@@ -51,6 +52,13 @@ class AnnouncementController extends Controller
             $request->input('start_time'),
             $request->input('end_time')
         );
+        return redirect()->back();
+    }
+
+    public function delete(AnnouncementDelete $request)
+    {
+        $announcementServ = app()->make(AnnouncementService::class);
+        $announcementServ->delete($request->input('id'));
         return redirect()->back();
     }
 }

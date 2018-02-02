@@ -56,6 +56,7 @@ class NodePermissionTableSeeder extends Seeder
         $nodePmServ->addUriPermissionToNode('/announcement', '資料設置.公告管理');
         $nodePmServ->addUriPermissionToNode('/announcement/create', '資料設置.公告管理');
         $nodePmServ->addUriPermissionToNode('/announcement/update', '資料設置.公告管理');
+        $nodePmServ->addUriPermissionToNode('/announcement/delete', '資料設置.公告管理');
 
         $nodePmServ->addUriPermissionToNode('/article_audit', '資料設置.文章審核');
         $nodePmServ->addUriPermissionToNode('/article_audit/auditPass', '資料設置.文章審核');

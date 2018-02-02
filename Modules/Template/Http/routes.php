@@ -188,6 +188,7 @@ Route::group(['middleware' => 'api'], function () {
         Route::group(['middleware' => 'permission',], function () {
             Route::post('create', 'AnnouncementController@create');
             Route::post('update', 'AnnouncementController@update');
+            Route::get('delete', 'AnnouncementController@delete');
         });
     });
 
