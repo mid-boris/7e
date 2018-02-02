@@ -25,6 +25,7 @@
                     <tr>
                         <th>#</th>
                         <th>標題</th>
+                        <th>置頂</th>
                         <th>狀態</th>
                         <th>開始時間</th>
                         <th>結束時間</th>
@@ -38,6 +39,7 @@
                         <tr announcement='@json($item)'>
                             <th scope="row">{{$key}}</th>
                             <td>{{$item->content[0]->title ?? ''}}</td>
+                            <td>{{$item->high_light == 0 ? 'X' : 'V'}}</td>
                             <td>{{$item->status == 0 ? 'X' : 'V'}}</td>
                             <td>{{is_null($item->start_time) ? '' : date('Y-m-d', $item->start_time)}}</td>
                             <td>{{is_null($item->end_time) ? '' : date('Y-m-d', $item->end_time - 24 * 60 * 60)}}</td>
