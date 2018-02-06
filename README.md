@@ -810,8 +810,8 @@
 | discount.type             | 2                          |              | 總價折扣                              |
 | discount.type             | 5                          |              | 出清折扣                              |
 | discount.type             | 8                          |              | 會員價                                |
-|                           | discount.action            | string       | 操作符                                |
 | discount.type             | 9                          |              | 生日折扣                              |
+|                           | discount.action            | string       | 操作符                                |
 |                           | discount.numeric           | float        | 值的倍率                              |
 |                           | discount.start_time        | timestamp    | 開始時間                              |
 |                           | discount.end_time          | timestamp    | 結束時間                              |
