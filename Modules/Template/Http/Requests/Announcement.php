@@ -14,6 +14,7 @@ class Announcement extends BaseFormRequest
             'type' => [
                 'sometimes',
                 'integer',
+                'nullable',
                 Rule::in(AnnouncementConstants::getAll()),
             ],
         ];

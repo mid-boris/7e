@@ -16,8 +16,25 @@
     <section class="content">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">公告</h3>
-                <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#announcementCreateModal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新增</button>
+                <div class="row">
+                    <div class="col-md-1">
+                        <h3 class="box-title">公告</h3>
+                    </div>
+                    <div class="col-md-3">
+                        <form class="form-inline" method="get" action="announcement">
+                            <select class="form-control type-filter" name="type">
+                                <option value="">全部</option>
+                                @foreach($type as $code => $viewer)
+                                    <option value="{{$code}}" {{$request->input('type') == $code ? 'selected' : ''}}>{{$viewer}}</option>
+                                @endforeach
+                            </select>
+                            <button type="submit" class="form-controller btn btn-info">篩選</button>
+                        </form>
+                    </div>
+                    <div class="col-md-1 pull-right">
+                        <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#announcementCreateModal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新增</button>
+                    </div>
+                </div>
             </div>
             <div class="box-body table-responsive">
                 <table class="table table-hover trToggleCheckbox col-md-4">
@@ -145,13 +162,19 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">開始日期 (選填)</label>
+                                <label for="inputEmail3" class="col-sm-2 control-label">開始日期</label>
                                 <div class="col-sm-4">
                                     <input data-provide="datepicker" name="start_time">
+                                    <small class="text-muted">
+                                        (選填)
+                                    </small>
                                 </div>
-                                <label for="inputEmail3" class="col-sm-2 control-label">結束日期 (選填)</label>
+                                <label for="inputEmail3" class="col-sm-2 control-label">結束日期</label>
                                 <div class="col-sm-4">
                                     <input data-provide="datepicker" name="end_time">
+                                    <small class="text-muted">
+                                        (選填)
+                                    </small>
                                 </div>
                             </div>
                             <div class="box-footer">
@@ -254,13 +277,19 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">開始日期 (選填)</label>
+                                <label for="inputEmail3" class="col-sm-2 control-label">開始日期</label>
                                 <div class="col-sm-4">
                                     <input data-provide="datepicker" name="start_time">
+                                    <small class="text-muted">
+                                        (選填)
+                                    </small>
                                 </div>
-                                <label for="inputEmail3" class="col-sm-2 control-label">結束日期 (選填)</label>
+                                <label for="inputEmail3" class="col-sm-2 control-label">結束日期</label>
                                 <div class="col-sm-4">
                                     <input data-provide="datepicker" name="end_time">
+                                    <small class="text-muted">
+                                        (選填)
+                                    </small>
                                 </div>
                             </div>
                             <div class="box-footer">
@@ -328,11 +357,14 @@
                     $(':checkbox[name=status]', modal).prop("checked", announcement.status);
                     modal.find('.modal-body select[name="type"]').val(announcement.type);
 
-                    if (announcement.start_time != null && announcement.end_time != null) {
+                    if (announcement.start_time) {
                         var dateFormat = 'mm/dd/yy';
                         var startTime = $.datepicker.formatDate(dateFormat, new Date(announcement.start_time * 1000));
-                        var endTime = $.datepicker.formatDate(dateFormat, new Date((announcement.end_time - 24 * 60 * 60) * 1000));
                         modal.find('.modal-body input[name="start_time"]').val(startTime);
+                    }
+                    if (announcement.end_time) {
+                        var dateFormat = 'mm/dd/yy';
+                        var endTime = $.datepicker.formatDate(dateFormat, new Date((announcement.end_time - 24 * 60 * 60) * 1000));
                         modal.find('.modal-body input[name="end_time"]').val(endTime);
                     }
 
@@ -366,6 +398,9 @@
                     setEditor(box, '');
                 }
             });
+
+            // 公告 filter
+
         });
 
         function setEditor(body, content) {

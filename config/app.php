@@ -229,7 +229,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         /** custom helper */
-        'ShopType' => Modules\Shop\Constants\ShopType::class,
+        'ShopType' => Modules\Shop\Constants\ShopTypeConstants::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
 
     ],

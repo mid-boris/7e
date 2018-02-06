@@ -15,12 +15,15 @@ use Modules\Forum\Repositories\ForumRepository;
 use Modules\Forum\Services\ForumService;
 use Modules\Menu\Repositories\MenuRepository;
 use Modules\Message\Repository\MessageRepository;
-use Modules\Shop\Constants\ShopType;
+use Modules\Shop\Constants\DiscountTypeConstants;
+use Modules\Shop\Constants\ShopTypeConstants;
+use Modules\Shop\Repositories\DiscountRepository;
 use Modules\Shop\Repositories\ShopRepository;
 use Modules\Template\Http\Requests\Announcement;
 use Modules\Template\Http\Requests\Area;
 use Modules\Template\Http\Requests\Article;
 use Modules\Template\Http\Requests\ArticleAudit;
+use Modules\Template\Http\Requests\Discount;
 use Modules\Template\Http\Requests\Forum;
 use Modules\Template\Http\Requests\Menu;
 use Modules\Template\Http\Requests\Message;
@@ -135,6 +138,22 @@ class TemplateController extends Controller
         ]);
     }
 
+    public function discount(Discount $request)
+    {
+        /** @var ShopRepository $shopRepo */
+        $shopRepo = app()->make(ShopRepository::class);
+        $shop = $shopRepo->getShop($request->input('id'));
+        $menuRepo = app()->make(DiscountRepository::class);
+        $discount = $menuRepo->getPaginationWithIdOrNull($request->input('id'));
+        return $this->render('discount', [
+            'shop' => $shop,
+            'discount' => $discount,
+            'parameter' => $request->except('page'),
+            'id' => $request->input('id'),
+            'discountType' => DiscountTypeConstants::all(),
+        ]);
+    }
+
     public function forum(Forum $request)
     {
         $forumRepo = app()->make(ForumRepository::class);
@@ -228,11 +247,12 @@ class TemplateController extends Controller
     {
         /** @var AnnouncementRepository $annRepo */
         $annRepo = app()->make(AnnouncementRepository::class);
-        $announcement = $annRepo->getPagination();
+        $announcement = $annRepo->getPagination(null, $request->input('type'));
         return $this->render('announcement', [
             'announcement' => $announcement,
             'languages' => AnnouncementConstants::getSupportLanguage(),
             'type' => AnnouncementConstants::getAllWithView(),
+            'request' => $request,
             'parameter' => $request->except('page'),
         ]);
     }

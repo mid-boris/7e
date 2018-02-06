@@ -6,17 +6,17 @@ class AnnouncementConstants
     const TYPE_CAROUSEL = 1;        // 輪播
     const TYPE_MARQUEE = 2;         // 跑馬燈
     const TYPE_ANNOUNCEMENT = 3;    // 公告
-    const TYPE_DISCOUNT = 4;        // 優惠
+    const TYPE_PROMOTIONAL = 4;        // 優惠
 
     private static $type = [
-        self::TYPE_CAROUSEL, self::TYPE_MARQUEE, self::TYPE_ANNOUNCEMENT, self::TYPE_DISCOUNT,
+        self::TYPE_CAROUSEL, self::TYPE_MARQUEE, self::TYPE_ANNOUNCEMENT, self::TYPE_PROMOTIONAL,
     ];
 
     private static $typeView = [
         self::TYPE_CAROUSEL => '輪播',
         self::TYPE_MARQUEE => '跑馬燈',
         self::TYPE_ANNOUNCEMENT => '公告',
-        self::TYPE_DISCOUNT => '優惠',
+        self::TYPE_PROMOTIONAL => '優惠',
     ];
 
     /** @var array */

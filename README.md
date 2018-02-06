@@ -575,8 +575,8 @@
 | <b>方法</b>               | POST                               |              |                                       |
 | <b>權限</b>               | 檢視                               |              | READ                                  |
 | <b>必填參數</b>           |                                    |              |                                       |
-|                           | lat                                | float        | 經度 (為加速運算, 至小數下二位)       |
-|                           | lng                                | float        | 緯度 (為加速運算, 至小數下二位)       |
+|                           | lat                                | float        | 緯度 (為加速運算, 至小數下二位)       |
+|                           | lng                                | float        | 經度 (為加速運算, 至小數下二位)       |
 |                           | radius                             | integer      | 半徑 (驗證範圍 1~30)                  |
 | <b>選填參數</b>           |                                    |              |                                       |
 |                           | 無                                 |              |                                       |
@@ -781,6 +781,279 @@
 |                           | id                           | integer      | 商家id                                |
 | <b>選填參數</b>           |                              |              |                                       |
 |                           | 無                           |              |                                       |
+
+> 回應
+
+#### 參數說明
+| 項目                      | 內容                       | 類型         | 說明                                  |
+|---------------------------|----------------------------|--------------|---------------------------------------|
+|                           | discount                   | array        | 優惠                                  |
+|                           | discount.type              | int          | 優惠類型                              |
+|                           | discount.menu_id           | int          | 對應的菜單id                          |
+|                           | discount.age               | int          | 年紀                                  |
+|                           | discount.action            | string       | 操作符                                |
+|                           | discount.numeric           | float        | 值的倍率                              |
+|                           | discount.custom            | string       | 自定義文字                            |
+|                           | discount.start_time        | timestamp    | 開始時間                              |
+|                           | discount.end_time          | timestamp    | 結束時間                              |
+
+#### 各discount.type會使用的參數
+| 項目                      | 內容                       | 類型         | 說明                                  |
+|---------------------------|----------------------------|--------------|---------------------------------------|
+| discount.type             | 1                          |              | 單品項折扣                            |
+|                           | discount.menu_id           | int          | 對應的菜單id                          |
+|                           | discount.action            | string       | 操作符                                |
+|                           | discount.numeric           | float        | 值的倍率                              |
+|                           | discount.start_time        | timestamp    | 開始時間                              |
+|                           | discount.end_time          | timestamp    | 結束時間                              |
+| 項目                      | 內容                       | 類型         | 說明                                  |
+|---------------------------|----------------------------|--------------|---------------------------------------|
+| discount.type             | 2                          |              | 總價折扣                              |
+| discount.type             | 5                          |              | 出清折扣                              |
+| discount.type             | 8                          |              | 會員價                                |
+|                           | discount.action            | string       | 操作符                                |
+| discount.type             | 9                          |              | 生日折扣                              |
+|                           | discount.numeric           | float        | 值的倍率                              |
+|                           | discount.start_time        | timestamp    | 開始時間                              |
+|                           | discount.end_time          | timestamp    | 結束時間                              |
+| 項目                      | 內容                       | 類型         | 說明                                  |
+|---------------------------|----------------------------|--------------|---------------------------------------|
+| discount.type             | 3                          |              | 文字優惠                              |
+| discount.type             | 6                          |              | 紅利回饋                              |
+| discount.type             | 7                          |              | 紅利增額                              |
+|                           | discount.custom            | string       | 自定義文字                            |
+|                           | discount.start_time        | timestamp    | 開始時間                              |
+|                           | discount.end_time          | timestamp    | 結束時間                              |
+| 項目                      | 內容                       | 類型         | 說明                                  |
+|---------------------------|----------------------------|--------------|---------------------------------------|
+| discount.type             | 4                          |              | 年紀折扣                              |
+|                           | discount.age               | int          | 年紀                                  |
+|                           | discount.action            | string       | 操作符                                |
+|                           | discount.numeric           | float        | 值的倍率                              |
+|                           | discount.start_time        | timestamp    | 開始時間                              |
+|                           | discount.end_time          | timestamp    | 結束時間                              |
+
+    {
+        "data": {
+            "id": 2,
+            "name": "衣物店家",
+            "telphone": "0966 834 114",
+            "phone": "0966 834 114",
+            "address": "台中市西屯區慶和街75號",
+            "business_hours": "15:00:00 ~ 01:00:00",
+            "business_hours_start_time": "3:00 PM",
+            "business_hours_end_time": "1:00 AM",
+            "closed_day": "[]",
+            "special": 1,
+            "status": 1,
+            "i_pass": 0,
+            "area_id": 6,
+            "shop_type": 2,
+            "menu": [
+                {
+                    "id": 3,
+                    "shop_id": 2,
+                    "parent_id": null,
+                    "name": "菜單三號",
+                    "price": 500,
+                    "vegetarian": 0,
+                    "status": 1,
+                    "created_at": "2018-01-29 12:25:03",
+                    "updated_at": "2018-01-29 12:25:03",
+                    "height_light": 1,
+                    "hot": 1
+                },
+                {
+                    "id": 1,
+                    "shop_id": 2,
+                    "parent_id": null,
+                    "name": "菜單一號",
+                    "price": 100,
+                    "vegetarian": 0,
+                    "status": 1,
+                    "created_at": "2018-01-29 12:23:17",
+                    "updated_at": "2018-01-29 12:23:17",
+                    "height_light": 0,
+                    "hot": 0
+                }
+            ],
+            "trademark": [
+                {
+                    "id": 9,
+                    "saved_uri": "1516957367.jpg",
+                    "image_size": 22100,
+                    "created_at": "2018-01-26 09:02:47",
+                    "updated_at": "2018-01-26 09:02:47",
+                    "image_width": 256,
+                    "image_height": 256,
+                    "pivot": {
+                        "shop_id": 2,
+                        "image_id": 9
+                    }
+                }
+            ],
+            "preview": [
+                {
+                    "id": 10,
+                    "saved_uri": "1516957376.jpg",
+                    "image_size": 67445,
+                    "created_at": "2018-01-26 09:02:56",
+                    "updated_at": "2018-01-26 09:02:56",
+                    "image_width": 1024,
+                    "image_height": 500,
+                    "pivot": {
+                        "shop_id": 2,
+                        "image_id": 10
+                    }
+                },
+                {
+                    "id": 11,
+                    "saved_uri": "1516957383.jpg",
+                    "image_size": 55624,
+                    "created_at": "2018-01-26 09:03:03",
+                    "updated_at": "2018-01-26 09:03:03",
+                    "image_width": 1024,
+                    "image_height": 500,
+                    "pivot": {
+                        "shop_id": 2,
+                        "image_id": 11
+                    }
+                },
+                {
+                    "id": 14,
+                    "saved_uri": "1516958919.jpg",
+                    "image_size": 55624,
+                    "created_at": "2018-01-26 09:28:39",
+                    "updated_at": "2018-01-26 09:28:39",
+                    "image_width": 1024,
+                    "image_height": 500,
+                    "pivot": {
+                        "shop_id": 2,
+                        "image_id": 14
+                    }
+                }
+            ],
+            "discount": [
+                {
+                    "id": 17,
+                    "shop_id": 2,
+                    "type": 1,
+                    "menu_id": 1,
+                    "age": null,
+                    "action": "-",
+                    "numeric": "200.00",
+                    "custom": null,
+                    "status": 1,
+                    "start_time": null,
+                    "end_time": null
+                },
+                {
+                    "id": 16,
+                    "shop_id": 2,
+                    "type": 9,
+                    "menu_id": null,
+                    "age": null,
+                    "action": "x",
+                    "numeric": "0.80",
+                    "custom": null,
+                    "status": 1,
+                    "start_time": null,
+                    "end_time": null
+                },
+                {
+                    "id": 13,
+                    "shop_id": 2,
+                    "type": 8,
+                    "menu_id": null,
+                    "age": null,
+                    "action": "x",
+                    "numeric": "0.90",
+                    "custom": null,
+                    "status": 1,
+                    "start_time": null,
+                    "end_time": null
+                },
+                {
+                    "id": 12,
+                    "shop_id": 2,
+                    "type": 7,
+                    "menu_id": null,
+                    "age": null,
+                    "action": null,
+                    "numeric": null,
+                    "custom": "紅利限時兩倍",
+                    "status": 1,
+                    "start_time": 1517414400,
+                    "end_time": 1518710400
+                },
+                {
+                    "id": 10,
+                    "shop_id": 2,
+                    "type": 6,
+                    "menu_id": null,
+                    "age": null,
+                    "action": null,
+                    "numeric": null,
+                    "custom": "滿1000點加碼500點紅利",
+                    "status": 1,
+                    "start_time": null,
+                    "end_time": null
+                },
+                {
+                    "id": 9,
+                    "shop_id": 2,
+                    "type": 5,
+                    "menu_id": null,
+                    "age": null,
+                    "action": "x",
+                    "numeric": "0.50",
+                    "custom": null,
+                    "status": 1,
+                    "start_time": null,
+                    "end_time": null
+                },
+                {
+                    "id": 8,
+                    "shop_id": 2,
+                    "type": 4,
+                    "menu_id": null,
+                    "age": 12,
+                    "action": "-",
+                    "numeric": "200.00",
+                    "custom": null,
+                    "status": 1,
+                    "start_time": null,
+                    "end_time": null
+                },
+                {
+                    "id": 6,
+                    "shop_id": 2,
+                    "type": 3,
+                    "menu_id": null,
+                    "age": null,
+                    "action": null,
+                    "numeric": null,
+                    "custom": "衣服買三送一",
+                    "status": 1,
+                    "start_time": null,
+                    "end_time": null
+                },
+                {
+                    "id": 5,
+                    "shop_id": 2,
+                    "type": 2,
+                    "menu_id": null,
+                    "age": null,
+                    "action": "x",
+                    "numeric": "0.75",
+                    "custom": null,
+                    "status": 1,
+                    "start_time": null,
+                    "end_time": null
+                }
+            ]
+        }
+    }
 
 #### 獲得公告s
 

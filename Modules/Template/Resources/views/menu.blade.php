@@ -4,7 +4,7 @@
 
 @section('content')
     <section class="content-header">
-        <h1 id="pageTitle" name="菜單管理">
+        <h1 id="pageTitle" name="商家管理">
             菜單管理
             <small></small>
         </h1>

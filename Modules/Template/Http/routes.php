@@ -30,6 +30,7 @@ Route::group(['middleware' => 'api'], function () {
             Route::get('/article_audit', 'TemplateController@articleAudit');
             Route::get('/message', 'TemplateController@message');
             Route::get('/announcement', 'TemplateController@announcement');
+            Route::get('/discount', 'TemplateController@discount');
 
             //資料呈現
             Route::get('/vote', 'TemplateController@vote');
@@ -189,6 +190,18 @@ Route::group(['middleware' => 'api'], function () {
             Route::post('create', 'AnnouncementController@create');
             Route::post('update', 'AnnouncementController@update');
             Route::get('delete', 'AnnouncementController@delete');
+        });
+    });
+
+    Route::group([
+        'prefix' => 'discount',
+        'namespace' => 'Modules\Template\Http\Controllers'
+    ], function () {
+        /* 需完整權限 (登入、角色的節點權限) */
+        Route::group(['middleware' => 'permission',], function () {
+            Route::post('create', 'DiscountController@create');
+            Route::post('update', 'DiscountController@update');
+            Route::get('delete', 'DiscountController@delete');
         });
     });
 

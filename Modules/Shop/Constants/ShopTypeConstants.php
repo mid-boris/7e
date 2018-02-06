@@ -1,7 +1,7 @@
 <?php
 namespace Modules\Shop\Constants;
 
-class ShopType
+class ShopTypeConstants
 {
     private static $type = [
         0 => '無',

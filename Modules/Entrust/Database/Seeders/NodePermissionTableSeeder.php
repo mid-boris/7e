@@ -53,6 +53,11 @@ class NodePermissionTableSeeder extends Seeder
         $nodePmServ->addUriPermissionToNode('/menu/update', '資料設置.商家管理');
         $nodePmServ->addUriPermissionToNode('/menu/delete', '資料設置.商家管理');
 
+        $nodePmServ->addUriPermissionToNode('/discount', '資料設置.商家管理');
+        $nodePmServ->addUriPermissionToNode('/discount/create', '資料設置.商家管理');
+        $nodePmServ->addUriPermissionToNode('/discount/update', '資料設置.商家管理');
+        $nodePmServ->addUriPermissionToNode('/discount/delete', '資料設置.商家管理');
+
         $nodePmServ->addUriPermissionToNode('/announcement', '資料設置.公告管理');
         $nodePmServ->addUriPermissionToNode('/announcement/create', '資料設置.公告管理');
         $nodePmServ->addUriPermissionToNode('/announcement/update', '資料設置.公告管理');

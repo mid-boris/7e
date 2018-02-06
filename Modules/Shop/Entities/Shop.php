@@ -61,4 +61,27 @@ class Shop extends ShopBaseModel
             ->belongsToMany(ImageFile::class, 'shop_image_file', 'shop_id', 'image_id')
             ->wherePivot('trademark', 0);
     }
+
+    public function discount()
+    {
+        return $this->hasMany(Discount::class, 'shop_id')
+            ->where(function ($sub) {
+                /** @var \Illuminate\Database\Eloquent\Builder $sub */
+                $sub->where(function ($query) {
+                    /** @var \Illuminate\Database\Eloquent\Builder $query */
+                    $query->whereNull('start_time')->whereNull('end_time');
+                })->orWhere(function ($query) {
+                    /** @var \Illuminate\Database\Eloquent\Builder $query */
+                    $query->where('start_time', '<=', time())->whereNull('end_time');
+                })->orWhere(function ($query) {
+                    /** @var \Illuminate\Database\Eloquent\Builder $query */
+                    $query->whereNull('start_time')->where('end_time', '>=', time());
+                })->orWhere(function ($query) {
+                    /** @var \Illuminate\Database\Eloquent\Builder $query */
+                    $query->where('start_time', '<=', time())->where('end_time', '>=', time());
+                });
+            })
+            ->where('status', 1)
+            ->orderByDesc('id');
+    }
 }

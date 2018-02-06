@@ -156,7 +156,7 @@ class ShopRepository extends ShopBaseRepository
     {
         /** @var \Eloquent $shop */
         $shop = new Shop;
-        return $shop->with(['trademark', 'preview'])->where('id', $id)->first();
+        return $shop->with(['menu', 'trademark', 'preview', 'discount'])->where('id', $id)->first();
     }
 
     /**

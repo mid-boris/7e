@@ -36,8 +36,8 @@
                         <th class="col-xs-1">狀態</th>
                         <th class="col-xs-1">圖檔</th>
                         <th class="col-xs-1">菜單</th>
+                        <th class="col-xs-1">優惠</th>
                         <th class="col-xs-1"></th>
-                        <th class="col-xs-1">最後修改時間</th>
                         <th class="col-xs-1"></th>
                     </tr>
                     </thead>
@@ -55,10 +55,10 @@
                                 @endif
                             </td>
                             <td>{{$item->status == 1 ? 'V' : ''}}</td>
-                            <td><a href="/shopImages?id={{$item->id}}" class="btn btn-info">Images</a></td>
-                            <td><a href="/menu?id={{$item->id}}" class="btn btn-info">Menus</a></td>
+                            <td><a href="/shopImages?id={{$item->id}}" class="btn btn-info">圖片</a></td>
+                            <td><a href="/menu?id={{$item->id}}" class="btn btn-info">菜單</a></td>
+                            <td><a href="/discount?id={{$item->id}}" class="btn btn-info">優惠</a></td>
                             <th><button type="button" class="btn btn-default" data-toggle="modal" data-target="#shopEditModal">修改</button></th>
-                            <td>{{$item->updated_at}}</td>
                             <td>
                                 <form method="get" action="/shop/delete">
                                     <input type="hidden" name="id" value="{{$item->id}}">

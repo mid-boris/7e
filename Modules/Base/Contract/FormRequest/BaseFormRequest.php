@@ -53,6 +53,16 @@ abstract class BaseFormRequest extends FormRequest
         ];
     }
 
+    protected function sometimesIdValidate(string $table, $column = 'NULL')
+    {
+        return [
+            'sometimes',
+            'integer',
+            'min:1',
+            $this->getExists($table, $column),
+        ];
+    }
+
     protected function idValidateExceptId(string $table, int $id, $column = 'NULL')
     {
         return [
