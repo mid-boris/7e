@@ -806,7 +806,6 @@
 |                           | discount.numeric           | float        | 值的倍率                              |
 |                           | discount.start_time        | timestamp    | 開始時間                              |
 |                           | discount.end_time          | timestamp    | 結束時間                              |
-| 項目                      | 內容                       | 類型         | 說明                                  |
 |---------------------------|----------------------------|--------------|---------------------------------------|
 | discount.type             | 2                          |              | 總價折扣                              |
 | discount.type             | 5                          |              | 出清折扣                              |
@@ -816,7 +815,6 @@
 |                           | discount.numeric           | float        | 值的倍率                              |
 |                           | discount.start_time        | timestamp    | 開始時間                              |
 |                           | discount.end_time          | timestamp    | 結束時間                              |
-| 項目                      | 內容                       | 類型         | 說明                                  |
 |---------------------------|----------------------------|--------------|---------------------------------------|
 | discount.type             | 3                          |              | 文字優惠                              |
 | discount.type             | 6                          |              | 紅利回饋                              |
@@ -824,7 +822,6 @@
 |                           | discount.custom            | string       | 自定義文字                            |
 |                           | discount.start_time        | timestamp    | 開始時間                              |
 |                           | discount.end_time          | timestamp    | 結束時間                              |
-| 項目                      | 內容                       | 類型         | 說明                                  |
 |---------------------------|----------------------------|--------------|---------------------------------------|
 | discount.type             | 4                          |              | 年紀折扣                              |
 |                           | discount.age               | int          | 年紀                                  |
