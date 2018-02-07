@@ -17,8 +17,8 @@ class UpdateDiscountTable extends BaseMigration
     {
         return function (Blueprint $table) {
             $table->unsignedTinyInteger('status');
-            $table->unsignedTinyInteger('start_time')->nullable()->comment('開始時間');
-            $table->unsignedTinyInteger('end_time')->nullable()->comment('結束時間');
+            $table->unsignedInteger('start_time')->nullable()->comment('開始時間');
+            $table->unsignedInteger('end_time')->nullable()->comment('結束時間');
 
             $table->index('status');
             $table->index('start_time');

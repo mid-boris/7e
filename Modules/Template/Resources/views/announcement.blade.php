@@ -94,97 +94,113 @@
 
                 <div class="modal-body">
                     <div class="">
-                        <form class="form-horizontal editor-form" method="post" action="/announcement/create" enctype="multipart/form-data">
                             <div class="box-body">
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">語系</label>
-                                    <div class="col-sm-10">
-                                        <select class="form-control" name="language">
-                                            @foreach($languages as $code => $language)
-                                                <option value="{{$code}}">{{$language}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">標題</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" placeholder="Title" name="title">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">內文</label>
-                                    <textarea name="content" class="hidden"></textarea>
-                                    <div class="col-sm-10">
-                                        <textarea class="wysihtml5Editor" placeholder="Enter Content ..." style="width: 100%"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label"></label>
-                                    <div class="col-sm-10 checkbox">
-                                        <label class="checkbox-inline">
-                                            <input name="high_light" type="checkbox" value="9">
-                                            置頂
-                                        </label>
-                                        <label class="checkbox-inline">
-                                            <input name="status" type="checkbox" value="1" checked>
-                                            啟用
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">類型</label>
-                                <div class="col-sm-10">
-                                    <select class="form-control" name="type">
-                                        @foreach($type as $code => $viewer)
-                                            <option value="{{$code}}">{{$viewer}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">圖片</label>
-                                <div class="col-sm-10">
-                                    <div class="imageupload panel panel-default image-upload">
-                                        <div class="panel-heading clearfix">
-                                            <h3 class="panel-title pull-left">寬高限制: 1024 x 500</h3>
+                                <form class="form-horizontal editor-form" method="post" action="/announcement/create" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label  class="col-sm-2 control-label">語系</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="language">
+                                                @foreach($languages as $code => $language)
+                                                    <option value="{{$code}}">{{$language}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
-                                        <div class="file-tab panel-body">
-                                            <label class="btn btn-default btn-file">
-                                                <span>Browse</span>
-                                                <!-- The file is stored here. -->
-                                                <input type="file" name="image">
+                                    </div>
+                                    <div class="form-group">
+                                        <label  class="col-sm-2 control-label">標題</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" placeholder="Title" name="title">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label  class="col-sm-2 control-label">內文</label>
+                                        <textarea name="content" class="hidden"></textarea>
+                                        <div class="col-sm-10">
+                                            <textarea class="wysihtml5Editor" placeholder="Enter Content ..." style="width: 100%"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-2 control-label"></label>
+                                        <div class="col-sm-10 checkbox">
+                                            <label class="checkbox-inline">
+                                                <input name="high_light" type="checkbox" value="9">
+                                                置頂
                                             </label>
-                                            <button type="button" class="btn btn-default">Remove</button>
+                                            <label class="checkbox-inline">
+                                                <input name="status" type="checkbox" value="1" checked>
+                                                啟用
+                                            </label>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">開始日期</label>
-                                <div class="col-sm-4">
-                                    <input data-provide="datepicker" name="start_time">
-                                    <small class="text-muted">
-                                        (選填)
-                                    </small>
-                                </div>
-                                <label for="inputEmail3" class="col-sm-2 control-label">結束日期</label>
-                                <div class="col-sm-4">
-                                    <input data-provide="datepicker" name="end_time">
-                                    <small class="text-muted">
-                                        (選填)
-                                    </small>
-                                </div>
+                                    <div class="form-group">
+                                        <label  class="col-sm-2 control-label">類型</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="type">
+                                                @foreach($type as $code => $viewer)
+                                                    <option value="{{$code}}">{{$viewer}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label  class="col-sm-2 control-label">圖片</label>
+                                        <div class="col-sm-10">
+                                            <div class="imageupload panel panel-default image-upload">
+                                                <div class="panel-heading clearfix">
+                                                    <h3 class="panel-title pull-left">寬高限制: 1024 x 500</h3>
+                                                </div>
+                                                <div class="file-tab panel-body">
+                                                    <label class="btn btn-default btn-file">
+                                                        <span>Browse</span>
+                                                        <!-- The file is stored here. -->
+                                                        <input type="file" name="image">
+                                                    </label>
+                                                    <button type="button" class="btn btn-default">Remove</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">開始日期</label>
+                                        <div class="col-sm-4">
+                                            <input data-provide="datepicker" name="start_time">
+                                            <small class="text-muted">
+                                                (選填)
+                                            </small>
+                                        </div>
+                                        <label class="col-sm-2 control-label">結束日期</label>
+                                        <div class="col-sm-4">
+                                            <input data-provide="datepicker" name="end_time">
+                                            <small class="text-muted">
+                                                (選填)
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"></label>
+                                        <div class="col-sm-10 tag-collection"></div>
+                                    </div>
+                                </form>
+                                <form class="form-horizontal tag-form">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">商家標籤</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" name="shop_name" class="form-control" placeholder="Shop Name">
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <select class="form-control shops" disabled></select>
+                                        </div>
+                                        <button type="submit" class="hidden"></button>
+                                        <a class="btn btn-primary pull-right col-sm-2 tag-join">加入</a>
+                                    </div>
+                                </form>
                             </div>
                             <div class="box-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                                <input type="submit" class="btn btn-primary pull-right" value="送出">
+                                <input type="submit" class="btn btn-primary pull-right editor-form-submit" value="送出">
                             </div>
-                        </form>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -202,101 +218,118 @@
 
                 <div class="modal-body">
                     <div class="">
-                        <form class="form-horizontal editor-form" method="post" action="/announcement/update" enctype="multipart/form-data">
                             <div class="box-body">
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">語系</label>
-                                    <div class="col-sm-10">
-                                        <select class="form-control" name="language" id="languageChanged">
-                                            @foreach($languages as $code => $language)
-                                                <option value="{{$code}}">{{$language}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <input type="hidden" name="id">
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">標題</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" placeholder="Title" name="title">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">內文</label>
-                                    <textarea name="content" class="hidden"></textarea>
-                                    <div class="col-sm-10 editor">
-                                        <textarea class="wysihtml5Editor" placeholder="Enter Content ..." style="width: 100%"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label"></label>
-                                    <div class="col-sm-10 checkbox">
-                                        <label class="checkbox-inline">
-                                            <input name="high_light" type="checkbox" value="9">
-                                            置頂
-                                        </label>
-                                        <label class="checkbox-inline">
-                                            <input name="status" type="checkbox" value="1" checked>
-                                            啟用
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">類型</label>
-                                <div class="col-sm-10">
-                                    <select class="form-control" name="type">
-                                        @foreach($type as $code => $viewer)
-                                            <option value="{{$code}}">{{$viewer}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group imageArea">
-                                <label class="col-sm-2 control-label"></label>
-                                <div class="col-sm-10">
-                                    <img src="" style="width: 100%">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">圖片</label>
-                                <div class="col-sm-10">
-                                    <div class="imageupload panel panel-default image-upload">
-                                        <div class="panel-heading clearfix">
-                                            <h3 class="panel-title pull-left">寬高限制: 1024 x 500</h3>
+                                <form class="form-horizontal editor-form" method="post" action="/announcement/update" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label  class="col-sm-2 control-label">語系</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="language" id="languageChanged">
+                                                @foreach($languages as $code => $language)
+                                                    <option value="{{$code}}">{{$language}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
-                                        <div class="file-tab panel-body">
-                                            <label class="btn btn-default btn-file">
-                                                <span>Browse</span>
-                                                <!-- The file is stored here. -->
-                                                <input type="file" name="image">
+                                        <input type="hidden" name="id">
+                                    </div>
+                                    <div class="form-group">
+                                        <label  class="col-sm-2 control-label">標題</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" placeholder="Title" name="title">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label  class="col-sm-2 control-label">內文</label>
+                                        <textarea name="content" class="hidden"></textarea>
+                                        <div class="col-sm-10 editor">
+                                            <textarea class="wysihtml5Editor" placeholder="Enter Content ..." style="width: 100%"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-2 control-label"></label>
+                                        <div class="col-sm-10 checkbox">
+                                            <label class="checkbox-inline">
+                                                <input name="high_light" type="checkbox" value="9">
+                                                置頂
                                             </label>
-                                            <button type="button" class="btn btn-default">Remove</button>
+                                            <label class="checkbox-inline">
+                                                <input name="status" type="checkbox" value="1" checked>
+                                                啟用
+                                            </label>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">開始日期</label>
-                                <div class="col-sm-4">
-                                    <input data-provide="datepicker" name="start_time">
-                                    <small class="text-muted">
-                                        (選填)
-                                    </small>
-                                </div>
-                                <label for="inputEmail3" class="col-sm-2 control-label">結束日期</label>
-                                <div class="col-sm-4">
-                                    <input data-provide="datepicker" name="end_time">
-                                    <small class="text-muted">
-                                        (選填)
-                                    </small>
-                                </div>
+                                    <div class="form-group">
+                                        <label  class="col-sm-2 control-label">類型</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="type">
+                                                @foreach($type as $code => $viewer)
+                                                    <option value="{{$code}}">{{$viewer}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group imageArea">
+                                        <label class="col-sm-2 control-label"></label>
+                                        <div class="col-sm-10">
+                                            <img src="" style="width: 100%">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label  class="col-sm-2 control-label">圖片</label>
+                                        <div class="col-sm-10">
+                                            <div class="imageupload panel panel-default image-upload">
+                                                <div class="panel-heading clearfix">
+                                                    <h3 class="panel-title pull-left">寬高限制: 1024 x 500</h3>
+                                                </div>
+                                                <div class="file-tab panel-body">
+                                                    <label class="btn btn-default btn-file">
+                                                        <span>Browse</span>
+                                                        <!-- The file is stored here. -->
+                                                        <input type="file" name="image">
+                                                    </label>
+                                                    <button type="button" class="btn btn-default">Remove</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label  class="col-sm-2 control-label">開始日期</label>
+                                        <div class="col-sm-4">
+                                            <input data-provide="datepicker" name="start_time">
+                                            <small class="text-muted">
+                                                (選填)
+                                            </small>
+                                        </div>
+                                        <label  class="col-sm-2 control-label">結束日期</label>
+                                        <div class="col-sm-4">
+                                            <input data-provide="datepicker" name="end_time">
+                                            <small class="text-muted">
+                                                (選填)
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"></label>
+                                        <div class="col-sm-10 tag-collection"></div>
+                                    </div>
+                                </form>
+                                <form class="form-horizontal tag-form">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">商家標籤</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" name="shop_name" class="form-control" placeholder="Shop Name">
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <select class="form-control shops" disabled></select>
+                                        </div>
+                                        <button type="submit" class="hidden"></button>
+                                        <a class="btn btn-primary pull-right col-sm-2 tag-join">加入</a>
+                                    </div>
+                                </form>
                             </div>
                             <div class="box-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                                <input type="submit" class="btn btn-primary pull-right" value="送出">
+                                <input type="submit" class="btn btn-primary pull-right editor-form-submit" value="送出">
                             </div>
-                        </form>
                     </div>
                 </div>
 
@@ -304,6 +337,10 @@
         </div>
     </div>
 
+    <button type="button" class="shopTagBtn btn btn-info btn-sm hidden" id="shop_smaple" >
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> <span class="text"></span>
+        <input type="hidden" name="shop_id[]">
+    </button>
 @endsection
 
 @section('script')
@@ -346,10 +383,6 @@
                     modal.find('.modal-body input[name="title"]').val(announcement.content[0].title);
                     modal.find('.modal-body input[name="id"]').val(announcement.id);
 
-//                    modal.find('.modal-body .editor').html('' +
-//                        '<textarea class="wysihtml5Editor" placeholder="Enter Content ..." style="width: 100%"></textarea>');
-//                    modal.find('.wysihtml5Editor').val(announcement.content[0].content);
-//                    modal.find('.wysihtml5Editor').wysihtml5(editorOption);
                     var box = modal.find('.modal-body');
                     setEditor(box, announcement.content[0].content);
 
@@ -366,6 +399,14 @@
                         var dateFormat = 'mm/dd/yy';
                         var endTime = $.datepicker.formatDate(dateFormat, new Date((announcement.end_time - 24 * 60 * 60) * 1000));
                         modal.find('.modal-body input[name="end_time"]').val(endTime);
+                    }
+
+                    // 塞tag
+                    if (announcement.shop) {
+                        var shopCollection = $('div.tag-collection', modal);
+                        $.each(announcement.shop, function (i, v) {
+                            addShopToTag(v.name, v.id, shopCollection);
+                        });
                     }
 
                     // 塞圖片
@@ -399,8 +440,57 @@
                 }
             });
 
-            // 公告 filter
+            // 註冊submit行為
+            $('input.editor-form-submit').click(function () {
+                var body = $(this).parent().parent().parent();
+                $('form.editor-form', body).submit();
+            });
 
+            // 加入商家標籤
+            $('form.tag-form').submit(function () {
+                var tagForm = $(this);
+                var shopName = tagForm.find('input[name=shop_name]').val();
+                $.post(
+                    apiDomain + '/announcement/shop/fuzzy',
+                    {shop_name: shopName},
+                    function (res) {
+                        if (res.data) {
+                            var shopSelect = $('select.shops', tagForm);
+                            shopSelect.find('option').remove();
+                            $.each(res.data, function (i, item) {
+                                shopSelect.append($('<option>', {
+                                    value: item.id,
+                                    text: item.name
+                                }));
+                            });
+                            shopSelect.attr('disabled', false);
+                            alert( "商家資訊讀取成功" );
+                        } else {
+                            alert( "資訊獲得錯誤" );
+                        }
+                    }
+                ).fail(function() {
+                    alert( "查詢錯誤" );
+                });
+                return false;
+            });
+
+            // 加入標籤
+            $('a.tag-join').click(function () {
+                var tagForm = $(this).parent().parent();
+                var selectedId = $('select.shops option:selected', tagForm).val();
+                var selectedText = $('select.shops option:selected', tagForm).text();
+                if (selectedId) {
+                    var shopCollection = $('div.tag-collection', tagForm.parent());
+                    addShopToTag(selectedText, selectedId, shopCollection);
+                }
+                return false;
+            });
+
+            // 點擊移除標籤
+            $(document).on('click', 'button.shopTagBtn', function () {
+                $(this).remove();
+            });
         });
 
         function setEditor(body, content) {
@@ -413,6 +503,25 @@
         function editorSubmit(event) {
             var val = $('.wysihtml5Editor', $(this)).val();
             $('textarea[name=content]', $(this)).val(val);
+        }
+
+        function addShopToTag(name, id, collection) {
+            shopTag(name, id, collection);
+        }
+
+        function shopTag(name, id, collection) {
+            var exists = false;
+            collection.find('input').each(function () {
+                if ($(this).val() == id) {
+                    exists = true;
+                }
+            });
+            if (!exists) {
+                var clone = $('#shop_smaple').clone();
+                $('input', clone).val(id);
+                $('span.text', clone).text(name);
+                clone.removeAttr('id').removeClass('hidden').appendTo(collection);
+            }
         }
     </script>
 @endsection

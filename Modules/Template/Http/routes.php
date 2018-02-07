@@ -252,4 +252,15 @@ Route::group(['middleware' => 'api'], function () {
             Route::get('audit/count', 'ArticleController@auditCount');
         });
     });
+
+    Route::group([
+        'prefix' => 'api/announcement',
+        'namespace' => 'Modules\Template\Http\Controllers'
+    ], function () {
+        /* 需完整權限 (登入、角色的節點權限) */
+        Route::group(['middleware' => 'permission',], function () {
+            // 地區搜尋
+            Route::post('shop/fuzzy', 'AnnouncementController@shopSearch');
+        });
+    });
 });

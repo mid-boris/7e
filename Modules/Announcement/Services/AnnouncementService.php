@@ -18,7 +18,8 @@ class AnnouncementService
         int $highLight,
         $image = null,
         $startTime = null,
-        $endTime = null
+        $endTime = null,
+        $shopIds = null
     ) {
         // 有時間的情況下先進行處理
         $this->timeProcess($startTime);
@@ -41,6 +42,13 @@ class AnnouncementService
             'content' => $content,
         ]);
 
+        // 有商家tag 再處理
+        if (!is_null($shopIds)) {
+            if (count($shopIds) > 0) {
+                $announcement->shop()->attach($shopIds);
+            }
+        }
+
         // 處理圖片
         if (!is_null($image)) {
             $this->fileProcess($image, $announcement->getKey());
@@ -57,7 +65,8 @@ class AnnouncementService
         int $highLight,
         $image = null,
         $startTime = null,
-        $endTime = null
+        $endTime = null,
+        $shopIds = null
     ) {
         // 有時間的情況下先進行處理
         $this->timeProcess($startTime);
@@ -87,6 +96,14 @@ class AnnouncementService
             ],
             $relateUpdateData
         );
+
+        // 有商家tag 再處理
+        $announcement->shop()->detach();
+        if (!is_null($shopIds)) {
+            if (count($shopIds) > 0) {
+                $announcement->shop()->attach($shopIds);
+            }
+        }
 
         // 圖片更新
         if (!is_null($image)) {

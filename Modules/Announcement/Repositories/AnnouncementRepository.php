@@ -20,8 +20,8 @@ class AnnouncementRepository
         if (!is_null($status)) {
             $announcement = $announcement->where('end_time', '>=', $endTime);
         }
-        $results = $announcement->with(['content', 'images'])->orderByDesc('high_light')
-            ->orderByDesc('created_at')->paginate(35);
+        $results = $announcement->with(['content', 'images', 'shop'])
+            ->orderByDesc('high_light')->orderByDesc('created_at')->paginate(35);
         return $results;
     }
 
@@ -53,7 +53,7 @@ class AnnouncementRepository
         })->with(['content' => function ($query) use ($language) {
             /** @var \Illuminate\Database\Eloquent\Builder $query */
             $query->where('language', $language);
-        }, 'images'])->orderByDesc('high_light')->orderByDesc('created_at')->paginate(35);
+        }, 'images', 'shopReferStatus'])->orderByDesc('high_light')->orderByDesc('created_at')->paginate(35);
         return $results;
     }
 }

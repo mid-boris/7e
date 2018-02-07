@@ -1072,6 +1072,7 @@
 |                           | carousel                   | array        | 輪播圖                                |
 |                           | marquee                    | array        | 跑馬燈                                |
 |                           | announcement               | array        | 公告                                  |
+|                           | shop_refer_status          | array        | 被tag的店家                           |
 |                           | *.start_time               | unix time    | 開始日期                              |
 |                           | *.end_time                 | unix time    | 結束日期                              |
 |                           | *.high_light               | integer      | 是否置頂 (0 / 9)                      |
@@ -1156,7 +1157,29 @@
             "prev_page_url": null,
             "to": null,
             "total": 0
-        }
+        },
+         "shop_refer_status": [
+             {
+                 "id": 1,
+                 "name": "測試店家",
+                 "telphone": "04 2305 2799",
+                 "phone": "0912345678",
+                 "address": "台中市西區公益路235號",
+                 "business_hours": "10:00:00 ~ 21:00:00",
+                 "business_hours_start_time": "10:00 AM",
+                 "business_hours_end_time": "9:00 PM",
+                 "closed_day": "[]",
+                 "special": 0,
+                 "status": 1,
+                 "i_pass": 0,
+                 "area_id": 6,
+                 "shop_type": 0,
+                 "pivot": {
+                     "announcement_id": 5,
+                     "shop_id": 1
+                 }
+             }
+         ]
     }
 
 

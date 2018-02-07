@@ -147,6 +147,13 @@ class ShopRepository extends ShopBaseRepository
         return $result;
     }
 
+    public function getShopByName(string $shopName)
+    {
+        /** @var \Eloquent $shop */
+        $shop = new Shop;
+        return $shop->like('name', $shopName)->where('status', 1)->get();
+    }
+
     /**
      * 後臺呈現用
      * @param int $id

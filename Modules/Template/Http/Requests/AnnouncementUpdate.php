@@ -25,6 +25,7 @@ class AnnouncementUpdate extends BaseFormRequest
             'image' => 'image|mimes:jpg,jpeg|dimensions:max_width=1024,max_height=500',
             'start_time' => 'sometimes|string|nullable',
             'end_time' => 'sometimes|string|nullable',
+            'shop_id' => 'sometimes|array|nullable'
         ];
     }
 }
