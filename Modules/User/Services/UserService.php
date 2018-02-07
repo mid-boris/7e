@@ -88,4 +88,35 @@ class UserService extends UserBaseService
         $user->role()->detach();
         $user->role()->attach($role->id);
     }
+
+    public function addShopToUser(int $userId, array $shopIds)
+    {
+        /** @var \Eloquent $user */
+        $user = new User;
+        $user = $user->where('id', $userId)->whereHas('shop', function ($query) use ($shopIds) {
+            /** @var  \Illuminate\Database\Eloquent\Builder $query */
+            $query->whereIn('shop.id', $shopIds);
+        })->get();
+        if ($user->count() == 0) {
+            User::find($userId)->shop()->attach($shopIds);
+        }
+    }
+
+    public function decShopFromUser(int $userId, array $shopIds)
+    {
+        /** @var \Eloquent $user */
+        $user = new User;
+        $user = $user->find($userId);
+        if ($user) {
+            $user->shop()->detach($shopIds);
+        }
+    }
+
+    public function getFavoriteShop(int $userId)
+    {
+        /** @var \Eloquent $user */
+        $user = new User;
+        $user = $user->with(['shopReferStatus'])->find($userId);
+        return $user;
+    }
 }

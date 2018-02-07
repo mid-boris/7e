@@ -3,6 +3,7 @@
 namespace Modules\User\Entities;
 
 use Modules\Entrust\Entities\Role;
+use Modules\Shop\Entities\Shop;
 
 /**
  * Class User
@@ -25,5 +26,15 @@ class User extends UserBaseModel
     {
         return $this->belongsToMany(Role::class, 'user_role')
             ->as('relate');
+    }
+
+    public function shop()
+    {
+        return $this->belongsToMany(Shop::class, 'user_shop', 'user_id', 'shop_id');
+    }
+
+    public function shopReferStatus()
+    {
+        return $this->shop()->where('status', 1);
     }
 }

@@ -3,9 +3,13 @@
 namespace Modules\Api\Http\Controllers;
 
 use Illuminate\Routing\Controller;
+use Modules\Api\Http\Requests\ShopAddFavorite;
+use Modules\Api\Http\Requests\ShopDecFavorite;
 use Modules\Api\Http\Requests\ShopShow;
 use Modules\Base\Utilities\Response\BaseResponse;
+use Modules\Entrust\Utilities\SessionManager;
 use Modules\Shop\Repositories\ShopRepository;
+use Modules\User\Services\UserService;
 
 class ShopController extends Controller
 {
@@ -33,6 +37,32 @@ class ShopController extends Controller
         $shopRepo = app()->make(ShopRepository::class);
         $shop = $shopRepo->getPaginationWithImages();
         return BaseResponse::response(['data' => $shop]);
+    }
+
+    public function favorite()
+    {
+        /** @var UserService $userServ */
+        $userServ = app()->make(UserService::class);
+        $user = $userServ->getFavoriteShop(SessionManager::getUserId());
+        return BaseResponse::response(['data' => $user]);
+    }
+
+    public function addFavorite(ShopAddFavorite $request)
+    {
+        $shopId = $request->input('shop_id');
+        /** @var UserService $userServ */
+        $userServ = app()->make(UserService::class);
+        $userServ->addShopToUser(SessionManager::getUserId(), [$shopId]);
+        return BaseResponse::response(['data' => true]);
+    }
+
+    public function decFavorite(ShopDecFavorite $request)
+    {
+        $shopId = $request->input('shop_id');
+        /** @var UserService $userServ */
+        $userServ = app()->make(UserService::class);
+        $userServ->decShopFromUser(SessionManager::getUserId(), [$shopId]);
+        return BaseResponse::response(['data' => true]);
     }
 
     public function food()

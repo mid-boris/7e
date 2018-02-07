@@ -52,6 +52,9 @@ Route::group(['middleware' => 'api', 'prefix' => 'api'], function () {
                     Route::get('transportation', 'ShopController@transportation');
                     Route::get('education', 'ShopController@education');
                     Route::get('entertainment', 'ShopController@entertainment');
+                    Route::get('favorite', 'ShopController@favorite');
+                    Route::post('addFavorite', 'ShopController@addFavorite');
+                    Route::post('decFavorite', 'ShopController@decFavorite');
                 });
 
                 // 附近商家
