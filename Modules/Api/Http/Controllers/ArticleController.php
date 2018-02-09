@@ -9,6 +9,7 @@ use Modules\Base\Utilities\Response\BaseResponse;
 use Modules\Forum\Http\Requests\ArticleCreate;
 use Modules\Forum\Repositories\ArticleRepository;
 use Modules\Forum\Services\ForumService;
+use Modules\Popularity\Repositories\ForumPopularityRepository;
 
 class ArticleController extends Controller
 {
@@ -18,6 +19,10 @@ class ArticleController extends Controller
         /** @var ForumService $forumServ */
         $forumServ = app()->make(ForumService::class);
         $articles = $forumServ->getArticle($forumId);
+        // 埋入加人氣之方法
+        /** @var ForumPopularityRepository $popularityRepo */
+        $popularityRepo = app()->make(ForumPopularityRepository::class);
+        $popularityRepo->addPopularity($forumId);
         return BaseResponse::response($articles);
     }
     

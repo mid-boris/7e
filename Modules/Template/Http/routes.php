@@ -34,6 +34,7 @@ Route::group(['middleware' => 'api'], function () {
             Route::get('/surpriseBox', 'TemplateController@surpriseBox');
             Route::get('/surpriseItem', 'TemplateController@surpriseItem');
             Route::get('/reservation', 'TemplateController@reservation');
+            Route::get('/board_analysis', 'TemplateController@boardAnalysis');
 
             //資料呈現
             Route::get('/vote', 'TemplateController@vote');

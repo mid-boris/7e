@@ -8,6 +8,7 @@ use Modules\Api\Http\Requests\Vote;
 use Modules\Base\Utilities\Response\BaseResponse;
 use Modules\Forum\Repositories\ForumRepository;
 use Modules\Forum\Services\ForumService;
+use Modules\Popularity\Repositories\ForumPopularityRepository;
 
 class ForumController extends Controller
 {
@@ -25,6 +26,10 @@ class ForumController extends Controller
         /** @var ForumService $forumServ */
         $forumServ = app()->make(ForumService::class);
         $articles = $forumServ->getArticleWithChildren($forumId);
+        // 埋入加人氣之方法
+        /** @var ForumPopularityRepository $popularityRepo */
+        $popularityRepo = app()->make(ForumPopularityRepository::class);
+        $popularityRepo->addPopularity($forumId);
         return BaseResponse::response([
             'forum' => $forums,
             'article' => $articles,
@@ -45,6 +50,10 @@ class ForumController extends Controller
         /** @var ForumService $forumServ */
         $forumServ = app()->make(ForumService::class);
         $articles = $forumServ->getArticleWithChildren($forumId);
+        // 埋入加人氣之方法
+        /** @var ForumPopularityRepository $popularityRepo */
+        $popularityRepo = app()->make(ForumPopularityRepository::class);
+        $popularityRepo->addPopularity($forumId);
         return BaseResponse::response([
             'forum' => $forums,
             'article' => $articles,

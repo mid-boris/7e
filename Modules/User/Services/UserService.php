@@ -114,9 +114,15 @@ class UserService extends UserBaseService
 
     public function getFavoriteShop(int $userId)
     {
+        // 'trademark', 'preview', 'menu'
         /** @var \Eloquent $user */
         $user = new User;
-        $user = $user->with(['shopReferStatus'])->find($userId);
+        $user = $user->with([
+            'shopReferStatus',
+            'shopReferStatus.trademark',
+            'shopReferStatus.preview',
+            'shopReferStatus.menu',
+        ])->find($userId);
         return $user;
     }
 }

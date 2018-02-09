@@ -16,10 +16,11 @@ class CreateForumPopularityTable extends BaseMigration
 
             $table->unsignedInteger('forum_id');
             $table->unsignedInteger('day');
-            $table->unsignedInteger('popularity');
+            $table->unsignedInteger('accumulation_popularity')->comment('累積人氣, 會重複計數');
 
             $table->timestamps();
 
+            $table->unique(['forum_id', 'day'], 'idx_forum_id_day');
             $table->index('forum_id', 'idx_forum_id');
             $table->index('day', 'idx_day');
 

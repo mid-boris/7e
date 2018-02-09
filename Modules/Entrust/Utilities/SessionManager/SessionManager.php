@@ -25,6 +25,16 @@ class SessionManager
         return self::getUser()['id'];
     }
 
+    public static function getUserAreaId()
+    {
+        return self::getUser()['area_id'];
+    }
+
+    public static function getUserGender()
+    {
+        return self::getUser()['gender'];
+    }
+
     public static function getUserLanguage() : string
     {
         return self::getUser()['language'];

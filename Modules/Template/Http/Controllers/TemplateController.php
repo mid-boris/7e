@@ -17,7 +17,6 @@ use Modules\Menu\Repositories\MenuRepository;
 use Modules\Message\Repository\MessageRepository;
 use Modules\Reservation\Repositories\ReservationRepository;
 use Modules\Shop\Constants\DiscountTypeConstants;
-use Modules\Shop\Constants\ShopTypeConstants;
 use Modules\Shop\Repositories\DiscountRepository;
 use Modules\Shop\Repositories\ShopRepository;
 use Modules\Surprise\Repositories\SurpriseItemRepository;
@@ -284,6 +283,10 @@ class TemplateController extends Controller
             'surpriseItem' => $surpriseItem,
             'surpriseBoxId' => $request->input('id'),
         ]);
+    }
+
+    public function boardAnalysis()
+    {
     }
 
     public function reservation()
