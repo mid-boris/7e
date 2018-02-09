@@ -394,11 +394,15 @@
                         var dateFormat = 'mm/dd/yy';
                         var startTime = $.datepicker.formatDate(dateFormat, new Date(announcement.start_time * 1000));
                         modal.find('.modal-body input[name="start_time"]').val(startTime);
+                    } else {
+                        modal.find('.modal-body input[name="start_time"]').val('');
                     }
                     if (announcement.end_time) {
                         var dateFormat = 'mm/dd/yy';
                         var endTime = $.datepicker.formatDate(dateFormat, new Date((announcement.end_time - 24 * 60 * 60) * 1000));
                         modal.find('.modal-body input[name="end_time"]').val(endTime);
+                    } else {
+                        modal.find('.modal-body input[name="end_time"]').val('');
                     }
 
                     // 塞tag

@@ -76,6 +76,15 @@ Route::group(['middleware' => 'api', 'prefix' => 'api'], function () {
                 ], function () {
                     Route::get('index', 'AnnouncementController@index');
                 });
+
+                // 驚喜
+                Route::group([
+                    'prefix' => 'surprise'
+                ], function () {
+                    Route::get('lucky', 'SurpriseController@lucky');
+                    Route::get('index', 'SurpriseController@index');
+                    Route::post('used', 'SurpriseController@used');
+                });
             });
         });
     });

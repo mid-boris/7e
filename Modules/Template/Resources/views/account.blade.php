@@ -70,25 +70,25 @@
                         <form class="form-horizontal" method="post" action="/account/create">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">帳號</label>
+                                    <label class="col-sm-2 control-label">帳號</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" placeholder="Account" name="account">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">密碼</label>
+                                    <label class="col-sm-2 control-label">密碼</label>
                                     <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="password">
+                                        <input type="password" class="form-control" placeholder="Password" name="password">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">暱稱</label>
+                                    <label class="col-sm-2 control-label">暱稱</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" placeholder="Nick name" name="nick_name">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label"></label>
+                                    <label class="col-sm-2 control-label"></label>
                                     <div class="col-sm-10 checkbox">
                                         <label>
                                             <input name="status" type="checkbox" value="1" checked>
@@ -97,7 +97,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">角色</label>
+                                    <label class="col-sm-2 control-label">角色</label>
                                     <div class="col-sm-10 checkbox">
                                         <select class="form-control" name="role">
                                             <option value="0">Non</option>
@@ -137,26 +137,26 @@
                         <form class="form-horizontal" method="post" action="/account/update">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">帳號</label>
+                                    <label class="col-sm-2 control-label">帳號</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" placeholder="Account" name="account">
                                         <input type="hidden" name="id" value="0">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">密碼</label>
+                                    <label class="col-sm-2 control-label">密碼</label>
                                     <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="password">
+                                        <input type="password" class="form-control" placeholder="Password" name="password">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">暱稱</label>
+                                    <label class="col-sm-2 control-label">暱稱</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" placeholder="Nick name" name="nick_name">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label"></label>
+                                    <label class="col-sm-2 control-label"></label>
                                     <div class="col-sm-10 checkbox">
                                         <label>
                                             <input name="status" type="checkbox" value="1" checked>
@@ -165,7 +165,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">角色</label>
+                                    <label class="col-sm-2 control-label">角色</label>
                                     <div class="col-sm-10 checkbox">
                                         <select class="form-control" name="role">
                                             <option value="0">Non</option>

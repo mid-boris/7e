@@ -31,6 +31,7 @@ class NodeTableSeeder extends Seeder
         $nodeRepo->create('公告管理', 'fa-circle-o', '/announcement', '資料設置');
         $nodeRepo->create('討論版管理', 'fa-circle-o', '/forum', '資料設置');
         $nodeRepo->create('文章審核', 'fa-circle-o', '/article_audit', '資料設置');
+        $nodeRepo->create('驚喜管理', 'fa-circle-o', '/surpriseBox', '資料設置');
 
         $nodeRepo->create('客源分析', 'fa-area-chart');
         $nodeRepo->create('討論板相關', 'fa-circle-o', '/board_analysis', '客源分析');

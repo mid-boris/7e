@@ -86,6 +86,15 @@ class NodePermissionTableSeeder extends Seeder
         $nodePmServ->addUriPermissionToNode('/message', '客服專區');
         $nodePmServ->addUriPermissionToNode('/message/create', '客服專區.客服信件');
 
+        $nodePmServ->addUriPermissionToNode('/surpriseBox', '資料設置.驚喜管理');
+        $nodePmServ->addUriPermissionToNode('/surpriseBox/create', '資料設置.驚喜管理');
+        $nodePmServ->addUriPermissionToNode('/surpriseBox/update', '資料設置.驚喜管理');
+        $nodePmServ->addUriPermissionToNode('/surpriseBox/delete', '資料設置.驚喜管理');
+        $nodePmServ->addUriPermissionToNode('/surpriseItem', '資料設置.驚喜管理');
+        $nodePmServ->addUriPermissionToNode('/surpriseItem/create', '資料設置.驚喜管理');
+        $nodePmServ->addUriPermissionToNode('/surpriseItem/update', '資料設置.驚喜管理');
+        $nodePmServ->addUriPermissionToNode('/surpriseItem/delete', '資料設置.驚喜管理');
+
         // 會員app端權限
         $memberPermissionName = '會員app';
         $nodePmServ->addUriPermissionToNode('/api/1.0/user/edit', $memberPermissionName);
@@ -117,5 +126,8 @@ class NodePermissionTableSeeder extends Seeder
         $nodePmServ->addUriPermissionToNode('/api/1.0/shop/favorite', $memberPermissionName);
         $nodePmServ->addUriPermissionToNode('/api/1.0/shop/addFavorite', $memberPermissionName);
         $nodePmServ->addUriPermissionToNode('/api/1.0/shop/decFavorite', $memberPermissionName);
+        $nodePmServ->addUriPermissionToNode('/api/1.0/surprise/lucky', $memberPermissionName);
+        $nodePmServ->addUriPermissionToNode('/api/1.0/surprise/index', $memberPermissionName);
+        $nodePmServ->addUriPermissionToNode('/api/1.0/surprise/used', $memberPermissionName);
     }
 }

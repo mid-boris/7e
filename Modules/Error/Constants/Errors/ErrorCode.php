@@ -41,4 +41,8 @@ class ErrorCode
     const SHOP_DATA_MAP_INFO_INVALID = 50001;      // 地圖資訊錯誤
     const SHOP_HAS_TRADEMARK_IMAGE = 50002;      // 該商家已擁有商標
     const SHOP_PREVIEW_COUNT_INVALID = 50003;      // 該商家預覽圖超過三筆
+
+    /** Module Surprise */
+    const SURPRISE_USED_LUCKY = 60001;              // 已抽過
+    const SURPRISE_EXPIRED = 60002;                    // 已過期
 }

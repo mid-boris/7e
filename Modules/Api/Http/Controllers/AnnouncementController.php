@@ -20,11 +20,13 @@ class AnnouncementController extends Controller
         $carousel = $annRepo->getPaginationTimeFilter($userLanguage, AnnouncementConstants::TYPE_CAROUSEL);
         $marquee = $annRepo->getPaginationTimeFilter($userLanguage, AnnouncementConstants::TYPE_MARQUEE);
         $announcement = $annRepo->getPaginationTimeFilter($userLanguage, AnnouncementConstants::TYPE_ANNOUNCEMENT);
+        $lesson = $annRepo->getPaginationTimeFilter($userLanguage, AnnouncementConstants::TYPE_LESSON);
 
         return BaseResponse::response([
             'carousel' => $carousel,
             'marquee' => $marquee,
             'announcement' => $announcement,
+            'lesson' => $lesson,
         ]);
     }
 }

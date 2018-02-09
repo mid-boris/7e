@@ -19,6 +19,8 @@ use Modules\Shop\Constants\DiscountTypeConstants;
 use Modules\Shop\Constants\ShopTypeConstants;
 use Modules\Shop\Repositories\DiscountRepository;
 use Modules\Shop\Repositories\ShopRepository;
+use Modules\Surprise\Repositories\SurpriseItemRepository;
+use Modules\Surprise\Repositories\SurpriseRepository;
 use Modules\Template\Http\Requests\Announcement;
 use Modules\Template\Http\Requests\Area;
 use Modules\Template\Http\Requests\Article;
@@ -29,6 +31,7 @@ use Modules\Template\Http\Requests\Menu;
 use Modules\Template\Http\Requests\Message;
 use Modules\Template\Http\Requests\Shop;
 use Modules\Template\Http\Requests\ShopImages;
+use Modules\Template\Http\Requests\SurpriseItem;
 use Modules\Template\Http\Requests\Vote;
 use Modules\User\Repositories\UserRepository;
 
@@ -254,6 +257,31 @@ class TemplateController extends Controller
             'type' => AnnouncementConstants::getAllWithView(),
             'request' => $request,
             'parameter' => $request->except('page'),
+        ]);
+    }
+
+    public function surpriseBox()
+    {
+        /** @var SurpriseRepository $surpriseRepo */
+        $surpriseRepo = app()->make(SurpriseRepository::class);
+        $surprise = $surpriseRepo->getPagination();
+        return $this->render('surpriseBox', [
+            'surprise' => $surprise,
+        ]);
+    }
+
+    public function surpriseItem(SurpriseItem $request)
+    {
+        /** @var SurpriseRepository $surpriseRepo */
+        $surpriseRepo = app()->make(SurpriseRepository::class);
+        $surprise = $surpriseRepo->get($request->input('id'));
+        /** @var SurpriseItemRepository $surpriseRepo */
+        $surpriseItemRepo = app()->make(SurpriseItemRepository::class);
+        $surpriseItem = $surpriseItemRepo->getPagination($request->input('id'));
+        return $this->render('surpriseItem', [
+            'surprise' => $surprise,
+            'surpriseItem' => $surpriseItem,
+            'surpriseBoxId' => $request->input('id'),
         ]);
     }
 

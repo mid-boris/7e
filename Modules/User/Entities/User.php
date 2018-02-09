@@ -4,6 +4,7 @@ namespace Modules\User\Entities;
 
 use Modules\Entrust\Entities\Role;
 use Modules\Shop\Entities\Shop;
+use Modules\Surprise\Entities\SurpriseItem;
 
 /**
  * Class User
@@ -36,5 +37,20 @@ class User extends UserBaseModel
     public function shopReferStatus()
     {
         return $this->shop()->where('status', 1);
+    }
+
+    public function surpriseToday()
+    {
+        $today = strtotime(date('Y-m-d'));
+        return $this->belongsToMany(SurpriseItem::class, 'user_surprise_item', 'user_id', 'surprise_item_id')
+            ->where('manufacture', $today);
+    }
+
+    public function surprise()
+    {
+        return $this
+            ->belongsToMany(SurpriseItem::class, 'user_surprise_item', 'user_id', 'surprise_item_id')
+            ->withTimestamps()
+            ->withPivot(['id', 'used', 'expiration_date_time', 'manufacture']);
     }
 }

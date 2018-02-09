@@ -31,6 +31,8 @@ Route::group(['middleware' => 'api'], function () {
             Route::get('/message', 'TemplateController@message');
             Route::get('/announcement', 'TemplateController@announcement');
             Route::get('/discount', 'TemplateController@discount');
+            Route::get('/surpriseBox', 'TemplateController@surpriseBox');
+            Route::get('/surpriseItem', 'TemplateController@surpriseItem');
 
             //資料呈現
             Route::get('/vote', 'TemplateController@vote');
@@ -202,6 +204,30 @@ Route::group(['middleware' => 'api'], function () {
             Route::post('create', 'DiscountController@create');
             Route::post('update', 'DiscountController@update');
             Route::get('delete', 'DiscountController@delete');
+        });
+    });
+
+    Route::group([
+        'prefix' => 'surpriseBox',
+        'namespace' => 'Modules\Template\Http\Controllers'
+    ], function () {
+        /* 需完整權限 (登入、角色的節點權限) */
+        Route::group(['middleware' => 'permission',], function () {
+            Route::post('create', 'SurpriseBoxController@create');
+            Route::post('update', 'SurpriseBoxController@update');
+            Route::get('delete', 'SurpriseBoxController@delete');
+        });
+    });
+
+    Route::group([
+        'prefix' => 'surpriseItem',
+        'namespace' => 'Modules\Template\Http\Controllers'
+    ], function () {
+        /* 需完整權限 (登入、角色的節點權限) */
+        Route::group(['middleware' => 'permission',], function () {
+            Route::post('create', 'SurpriseItemController@create');
+            Route::post('update', 'SurpriseItemController@update');
+            Route::get('delete', 'SurpriseItemController@delete');
         });
     });
 
