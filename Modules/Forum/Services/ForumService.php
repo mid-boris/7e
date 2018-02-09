@@ -11,7 +11,7 @@ class ForumService
     {
         /** @var \Illuminate\Database\Eloquent\Builder $article */
         $article = new Article;
-        $articles = $article->orderNew()->where(function ($query) use ($forumId) {
+        $articles = $article->orderNew()->with(['image'])->where(function ($query) use ($forumId) {
             /** @var \Illuminate\Database\Query\Builder $query */
             $query->whereNull('parent_id')->where('audit', 0)->where('forum_id', $forumId);
         })->orWhere(function ($query) use ($forumId) {
