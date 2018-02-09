@@ -1,13 +1,17 @@
 <?php
 namespace Modules\Forum\Repositories;
 
+use Illuminate\Http\UploadedFile;
 use Modules\Entrust\Utilities\SessionManager;
 use Modules\Forum\Entities\Article;
+use Modules\Image\Entities\ImageFile;
 
 class ArticleRepository extends ForumBaseRepository
 {
     /** @var string 加在回覆文章標題前面的字串 */
     protected $reportPrefixStr = 'RE: ';
+
+    private $dir = '/images/article';
 
     public function __construct()
     {
@@ -67,6 +71,28 @@ class ArticleRepository extends ForumBaseRepository
     {
         $article->voteOption()->createMany($vote);
         return $article;
+    }
+
+    public function imageCreate(Article $article, UploadedFile $image)
+    {
+        // 儲存圖片
+        $fileName = time() . '.' . $image->getClientOriginalExtension();
+        $destinationPath = public_path($this->dir);
+        $result = $image->move($destinationPath, $fileName);
+        if ($result) {
+            \DB::transaction(function () use ($result, $article) {
+                $image = new ImageFile;
+                $image->saved_uri = $result->getFilename();
+                $image->image_size = $result->getSize();
+                list($width, $height) = getimagesize($result->getRealPath());
+                $image->image_width = $width;
+                $image->image_height = $height;
+                $image->save();
+
+                $article->images()->attach($image->getKey());
+            });
+        }
+        return $result ? true : false;
     }
 
     /**

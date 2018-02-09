@@ -415,6 +415,7 @@
 |                           | vote_option                | array        | 投票項目                              |
 |                           | vote_option.*              | string       | 投票項目文字                          |
 |                           | vote_end_time              | integer      | 投票截止時間 (unix time)              |
+|                           | image                      | image        | 圖片 (jpg, jpeg) (max: 1024 x 500)    |
 
 > 回應
 

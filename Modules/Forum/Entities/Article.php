@@ -1,6 +1,7 @@
 <?php
-
 namespace Modules\Forum\Entities;
+
+use Modules\Image\Entities\ImageFile;
 
 /**
  * Class Article
@@ -41,6 +42,12 @@ class Article extends ForumBaseModel
     public function voteItem()
     {
         return $this->hasMany(VoteItem::class, 'article_id');
+    }
+
+    public function images()
+    {
+        return $this->belongsToMany(ImageFile::class, 'article_image_file', 'article_id', 'image_id')
+            ->orderBy('id');
     }
 
     public function test()
