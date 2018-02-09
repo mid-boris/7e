@@ -8,5 +8,5 @@ return [
     'uriGetAccountInfo' => '/api/v1/account/info',
 
     'googleMapApi' => 'https://maps.google.com/maps/api/geocode/json',
-    'googleMapApiKey' => 'AIzaSyC0xyJCk2cDV8yiO5vAPGkUx3BQzEVmiPI',
+    'googleMapApiKey' => 'AIzaSyDHHGNsLjP2SjOdPH_cGpgav8OhDxgHRm8',
 ];

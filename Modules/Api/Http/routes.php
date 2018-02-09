@@ -85,6 +85,14 @@ Route::group(['middleware' => 'api', 'prefix' => 'api'], function () {
                     Route::get('index', 'SurpriseController@index');
                     Route::post('used', 'SurpriseController@used');
                 });
+
+                // 線上預訂
+                Route::group([
+                    'prefix' => 'reservation'
+                ], function () {
+                    Route::get('index', 'ReservationController@index');
+                    Route::post('send', 'ReservationController@send');
+                });
             });
         });
     });

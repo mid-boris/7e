@@ -15,6 +15,7 @@ use Modules\Forum\Repositories\ForumRepository;
 use Modules\Forum\Services\ForumService;
 use Modules\Menu\Repositories\MenuRepository;
 use Modules\Message\Repository\MessageRepository;
+use Modules\Reservation\Repositories\ReservationRepository;
 use Modules\Shop\Constants\DiscountTypeConstants;
 use Modules\Shop\Constants\ShopTypeConstants;
 use Modules\Shop\Repositories\DiscountRepository;
@@ -282,6 +283,16 @@ class TemplateController extends Controller
             'surprise' => $surprise,
             'surpriseItem' => $surpriseItem,
             'surpriseBoxId' => $request->input('id'),
+        ]);
+    }
+
+    public function reservation()
+    {
+        /** @var ReservationRepository $reservation */
+        $reservationRepo = app()->make(ReservationRepository::class);
+        $reservation = $reservationRepo->getPagination();
+        return $this->render('reservation', [
+            'reservation' => $reservation,
         ]);
     }
 

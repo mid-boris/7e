@@ -33,6 +33,7 @@ Route::group(['middleware' => 'api'], function () {
             Route::get('/discount', 'TemplateController@discount');
             Route::get('/surpriseBox', 'TemplateController@surpriseBox');
             Route::get('/surpriseItem', 'TemplateController@surpriseItem');
+            Route::get('/reservation', 'TemplateController@reservation');
 
             //資料呈現
             Route::get('/vote', 'TemplateController@vote');
@@ -228,6 +229,17 @@ Route::group(['middleware' => 'api'], function () {
             Route::post('create', 'SurpriseItemController@create');
             Route::post('update', 'SurpriseItemController@update');
             Route::get('delete', 'SurpriseItemController@delete');
+        });
+    });
+
+    Route::group([
+        'prefix' => 'reservation',
+        'namespace' => 'Modules\Template\Http\Controllers'
+    ], function () {
+        /* 需完整權限 (登入、角色的節點權限) */
+        Route::group(['middleware' => 'permission',], function () {
+            Route::get('applied', 'ReservationController@applied');
+            Route::get('delete', 'ReservationController@delete');
         });
     });
 

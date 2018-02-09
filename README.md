@@ -1375,6 +1375,100 @@
     {
         "data": true
     }
+    
+#### 獲得線上預訂列表
+
+| 項目                      | 內容                         | 類型         | 說明                                  |
+|---------------------------|------------------------------|--------------|---------------------------------------|
+| <b>路徑</b>               | /api/1.0/reservation/index   |              |                                       |
+| <b>方法</b>               | GET                          |              |                                       |
+| <b>權限</b>               | 檢視                         |              | READ                                  |
+| <b>必填參數</b>           |                              |              |                                       |
+|                           | 無                           |              |                                       |
+| <b>選填參數</b>           |                              |              |                                       |
+|                           | 無                           |              |                                       |
+
+#### 參數說明
+| 項目                      | 內容                       | 類型         | 說明                                  |
+|---------------------------|----------------------------|--------------|---------------------------------------|
+|                           | nick_name                  | string       | 預定時的名稱                          |
+|                           | phone                      | string       | 預定時的手機                          |
+|                           | reservation_time           | integer      | 預約時間                              |
+|                           | number_of_people           | integer      | 預約人數                              |
+|                           | applied                    | integer      | 預約是否成立 0:尚未, 1:完成           |
+|                           | shop                       | array        | 被預約的商家資訊                      |
+
+> 回應
+
+    {
+        "data": {
+            "current_page": 1,
+            "data": [
+                {
+                    "id": 1,
+                    "shop_id": 2,
+                    "account_id": 4,
+                    "account": "tuohoi87",
+                    "nick_name": "陳建銘",
+                    "phone": "0999999999",
+                    "reservation_time": 1518564300,
+                    "number_of_people": 2,
+                    "applied": 1,
+                    "created_at": "2018-02-09 22:28:46",
+                    "updated_at": "2018-02-09 22:30:13",
+                    "shop": {
+                        "id": 2,
+                        "name": "衣物店家",
+                        "telphone": "0966 834 114",
+                        "phone": "0966 834 114",
+                        "address": "台中市西屯區慶和街75號",
+                        "business_hours": "15:00:00 ~ 01:00:00",
+                        "business_hours_start_time": "3:00 PM",
+                        "business_hours_end_time": "1:00 AM",
+                        "closed_day": "[]",
+                        "special": 1,
+                        "status": 1,
+                        "i_pass": 0,
+                        "area_id": 6,
+                        "shop_type": 2
+                    }
+                }
+            ],
+            "first_page_url": "http://7e.net/api/1.0/reservation/index?page=1",
+            "from": 1,
+            "last_page": 1,
+            "last_page_url": "http://7e.net/api/1.0/reservation/index?page=1",
+            "next_page_url": null,
+            "path": "http://7e.net/api/1.0/reservation/index",
+            "per_page": 35,
+            "prev_page_url": null,
+            "to": 1,
+            "total": 1
+        }
+    }
+
+#### 獲得線上預訂列表
+
+| 項目                      | 內容                         | 類型         | 說明                                  |
+|---------------------------|------------------------------|--------------|---------------------------------------|
+| <b>路徑</b>               | /api/1.0/reservation/send    |              |                                       |
+| <b>方法</b>               | POST                         |              |                                       |
+| <b>權限</b>               | 檢視                         |              | READ                                  |
+| <b>必填參數</b>           |                              |              |                                       |
+|                           | shop_id                      | integer      | 被預訂的商家id                        |
+|                           | nick_name                    | string       | 預定的名字                            |
+|                           | phone                        | string       | 手機                                  |
+|                           | reservation_time             | unix time    | 預約時間                              |
+|                           | number_of_people             | integer      | 預約人數                              |
+| <b>選填參數</b>           |                              |              |                                       |
+|                           | 無                           |              |                                       |
+
+> 回應
+
+    {
+        "data": true
+    }
+
 
 
 

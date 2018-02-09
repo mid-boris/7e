@@ -95,6 +95,10 @@ class NodePermissionTableSeeder extends Seeder
         $nodePmServ->addUriPermissionToNode('/surpriseItem/update', '資料設置.驚喜管理');
         $nodePmServ->addUriPermissionToNode('/surpriseItem/delete', '資料設置.驚喜管理');
 
+        $nodePmServ->addUriPermissionToNode('/reservation', '資料設置.線上預訂');
+        $nodePmServ->addUriPermissionToNode('/reservation/applied', '資料設置.線上預訂');
+        $nodePmServ->addUriPermissionToNode('/reservation/delete', '資料設置.線上預訂');
+
         // 會員app端權限
         $memberPermissionName = '會員app';
         $nodePmServ->addUriPermissionToNode('/api/1.0/user/edit', $memberPermissionName);
@@ -129,5 +133,7 @@ class NodePermissionTableSeeder extends Seeder
         $nodePmServ->addUriPermissionToNode('/api/1.0/surprise/lucky', $memberPermissionName);
         $nodePmServ->addUriPermissionToNode('/api/1.0/surprise/index', $memberPermissionName);
         $nodePmServ->addUriPermissionToNode('/api/1.0/surprise/used', $memberPermissionName);
+        $nodePmServ->addUriPermissionToNode('/api/1.0/reservation/index', $memberPermissionName);
+        $nodePmServ->addUriPermissionToNode('/api/1.0/reservation/send', $memberPermissionName);
     }
 }
