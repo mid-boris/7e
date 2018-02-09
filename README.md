@@ -1285,6 +1285,96 @@
         "data": true
     }
 
+#### 驚喜收藏列表
+
+| 項目                      | 內容                         | 類型         | 說明                                  |
+|---------------------------|------------------------------|--------------|---------------------------------------|
+| <b>路徑</b>               | /api/1.0/surprise/index      |              |                                       |
+| <b>方法</b>               | GET                          |              |                                       |
+| <b>權限</b>               | 檢視                         |              | READ                                  |
+| <b>必填參數</b>           |                              |              |                                       |
+|                           | 無                           |              |                                       |
+| <b>選填參數</b>           |                              |              |                                       |
+|                           | 無                           |              |                                       |
+
+> 回應
+
+    {
+        "data": {
+            "current_page": 1,
+            "data": [
+                {
+                    "id": 3,
+                    "surprise_box_id": 2,
+                    "name": "測試三",
+                    "description": "測試三描述",
+                    "expiration": null,
+                    "deleted_at": null,
+                    "pivot": {
+                        "user_id": 4,
+                        "surprise_item_id": 3,
+                        "created_at": "2018-02-09 20:13:32",
+                        "updated_at": "2018-02-09 20:13:32",
+                        "id": 50,
+                        "used": 0,
+                        "expiration_date_time": null,
+                        "manufacture": 1518105600
+                    }
+                }
+            ],
+            "first_page_url": "http://7e.net/api/1.0/surprise/index?page=1",
+            "from": 1,
+            "last_page": 1,
+            "last_page_url": "http://7e.net/api/1.0/surprise/index?page=1",
+            "next_page_url": null,
+            "path": "http://7e.net/api/1.0/surprise/index",
+            "per_page": 10,
+            "prev_page_url": null,
+            "to": 1,
+            "total": 1
+        }
+    }
+
+
+#### 抽驚喜
+
+| 項目                      | 內容                         | 類型         | 說明                                  |
+|---------------------------|------------------------------|--------------|---------------------------------------|
+| <b>路徑</b>               | /api/1.0/surprise/lucky      |              |                                       |
+| <b>方法</b>               | GET                          |              |                                       |
+| <b>權限</b>               | 檢視                         |              | READ                                  |
+| <b>必填參數</b>           |                              |              |                                       |
+|                           | 無                           |              |                                       |
+| <b>選填參數</b>           |                              |              |                                       |
+|                           | 無                           |              |                                       |
+| <b>ErrorCode</b>          |                              |              |                                       |
+|                           | SURPRISE_USED_LUCKY          | integer      | 60001                                 |
+
+> 回應
+
+    {
+        "data": true
+    }
+    
+#### 使用驚喜收藏
+
+| 項目                      | 內容                         | 類型         | 說明                                  |
+|---------------------------|------------------------------|--------------|---------------------------------------|
+| <b>路徑</b>               | /api/1.0/surprise/used       |              |                                       |
+| <b>方法</b>               | POST                         |              |                                       |
+| <b>權限</b>               | 檢視                         |              | READ                                  |
+| <b>必填參數</b>           |                              |              |                                       |
+|                           | id                           |              | 驚喜收藏的id                          |
+| <b>選填參數</b>           |                              |              |                                       |
+|                           | 無                           |              |                                       |
+| <b>ErrorCode</b>          |                              |              |                                       |
+|                           | SURPRISE_EXPIRED             | integer      | 60002                                 |
+
+> 回應
+
+    {
+        "data": true
+    }
 
 
 
