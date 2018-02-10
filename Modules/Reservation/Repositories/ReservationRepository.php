@@ -23,16 +23,16 @@ class ReservationRepository
     /**
      * 會員端用 | 後臺用(?)
      * @param int $perpage
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public function getPaginationUseUserId(int $perpage = 35)
     {
         /** @var \Eloquent $reservation */
         $reservation = new Reservation;
-        return $reservation->with(['shop'])
+        return $reservation->with(['shop', 'shop.trademark'])
             ->where('account_id', SessionManager::getUserId())
             ->orderByDesc('id')
-            ->paginate($perpage);
+            ->get();
     }
 
     public function create(array $data)
