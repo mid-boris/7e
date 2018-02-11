@@ -21,8 +21,10 @@ class SurpriseService
         $user = $this->qualification();
         if ($user) {
             $lottery = $this->lottery();
-            $this->save($user, $lottery);
-            return $lottery;
+            if ($lottery) {
+                $this->save($user, $lottery);
+                return $lottery;
+            }
         }
         throw new BaseException(
             'can not use more.',
