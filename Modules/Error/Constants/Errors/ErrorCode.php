@@ -43,6 +43,7 @@ class ErrorCode
     const SHOP_PREVIEW_COUNT_INVALID = 50003;      // 該商家預覽圖超過三筆
 
     /** Module Surprise */
-    const SURPRISE_USED_LUCKY = 60001;              // 已抽過
-    const SURPRISE_EXPIRED = 60002;                    // 已過期
+    const SURPRISE_USED_LUCKY = 60001;                 // 已抽過
+    const SURPRISE_EXPIRED = 60002;                      // 已過期
+    const SURPRISE_NOT_FOUND_ENABLE_SAMPLE = 60003;  // 沒箱子抽
 }

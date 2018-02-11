@@ -24,6 +24,11 @@ class SurpriseService
             if ($lottery) {
                 $this->save($user, $lottery);
                 return $lottery;
+            } else {
+                throw new BaseException(
+                    'can not found enable sample.',
+                    ErrorCode::SURPRISE_NOT_FOUND_ENABLE_SAMPLE
+                );
             }
         }
         throw new BaseException(
