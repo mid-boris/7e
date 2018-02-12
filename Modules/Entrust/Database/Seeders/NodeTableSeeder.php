@@ -36,6 +36,7 @@ class NodeTableSeeder extends Seeder
 
         $nodeRepo->create('客源分析', 'fa-area-chart');
         $nodeRepo->create('討論板相關', 'fa-circle-o', '/board_analysis', '客源分析');
+        $nodeRepo->create('商家相關', 'fa-circle-o', '/shop_analysis', '客源分析');
 
         $nodeRepo->create('客服專區', 'fa-desktop');
         $nodeRepo->create('客服信件', 'fa-circle-o', '/message', '客服專區');

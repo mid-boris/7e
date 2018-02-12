@@ -12,6 +12,7 @@
 <!-- Morris.js charts -->
 <script src="{{$src_pre}}bower_components/raphael/raphael.min.js"></script>
 <script src="{{$src_pre}}bower_components/morris.js/morris.min.js"></script>
+<script src="{{$src_pre}}bower_components/chart.js/chart.min.js"></script>
 <!-- Sparkline -->
 <script src="{{$src_pre}}bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
 <!-- jvectormap -->

@@ -1,4 +1,13 @@
 <?php
+
+Route::group([
+    'prefix' => 'test'
+], function () {
+    Route::get('test', function () {
+        dd(strtotime(date('Y-m-d') . ' -30 days'));
+    });
+});
+
 Route::group(['middleware' => 'api', 'prefix' => 'api'], function () {
     Route::group(['prefix' => '1.0'], function () {
         Route::group(['namespace' => 'Modules\Api\Http\Controllers'], function () {
@@ -55,6 +64,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'api'], function () {
                     Route::get('favorite', 'ShopController@favorite');
                     Route::post('addFavorite', 'ShopController@addFavorite');
                     Route::post('decFavorite', 'ShopController@decFavorite');
+                    Route::get('measurement', 'ShopController@measurement');
                 });
 
                 // 附近商家

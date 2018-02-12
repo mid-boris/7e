@@ -128,6 +128,7 @@
 |                           | gender                     | string(0/1)  | 性別                                  |
 |                           | area_id                    | id           | 地區 id                               |
 |                           | language                   | string       | 語系code [附件](https://github.com/mid-boris/7e#語系附件)                     |
+|                           | avatar                     | string       | 大頭貼 base64 字串 (size <= 64KB)     |
 | <b>選填參數</b>           |                            |              |                                       |
 |                           | 無                         |              |                                       |
 
@@ -415,7 +416,8 @@
 |                           | vote_option                | array        | 投票項目                              |
 |                           | vote_option.*              | string       | 投票項目文字                          |
 |                           | vote_end_time              | integer      | 投票截止時間 (unix time)              |
-|                           | image                      | image        | 圖片 (jpg, jpeg) (max: 1024 x 500)    |
+|                           | image                      | array        | 圖片陣列                              |
+|                           | image.*                    | image        | 圖片 (jpg, jpeg) (max: 1024 x 500)    |
 
 > 回應
 
@@ -1461,6 +1463,24 @@
 |                           | phone                        | string       | 手機                                  |
 |                           | reservation_time             | unix time    | 預約時間                              |
 |                           | number_of_people             | integer      | 預約人數                              |
+| <b>選填參數</b>           |                              |              |                                       |
+|                           | 無                           |              |                                       |
+
+> 回應
+
+    {
+        "data": true
+    }
+
+#### 針對指定店家增加人氣
+
+| 項目                      | 內容                         | 類型         | 說明                                  |
+|---------------------------|------------------------------|--------------|---------------------------------------|
+| <b>路徑</b>               | /api/1.0/shop/measurement    |              |                                       |
+| <b>方法</b>               | GET                          |              |                                       |
+| <b>權限</b>               | 檢視                         |              | READ                                  |
+| <b>必填參數</b>           |                              |              |                                       |
+|                           | id                           | integer      | 商家id                                |
 | <b>選填參數</b>           |                              |              |                                       |
 |                           | 無                           |              |                                       |
 

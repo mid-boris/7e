@@ -2,6 +2,7 @@
 
 namespace Modules\Shop\Repositories;
 
+use Modules\Popularity\Repositories\ShopPopularityRepository;
 use Modules\Shop\Entities\Shop;
 
 class ShopRepository extends ShopBaseRepository
@@ -9,6 +10,19 @@ class ShopRepository extends ShopBaseRepository
     public function __construct()
     {
         parent::__construct();
+    }
+
+    /**
+     * 加入人數統計用的方法
+     * 由會員端呼叫
+     * @param int $shopId
+     */
+    public function measurement(int $shopId)
+    {
+        // 埋入加人氣之方法
+        /** @var ShopPopularityRepository $popularityRepo */
+        $popularityRepo = app()->make(ShopPopularityRepository::class);
+        $popularityRepo->addPopularity($shopId);
     }
 
     /**

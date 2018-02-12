@@ -22,6 +22,7 @@ class UserEdit extends BaseFormRequest
                 'string',
                 Rule::in(AnnouncementConstants::getSupportLanguageCodes()),
             ],
+            'avatar' => 'sometimes|string',
         ];
     }
 }

@@ -15,6 +15,8 @@ use Modules\Forum\Repositories\ForumRepository;
 use Modules\Forum\Services\ForumService;
 use Modules\Menu\Repositories\MenuRepository;
 use Modules\Message\Repository\MessageRepository;
+use Modules\Popularity\Services\ForumPopularityService;
+use Modules\Popularity\Services\ShopPopularityService;
 use Modules\Reservation\Repositories\ReservationRepository;
 use Modules\Shop\Constants\DiscountTypeConstants;
 use Modules\Shop\Repositories\DiscountRepository;
@@ -25,11 +27,13 @@ use Modules\Template\Http\Requests\Announcement;
 use Modules\Template\Http\Requests\Area;
 use Modules\Template\Http\Requests\Article;
 use Modules\Template\Http\Requests\ArticleAudit;
+use Modules\Template\Http\Requests\BoardAnalysisMonth;
 use Modules\Template\Http\Requests\Discount;
 use Modules\Template\Http\Requests\Forum;
 use Modules\Template\Http\Requests\Menu;
 use Modules\Template\Http\Requests\Message;
 use Modules\Template\Http\Requests\Shop;
+use Modules\Template\Http\Requests\ShopAnalysisMonth;
 use Modules\Template\Http\Requests\ShopImages;
 use Modules\Template\Http\Requests\SurpriseItem;
 use Modules\Template\Http\Requests\Vote;
@@ -287,6 +291,82 @@ class TemplateController extends Controller
 
     public function boardAnalysis()
     {
+        /** @var ForumPopularityService $forumPopularityServ */
+        $forumPopularityServ = app()->make(ForumPopularityService::class);
+        $forumPopularity = $forumPopularityServ->getForumPopularityToday();
+        return $this->render('boardAnalysis', [
+            'forumPopularity' => $forumPopularity,
+        ]);
+    }
+
+    public function boardAnalysisMonth(BoardAnalysisMonth $request)
+    {
+        /** @var ForumPopularityService $forumPopularityServ */
+        $forumPopularityServ = app()->make(ForumPopularityService::class);
+        $forumPopularity = $forumPopularityServ->getForumPopularityOneMonth($request->input('forum_id'));
+        $popularity = $forumPopularity->popularity->map(function ($item) {
+            $item->dayDate = date('Y-m-d', $item->day);
+            return $item;
+        })->pluck('accumulation_popularity', 'dayDate');
+        return $this->render('boardAnalysisMonth', [
+            'forumPopularity' => $forumPopularity,
+            'popularity' => $popularity,
+        ]);
+    }
+
+    public function boardAnalysisThreeMonth(BoardAnalysisMonth $request)
+    {
+        /** @var ForumPopularityService $forumPopularityServ */
+        $forumPopularityServ = app()->make(ForumPopularityService::class);
+        $forumPopularity = $forumPopularityServ->getForumPopularityThreeMonth($request->input('forum_id'));
+        $popularity = $forumPopularity->popularity->map(function ($item) {
+            $item->dayDate = date('Y-m-d', $item->day);
+            return $item;
+        })->pluck('accumulation_popularity', 'dayDate');
+        return $this->render('boardAnalysisMonth', [
+            'forumPopularity' => $forumPopularity,
+            'popularity' => $popularity,
+        ]);
+    }
+
+    public function shopAnalysis()
+    {
+        /** @var ShopPopularityService $popularityServ */
+        $popularityServ = app()->make(ShopPopularityService::class);
+        $shopPopularity = $popularityServ->getPopularityToday();
+        return $this->render('shopAnalysis', [
+            'shopPopularity' => $shopPopularity,
+        ]);
+    }
+
+    public function shopAnalysisMonth(ShopAnalysisMonth $request)
+    {
+        /** @var ShopPopularityService $popularityServ */
+        $popularityServ = app()->make(ShopPopularityService::class);
+        $shopPopularity = $popularityServ->getPopularityOneMonth($request->input('shop_id'));
+        $popularity = $shopPopularity->popularity->map(function ($item) {
+            $item->dayDate = date('Y-m-d', $item->day);
+            return $item;
+        })->pluck('accumulation_popularity', 'dayDate');
+        return $this->render('shopAnalysisMonth', [
+            'shopPopularity' => $shopPopularity,
+            'popularity' => $popularity,
+        ]);
+    }
+
+    public function shopAnalysisThreeMonth(ShopAnalysisMonth $request)
+    {
+        /** @var ShopPopularityService $popularityServ */
+        $popularityServ = app()->make(ShopPopularityService::class);
+        $shopPopularity = $popularityServ->getPopularityThreeMonth($request->input('shop_id'));
+        $popularity = $shopPopularity->popularity->map(function ($item) {
+            $item->dayDate = date('Y-m-d', $item->day);
+            return $item;
+        })->pluck('accumulation_popularity', 'dayDate');
+        return $this->render('shopAnalysisMonth', [
+            'shopPopularity' => $shopPopularity,
+            'popularity' => $popularity,
+        ]);
     }
 
     public function reservation()

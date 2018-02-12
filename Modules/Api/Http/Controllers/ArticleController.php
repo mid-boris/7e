@@ -63,8 +63,12 @@ class ArticleController extends Controller
             $articleRepo->voteCreateMany($article, $vote);
         }
         // 如果有圖片
-        if (!is_null($request->file('image'))) {
-            $articleRepo->imageCreate($article, $request->file('image'));
+        if (!is_null($request->input('image'))) {
+            if (count($request->input('image')) > 0) {
+                foreach ($request->input('image') as $image) {
+                    $articleRepo->imageCreate($article, $image);
+                }
+            }
         }
         return BaseResponse::response(['data' => true]);
     }

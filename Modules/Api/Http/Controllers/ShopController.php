@@ -5,6 +5,7 @@ namespace Modules\Api\Http\Controllers;
 use Illuminate\Routing\Controller;
 use Modules\Api\Http\Requests\ShopAddFavorite;
 use Modules\Api\Http\Requests\ShopDecFavorite;
+use Modules\Api\Http\Requests\ShopMeasurement;
 use Modules\Api\Http\Requests\ShopShow;
 use Modules\Base\Utilities\Response\BaseResponse;
 use Modules\Entrust\Utilities\SessionManager;
@@ -102,5 +103,13 @@ class ShopController extends Controller
         $shopRepo = app()->make(ShopRepository::class);
         $shop = $shopRepo->getPaginationByTypeWithRelate($type);
         return BaseResponse::response(['data' => $shop]);
+    }
+
+    public function measurement(ShopMeasurement $request)
+    {
+        /** @var ShopRepository $shopRepo */
+        $shopRepo = app()->make(ShopRepository::class);
+        $shopRepo->measurement($request->input('id'));
+        return BaseResponse::response(['data' => true]);
     }
 }

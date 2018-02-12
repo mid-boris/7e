@@ -21,9 +21,4 @@ class ForumPopularity extends Model
     {
         return $this->belongsTo(Forum::class);
     }
-
-    public function children()
-    {
-        return $this->hasMany(ForumPopularitySingle::class, 'forum_popularity_id');
-    }
 }

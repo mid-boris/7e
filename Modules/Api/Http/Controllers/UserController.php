@@ -19,6 +19,7 @@ class UserController extends Controller
         $gender = $request->input('gender');
         $areaId = $request->input('area_id');
         $language = $request->input('language');
+        $avatar = $request->input('avatar');
         $updatedData = [
             'nick_name' => $nickName,
             'mail' => $mail,
@@ -26,6 +27,7 @@ class UserController extends Controller
             'gender' => $gender,
             'area_id' => $areaId,
             'language' => $language,
+            'avatar' => $avatar,
         ];
         /** @var UserRepository $userRepo */
         $userRepo = app()->make(UserRepository::class);

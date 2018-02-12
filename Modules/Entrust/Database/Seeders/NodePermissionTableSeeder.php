@@ -99,6 +99,13 @@ class NodePermissionTableSeeder extends Seeder
         $nodePmServ->addUriPermissionToNode('/reservation/applied', '資料設置.線上預訂');
         $nodePmServ->addUriPermissionToNode('/reservation/delete', '資料設置.線上預訂');
 
+        $nodePmServ->addUriPermissionToNode('/board_analysis', '客源分析.討論板相關');
+        $nodePmServ->addUriPermissionToNode('/board_analysis_month', '客源分析.討論板相關');
+        $nodePmServ->addUriPermissionToNode('/board_analysis_three_month', '客源分析.討論板相關');
+        $nodePmServ->addUriPermissionToNode('/shop_analysis', '客源分析.商家相關');
+        $nodePmServ->addUriPermissionToNode('/shop_analysis_month', '客源分析.商家相關');
+        $nodePmServ->addUriPermissionToNode('/shop_analysis_three_month', '客源分析.商家相關');
+
         // 會員app端權限
         $memberPermissionName = '會員app';
         $nodePmServ->addUriPermissionToNode('/api/1.0/user/edit', $memberPermissionName);
@@ -135,5 +142,6 @@ class NodePermissionTableSeeder extends Seeder
         $nodePmServ->addUriPermissionToNode('/api/1.0/surprise/used', $memberPermissionName);
         $nodePmServ->addUriPermissionToNode('/api/1.0/reservation/index', $memberPermissionName);
         $nodePmServ->addUriPermissionToNode('/api/1.0/reservation/send', $memberPermissionName);
+        $nodePmServ->addUriPermissionToNode('/api/1.0/shop/measurement', $memberPermissionName);
     }
 }

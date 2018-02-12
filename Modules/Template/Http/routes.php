@@ -35,6 +35,11 @@ Route::group(['middleware' => 'api'], function () {
             Route::get('/surpriseItem', 'TemplateController@surpriseItem');
             Route::get('/reservation', 'TemplateController@reservation');
             Route::get('/board_analysis', 'TemplateController@boardAnalysis');
+            Route::get('/board_analysis_month', 'TemplateController@boardAnalysisMonth');
+            Route::get('/board_analysis_three_month', 'TemplateController@boardAnalysisThreeMonth');
+            Route::get('/shop_analysis', 'TemplateController@shopAnalysis');
+            Route::get('/shop_analysis_month', 'TemplateController@shopAnalysisMonth');
+            Route::get('/shop_analysis_three_month', 'TemplateController@shopAnalysisThreeMonth');
 
             //資料呈現
             Route::get('/vote', 'TemplateController@vote');

@@ -27,7 +27,8 @@ class ArticleCreate extends BaseFormRequest
             'vote_option' => 'sometimes|array|min:1|max:10',
             'vote_option.*' => 'sometimes|string|max:32',
             'vote_end_time' => 'sometimes|integer',
-            'image' => 'image|mimes:jpg,jpeg|dimensions:max_width=1024,max_height=500',
+            'image' => 'array',
+            'image.*' => 'image|mimes:jpg,jpeg|dimensions:max_width=1024,max_height=500',
         ];
     }
 }
