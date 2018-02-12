@@ -78,7 +78,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">密碼</label>
                                     <div class="col-sm-10">
-                                        <input type="password" class="form-control" placeholder="Password" name="password">
+                                        <input type="password" class="form-control" placeholder="Password" name="password" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -175,6 +175,27 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">E mail</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="E mail" name="mail" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">手機</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="Phone" name="phone" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">性別</label>
+                                    <div class="col-sm-10 checkbox">
+                                        <select class="form-control" name="gender">
+                                            <option value="0">男</option>
+                                            <option value="1">女</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                             <div class="box-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
@@ -203,10 +224,13 @@
                 modal.find('.modal-body input[name="nick_name"]').val(user.nick_name);
                 $(':checkbox', modal).prop("checked", user.status);
                 if (user.role.length > 0) {
-                    $('select', modal).val(user.role[0].id);
+                    $('select[name="role"]', modal).val(user.role[0].id);
                 } else {
-                    $('select', modal).val(0);
+                    $('select[name="role"]', modal).val(0);
                 }
+                modal.find('.modal-body input[name="mail"]').val(user.mail);
+                modal.find('.modal-body input[name="phone"]').val(user.phone);
+                modal.find('.modal-body select[name="gender"]').val(user.gender);
             });
         });
     </script>

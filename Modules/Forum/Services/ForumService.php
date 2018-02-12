@@ -28,6 +28,7 @@ class ForumService
         $articles = $article
             ->orderNew()
             ->withCount(['children'])
+            ->with(['images'])
             ->where(function ($query) use ($forumId) {
             /** @var \Illuminate\Database\Query\Builder $query */
                 $query->whereNull('parent_id')->where('audit', 0)->where('forum_id', $forumId);

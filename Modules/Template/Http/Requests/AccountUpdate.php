@@ -30,6 +30,9 @@ class AccountUpdate extends BaseFormRequest
             'nick_name' => 'required|string|max:16',
             'status' => 'sometimes|required|in:1',
             'role' => 'required|numeric|min:0',
+            'email' => 'required|string',
+            'phone' => 'required|string|size:10',
+            'gender' => 'required|integer|in:0,1',
         ];
     }
 }

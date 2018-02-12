@@ -53,7 +53,7 @@ class ForumRepository extends ForumBaseRepository
     {
         /** @var \Eloquent $forum */
         $forum = new Forum;
-        return $forum->where('parent_id', $forumId)->where('status', 1)->orderBy('sort', 'DESC')->paginate(35);
+        return $forum->where('parent_id', $forumId)->where('status', 1)->orderByDesc('sort')->paginate(35);
     }
 
     public function getForum(int $forumId)
