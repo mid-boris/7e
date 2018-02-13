@@ -11,9 +11,14 @@ class Shop extends \Modules\Shop\Entities\Shop
         return $this->hasMany(ShopPopularity::class, 'shop_id');
     }
 
-    public function popularitySingle()
+    public function popularitySingleMale()
     {
-        return $this->hasMany(ShopPopularitySingle::class, 'shop_id');
+        return $this->hasMany(ShopPopularitySingle::class, 'shop_id')->where('gender', 0);
+    }
+
+    public function popularitySingleFemale()
+    {
+        return $this->hasMany(ShopPopularitySingle::class, 'shop_id')->where('gender', 1);
     }
 
     public function favorite()

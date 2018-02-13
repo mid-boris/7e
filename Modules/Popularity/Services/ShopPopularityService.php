@@ -2,6 +2,7 @@
 namespace Modules\Popularity\Services;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\Base\Constants\ConnectionConfigConstants;
 use Modules\Popularity\Entities\Shop;
 
 class ShopPopularityService
@@ -21,6 +22,7 @@ class ShopPopularityService
 
     public function getPopularityOneMonth(int $forumId)
     {
+        \DB::connection(ConnectionConfigConstants::MAIN_CONNECTION_NAME)->enableQueryLog();
         /** @var \Eloquent|Shop $model */
         $model = new Shop;
         $results = $model->with(['popularity' => function ($query) {
@@ -28,6 +30,20 @@ class ShopPopularityService
             $before30DaysAge = $this->beforeDaysAgoTime(30);
             /** @var \Eloquent  $query */
             $query->where('day', '<=', $now)->where('day', '>=', $before30DaysAge)->orderBy('day');
+        }, 'popularitySingleMale' => function ($query) {
+            $now = $this->todayTime();
+            $before30DaysAge = $this->beforeDaysAgoTime(30);
+            /** @var \Eloquent  $query */
+            $query->select(
+                \DB::raw('count(gender), shop_id, day')
+            )->where('day', '<=', $now)->where('day', '>=', $before30DaysAge)->groupBy('day', 'shop_id');
+        }, 'popularitySingleFemale' => function ($query) {
+            $now = $this->todayTime();
+            $before30DaysAge = $this->beforeDaysAgoTime(30);
+            /** @var \Eloquent  $query */
+            $query->select(
+                \DB::raw('count(gender), shop_id, day')
+            )->where('day', '<=', $now)->where('day', '>=', $before30DaysAge)->groupBy('day', 'shop_id');
         }])->find($forumId);
         return $results;
     }
