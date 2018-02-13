@@ -25,6 +25,16 @@ class ShopRepository extends ShopBaseRepository
         $popularityRepo->addPopularity($shopId);
     }
 
+    public function top()
+    {
+        /** @var \Eloquent $shop */
+        $shop = new Shop;
+        $shop = $shop->with(['trademark', 'preview', 'menu']);
+        return $shop->where('status', 1)
+            ->orderByDesc('id')
+            ->get();
+    }
+
     /**
      * 會員端用
      * @param null|int $areaId
@@ -243,6 +253,7 @@ class ShopRepository extends ShopBaseRepository
         $special,
         $status,
         $iPass,
+        $sendToTop,
         array $closedDay,
         $address,
         $lat,
@@ -264,6 +275,7 @@ class ShopRepository extends ShopBaseRepository
             'special' => $special,
             'status' => $status,
             'i_pass' => $iPass,
+            'sendToTop' => $sendToTop,
             'area_id' => $areaId,
             'closed_day' => json_encode($closedDay),
         ];
@@ -288,6 +300,7 @@ class ShopRepository extends ShopBaseRepository
         $special,
         $status,
         $iPass,
+        $sendToTop,
         array $closedDay,
         $address,
         $lat,
@@ -309,6 +322,7 @@ class ShopRepository extends ShopBaseRepository
             'special' => $special,
             'status' => $status,
             'i_pass' => $iPass,
+            'sendToTop' => $sendToTop,
             'area_id' => $areaId,
             'closed_day' => json_encode($closedDay),
         ];

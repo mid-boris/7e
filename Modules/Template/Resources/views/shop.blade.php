@@ -198,6 +198,10 @@
                                                 <input name="i_pass" type="checkbox" value="1">
                                                 一卡通
                                             </label>
+                                            <label class="checkbox-inline">
+                                                <input name="sendToTop" type="checkbox" value="1">
+                                                推至首頁
+                                            </label>
                                         </div>
                                     </div>
                                     <div class="hidden map-area" style="height: 500px;">
@@ -360,6 +364,10 @@
                                                 <input name="i_pass" type="checkbox" value="1">
                                                 一卡通
                                             </label>
+                                            <label class="checkbox-inline">
+                                                <input name="sendToTop" type="checkbox" value="1">
+                                                推至首頁
+                                            </label>
                                         </div>
                                     </div>
                                     <div class="hidden map-area" style="height: 500px;">
@@ -464,6 +472,7 @@
                 $(':checkbox[name="special"]', modal).prop("checked", shop.special);
                 $(':checkbox[name="status"]', modal).prop("checked", shop.status);
                 $(':checkbox[name="i_pass"]', modal).prop("checked", shop.i_pass);
+                $(':checkbox[name="sendToTop"]', modal).prop("checked", shop.sendToTop);
                 var closedDay = JSON.parse(shop.closed_day);
                 for (i = 0; i < 7; i++) {
                     $('#inlineCheckbox' + i).prop("checked", false);
@@ -473,9 +482,9 @@
                         $('#inlineCheckbox' + item).prop("checked", true);
                     });
                 }
-                if (shop.area == null) {
-                    $('form.areaFormInUpdate input[name="name"]', modal).val('');
-                } else {
+                $('form.areaFormInUpdate input[name="name"]', modal).val('');
+                $('#area_update_collection', modal).html('');
+                if (shop.area != null) {
                     $('form.areaFormInUpdate input[name="name"]', modal).val(shop.area.name);
                     addAreaToTag(shop.area, '#area_update_collection');
                 }

@@ -35,6 +35,7 @@ class ShopController extends Controller
         $special = $request->input('special') ?? 0;
         $status = $request->input('status') ?? 0;
         $iPass = $request->input('i_pass') ?? 0;
+        $sendToTop = $request->input('sendToTop') ?? 0;
         $closedDay = $request->input('closed_day') ?? [];
         $areaId = $request->input('area_id');
         $mapInfo = GoogleMapInfoProcess::mapInfoProcess($request->input('mapInfo'));
@@ -49,6 +50,7 @@ class ShopController extends Controller
             $special,
             $status,
             $iPass,
+            $sendToTop,
             $closedDay,
             $request->input('address'),
             $mapInfo['geometry']['location']['lat'],
@@ -67,6 +69,7 @@ class ShopController extends Controller
         $special = $request->input('special') ?? 0;
         $status = $request->input('status') ?? 0;
         $iPass = $request->input('i_pass') ?? 0;
+        $sendToTop = $request->input('sendToTop') ?? 0;
         $closedDay = $request->input('closed_day') ?? [];
         $areaId = $request->input('area_id');
         $mapInfo = GoogleMapInfoProcess::mapInfoProcess($request->input('mapInfo'));
@@ -82,6 +85,7 @@ class ShopController extends Controller
             $special,
             $status,
             $iPass,
+            $sendToTop,
             $closedDay,
             $request->input('address'),
             $mapInfo['geometry']['location']['lat'],

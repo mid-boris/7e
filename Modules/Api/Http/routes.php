@@ -54,6 +54,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'api'], function () {
                     'prefix' => 'shop'
                 ], function () {
                     Route::get('index', 'ShopController@index');
+                    Route::get('top', 'ShopController@top');
                     Route::post('show', 'ShopController@show');
                     Route::get('food', 'ShopController@food');
                     Route::get('clothing', 'ShopController@clothing');

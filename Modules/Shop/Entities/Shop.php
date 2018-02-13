@@ -22,6 +22,7 @@ class Shop extends ShopBaseModel
         'business_hours_start_time', 'business_hours_end_time',
         'special', 'area_id', 'address', 'closed_day', 'i_pass',
         'shop_lat', 'shop_lng', 'shop_type',
+        'sendToTop',
     ];
 
     protected $hidden = [

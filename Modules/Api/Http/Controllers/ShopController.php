@@ -41,6 +41,14 @@ class ShopController extends Controller
         return BaseResponse::response(['data' => $shop]);
     }
 
+    public function top()
+    {
+        /** @var ShopRepository $shopRepo */
+        $shopRepo = app()->make(ShopRepository::class);
+        $shop = $shopRepo->top();
+        return BaseResponse::response(['data' => $shop]);
+    }
+
     public function favorite()
     {
         /** @var UserService $userServ */
