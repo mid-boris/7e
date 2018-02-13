@@ -100,18 +100,18 @@ class ArticleRepository extends ForumBaseRepository
      * @param bool $public
      * @return UploadedFile
      */
-    public function pathToUploadedFile($path, $public = false)
-    {
-        $name = \File::name($path);
-        $extension = \File::extension($path);
-        $originalName = $name . '.' . $extension;
-        $mimeType = \File::mimeType($path);
-        $size = \File::size($path);
-        $error = null;
-        $test = $public;
-        $object = new UploadedFile($path, $originalName, $mimeType, $size, $error, $test);
-        return $object;
-    }
+//    public function pathToUploadedFile($path, $public = false)
+//    {
+//        $name = \File::name($path);
+//        $extension = \File::extension($path);
+//        $originalName = $name . '.' . $extension;
+//        $mimeType = \File::mimeType($path);
+//        $size = \File::size($path);
+//        $error = null;
+//        $test = $public;
+//        $object = new UploadedFile($path, $originalName, $mimeType, $size, $error, $test);
+//        return $object;
+//    }
 
     /**
      * @param string $title
