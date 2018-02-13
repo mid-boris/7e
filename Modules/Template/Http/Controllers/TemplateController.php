@@ -348,9 +348,19 @@ class TemplateController extends Controller
             $item->dayDate = date('Y-m-d', $item->day);
             return $item;
         })->pluck('accumulation_popularity', 'dayDate');
+        $popularityMale = $shopPopularity->popularitySingleMale->map(function ($item) {
+            $item->dayDate = date('Y-m-d', $item->day);
+            return $item;
+        })->pluck('count', 'dayDate');
+        $popularityFemale = $shopPopularity->popularitySingleFemale->map(function ($item) {
+            $item->dayDate = date('Y-m-d', $item->day);
+            return $item;
+        })->pluck('count', 'dayDate');
         return $this->render('shopAnalysisMonth', [
             'shopPopularity' => $shopPopularity,
             'popularity' => $popularity,
+            'popularityMale' => $popularityMale,
+            'popularityFemale' => $popularityFemale,
         ]);
     }
 
@@ -363,9 +373,19 @@ class TemplateController extends Controller
             $item->dayDate = date('Y-m-d', $item->day);
             return $item;
         })->pluck('accumulation_popularity', 'dayDate');
+        $popularityMale = $shopPopularity->popularitySingleMale->map(function ($item) {
+            $item->dayDate = date('Y-m-d', $item->day);
+            return $item;
+        })->pluck('count', 'dayDate');
+        $popularityFemale = $shopPopularity->popularitySingleFemale->map(function ($item) {
+            $item->dayDate = date('Y-m-d', $item->day);
+            return $item;
+        })->pluck('count', 'dayDate');
         return $this->render('shopAnalysisMonth', [
             'shopPopularity' => $shopPopularity,
             'popularity' => $popularity,
+            'popularityMale' => $popularityMale,
+            'popularityFemale' => $popularityFemale,
         ]);
     }
 

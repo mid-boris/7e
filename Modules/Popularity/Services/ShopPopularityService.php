@@ -35,14 +35,14 @@ class ShopPopularityService
             $before30DaysAge = $this->beforeDaysAgoTime(30);
             /** @var \Eloquent  $query */
             $query->select(
-                \DB::raw('count(gender), shop_id, day')
+                \DB::raw('count(gender) as count, shop_id, day')
             )->where('day', '<=', $now)->where('day', '>=', $before30DaysAge)->groupBy('day', 'shop_id');
         }, 'popularitySingleFemale' => function ($query) {
             $now = $this->todayTime();
             $before30DaysAge = $this->beforeDaysAgoTime(30);
             /** @var \Eloquent  $query */
             $query->select(
-                \DB::raw('count(gender), shop_id, day')
+                \DB::raw('count(gender) as count, shop_id, day')
             )->where('day', '<=', $now)->where('day', '>=', $before30DaysAge)->groupBy('day', 'shop_id');
         }])->find($forumId);
         return $results;
@@ -57,6 +57,20 @@ class ShopPopularityService
             $before90DaysAge = $this->beforeDaysAgoTime(90);
             /** @var \Eloquent  $query */
             $query->where('day', '<=', $now)->where('day', '>=', $before90DaysAge)->orderBy('day');
+        }, 'popularitySingleMale' => function ($query) {
+            $now = $this->todayTime();
+            $before30DaysAge = $this->beforeDaysAgoTime(30);
+            /** @var \Eloquent  $query */
+            $query->select(
+                \DB::raw('count(gender) as count, shop_id, day')
+            )->where('day', '<=', $now)->where('day', '>=', $before30DaysAge)->groupBy('day', 'shop_id');
+        }, 'popularitySingleFemale' => function ($query) {
+            $now = $this->todayTime();
+            $before30DaysAge = $this->beforeDaysAgoTime(30);
+            /** @var \Eloquent  $query */
+            $query->select(
+                \DB::raw('count(gender) as count, shop_id, day')
+            )->where('day', '<=', $now)->where('day', '>=', $before30DaysAge)->groupBy('day', 'shop_id');
         }])->find($forumId);
         return $results;
     }

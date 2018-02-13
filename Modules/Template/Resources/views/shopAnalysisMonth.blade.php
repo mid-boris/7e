@@ -28,10 +28,55 @@
                 <div class="box-body">
                     @if ($shopPopularity->popularity->count() == 0)
                         <div class="p-3 mb-2 bg-warning text-dark">查無資料</div>
+                    @else
+                        <div class="chart">
+                            <canvas id="lineChart" style="height: 250px; width: 743px;" width="743" height="250" data-date='@json($popularity->keys())' data-popularity='@json($popularity->values())'></canvas>
+                        </div>
                     @endif
-                    <div class="chart">
-                        <canvas id="lineChart" style="height: 250px; width: 743px;" width="743" height="250" data-date='@json($popularity->keys())' data-popularity='@json($popularity->values())'></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{{$shopPopularity->name}} 不重複計數(男)</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                     </div>
+                </div>
+                <div class="box-body">
+                    @if ($shopPopularity->popularitySingleMale->count() == 0)
+                        <div class="p-3 mb-2 bg-warning text-dark">查無資料</div>
+                    @else
+                        <div class="chart">
+                            <canvas id="lineChart1" style="height: 250px; width: 743px;" width="743" height="250" data-date='@json($popularityMale->keys())' data-popularity='@json($popularityMale->values())'></canvas>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{{$shopPopularity->name}} 不重複計數(女)</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    @if ($shopPopularity->popularitySingleFemale->count() == 0)
+                        <div class="p-3 mb-2 bg-warning text-dark">查無資料</div>
+                    @else
+                        <div class="chart">
+                            <canvas id="lineChart2" style="height: 250px; width: 743px;" width="743" height="250" data-date='@json($popularityFemale->keys())' data-popularity='@json($popularityFemale->values())'></canvas>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -79,25 +124,74 @@
                 responsive              : true
             };
 
-            var lineChartCanvas          = $('#lineChart').get(0).getContext('2d');
-            var lineChart                = new Chart(lineChartCanvas);
-            var lineChartOptions         = chartDefaultOptions;
-            lineChartOptions.datasetFill = false;
-            lineChart.Line({
-                labels: JSON.parse($('#lineChart').attr('data-date')),
-                datasets: [
-                    {
-                        label: "My First dataset",
-                        fillColor : "rgba(220,220,220,0.2)",
-                        strokeColor : "rgba(220,220,220,1)",
-                        pointColor : "rgba(220,220,220,1)",
-                        pointStrokeColor : "#fff",
-                        pointHighlightFill : "#fff",
-                        pointHighlightStroke : "rgba(220,220,220,1)",
-                        data : JSON.parse($('#lineChart').attr('data-popularity'))
-                    }
-                ]
-            }, lineChartOptions);
+            // 重複計數
+            if ($('#lineChart').exists()) {
+                var lineChartCanvas          = $('#lineChart').get(0).getContext('2d');
+                var lineChart                = new Chart(lineChartCanvas);
+                var lineChartOptions         = chartDefaultOptions;
+                lineChartOptions.datasetFill = false;
+                lineChart.Line({
+                    labels: JSON.parse($('#lineChart').attr('data-date')),
+                    datasets: [
+                        {
+                            label: "My First dataset",
+                            fillColor : "rgba(220,220,220,0.2)",
+                            strokeColor : "rgba(220,220,220,1)",
+                            pointColor : "rgba(220,220,220,1)",
+                            pointStrokeColor : "#fff",
+                            pointHighlightFill : "#fff",
+                            pointHighlightStroke : "rgba(220,220,220,1)",
+                            data : JSON.parse($('#lineChart').attr('data-popularity'))
+                        }
+                    ]
+                }, lineChartOptions);
+            }
+
+            // 不重複計數 男
+            if ($('#lineChart1').exists()) {
+                var lineChartCanvas1          = $('#lineChart1').get(0).getContext('2d');
+                var lineChart1                = new Chart(lineChartCanvas1);
+                lineChart1.Line({
+                    labels: JSON.parse($('#lineChart1').attr('data-date')),
+                    datasets: [
+                        {
+                            label: "My First dataset",
+                            fillColor : "rgba(220,220,220,0.2)",
+                            strokeColor : "rgba(220,220,220,1)",
+                            pointColor : "rgba(220,220,220,1)",
+                            pointStrokeColor : "#fff",
+                            pointHighlightFill : "#fff",
+                            pointHighlightStroke : "rgba(220,220,220,1)",
+                            data : JSON.parse($('#lineChart1').attr('data-popularity'))
+                        }
+                    ]
+                }, lineChartOptions);
+            }
+
+            // 不重複計數 女
+            if ($('#lineChart2').exists()) {
+                var lineChartCanvas2          = $('#lineChart2').get(0).getContext('2d');
+                var lineChart2                = new Chart(lineChartCanvas2);
+                lineChart2.Line({
+                    labels: JSON.parse($('#lineChart2').attr('data-date')),
+                    datasets: [
+                        {
+                            label: "My First dataset",
+                            fillColor : "rgba(220,220,220,0.2)",
+                            strokeColor : "rgba(220,220,220,1)",
+                            pointColor : "rgba(220,220,220,1)",
+                            pointStrokeColor : "#fff",
+                            pointHighlightFill : "#fff",
+                            pointHighlightStroke : "rgba(220,220,220,1)",
+                            data : JSON.parse($('#lineChart2').attr('data-popularity'))
+                        }
+                    ]
+                }, lineChartOptions);
+            }
         });
+
+        $.fn.exists = function () {
+            return this.length !== 0;
+        }
     </script>
 @endsection
