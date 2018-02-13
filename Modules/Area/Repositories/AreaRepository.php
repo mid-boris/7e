@@ -34,7 +34,8 @@ class AreaRepository extends AreaBaseRepository
     {
         /** @var \Illuminate\Database\Eloquent\Builder $area */
         $area = new Area;
-        return $area->withCount(['children'])->where('status', 1)->where('parent_id', $parentId)->get();
+        return $area->withCount(['children'])->with(['children'])
+            ->where('status', 1)->where('parent_id', $parentId)->get();
     }
 
     public function create(string $name, string $parentName = null, $status = 1)

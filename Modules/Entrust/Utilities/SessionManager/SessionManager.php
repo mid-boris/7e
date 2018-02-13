@@ -35,6 +35,11 @@ class SessionManager
         return self::getUser()['gender'];
     }
 
+    public static function getUserAvatar()
+    {
+        return self::getUser()['avatar'];
+    }
+
     public static function getUserLanguage() : string
     {
         return self::getUser()['language'];

@@ -5,6 +5,7 @@ namespace Modules\Api\Http\Controllers;
 use Illuminate\Routing\Controller;
 use Modules\Api\Http\Requests\ShopAddFavorite;
 use Modules\Api\Http\Requests\ShopDecFavorite;
+use Modules\Api\Http\Requests\ShopIndex;
 use Modules\Api\Http\Requests\ShopMeasurement;
 use Modules\Api\Http\Requests\ShopShow;
 use Modules\Base\Utilities\Response\BaseResponse;
@@ -32,11 +33,11 @@ class ShopController extends Controller
         return BaseResponse::response(['data' => $shop]);
     }
 
-    public function index()
+    public function index(ShopIndex $request)
     {
         /** @var ShopRepository $shopRepo */
         $shopRepo = app()->make(ShopRepository::class);
-        $shop = $shopRepo->getPaginationWithImages();
+        $shop = $shopRepo->getPaginationWithImages($request->input('area_id'));
         return BaseResponse::response(['data' => $shop]);
     }
 
@@ -66,42 +67,42 @@ class ShopController extends Controller
         return BaseResponse::response(['data' => true]);
     }
 
-    public function food()
+    public function food(ShopIndex $request)
     {
-        return $this->shopFilter(\Request::route()->getActionMethod());
+        return $this->shopFilter(\Request::route()->getActionMethod(), $request->input('area_id'));
     }
 
-    public function clothing()
+    public function clothing(ShopIndex $request)
     {
-        return $this->shopFilter(\Request::route()->getActionMethod());
+        return $this->shopFilter(\Request::route()->getActionMethod(), $request->input('area_id'));
     }
 
-    public function housing()
+    public function housing(ShopIndex $request)
     {
-        return $this->shopFilter(\Request::route()->getActionMethod());
+        return $this->shopFilter(\Request::route()->getActionMethod(), $request->input('area_id'));
     }
 
-    public function transportation()
+    public function transportation(ShopIndex $request)
     {
-        return $this->shopFilter(\Request::route()->getActionMethod());
+        return $this->shopFilter(\Request::route()->getActionMethod(), $request->input('area_id'));
     }
 
-    public function education()
+    public function education(ShopIndex $request)
     {
-        return $this->shopFilter(\Request::route()->getActionMethod());
+        return $this->shopFilter(\Request::route()->getActionMethod(), $request->input('area_id'));
     }
 
-    public function entertainment()
+    public function entertainment(ShopIndex $request)
     {
-        return $this->shopFilter(\Request::route()->getActionMethod());
+        return $this->shopFilter(\Request::route()->getActionMethod(), $request->input('area_id'));
     }
 
-    protected function shopFilter(string $typeName)
+    protected function shopFilter(string $typeName, $areaId = null)
     {
         $type = $this->type[$typeName];
         /** @var ShopRepository $shopRepo */
         $shopRepo = app()->make(ShopRepository::class);
-        $shop = $shopRepo->getPaginationByTypeWithRelate($type);
+        $shop = $shopRepo->getPaginationByTypeWithRelate($type, $areaId);
         return BaseResponse::response(['data' => $shop]);
     }
 

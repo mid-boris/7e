@@ -27,14 +27,19 @@ class ShopRepository extends ShopBaseRepository
 
     /**
      * 會員端用
+     * @param null|int $areaId
      * @param int $perpage
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getPaginationWithImages(int $perpage = 35)
+    public function getPaginationWithImages($areaId = null, int $perpage = 35)
     {
         /** @var \Eloquent $shop */
         $shop = new Shop;
-        return $shop->with(['trademark', 'preview', 'menu'])
+        $shop = $shop->with(['trademark', 'preview', 'menu']);
+        if (!is_null($areaId)) {
+            $shop = $shop->where('area_id', $areaId);
+        }
+        return $shop
             ->where('status', 1)
             ->orderBy('id', 'DESC')
             ->paginate($perpage);
@@ -43,14 +48,19 @@ class ShopRepository extends ShopBaseRepository
     /**
      * 會員端用
      * @param int $type
+     * @param null|int $areaId
      * @param int $perpage
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getPaginationByTypeWithRelate(int $type, int $perpage = 35)
+    public function getPaginationByTypeWithRelate(int $type, $areaId = null, int $perpage = 35)
     {
         /** @var \Eloquent $shop */
         $shop = new Shop;
-        return $shop->with(['trademark', 'preview', 'menu'])
+        $shop = $shop->with(['trademark', 'preview', 'menu']);
+        if (!is_null($areaId)) {
+            $shop = $shop->where('area_id', $areaId);
+        }
+        return $shop
             ->where('shop_type', $type)
             ->where('status', 1)
             ->orderByDesc('id')

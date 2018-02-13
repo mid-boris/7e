@@ -149,6 +149,9 @@ class ArticleRepository extends ForumBaseRepository
             'user_id' => SessionManager::getUser()['id'],
             'user_account' => SessionManager::getUser()['account'],
             'user_nick_name' => SessionManager::getUser()['nick_name'],
+
+            // 自動塞入登入者的大頭貼
+            'avatar' => SessionManager::getUserAvatar(),
         ];
         /** @var \Illuminate\Database\Eloquent\Builder $article */
         $article = new Article;

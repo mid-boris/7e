@@ -17,6 +17,7 @@ class Article extends ForumBaseModel
         'forum_id', 'parent_id', 'title', 'context', 'audit', 'vote_max_count', 'vote_end_time',
         'user_id', 'user_account', 'user_nick_name',
         'audit_user_id', 'audit_user_account', 'audit_user_nick_name',
+        'avatar',
     ];
 
     protected $hidden = [

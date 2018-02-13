@@ -26,6 +26,6 @@ class Area extends AreaBaseModel
 
     public function children()
     {
-        return $this->hasMany(static::class, 'parent_id');
+        return $this->hasMany(static::class, 'parent_id')->where('status', 1);
     }
 }
