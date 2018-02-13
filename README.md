@@ -109,7 +109,14 @@
             "id": 1,
             "parent_id": null,
             "name": "台灣",
-            "children_count": 1
+            "children_count": 1,
+            "children": [
+                {
+                    "id": 2,
+                    "parent_id": 1,
+                    "name": "台中市"
+                }
+            ]
         }
     ]
 
