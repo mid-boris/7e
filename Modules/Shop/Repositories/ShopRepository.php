@@ -67,6 +67,32 @@ class ShopRepository extends ShopBaseRepository
             ->paginate($perpage);
     }
 
+
+    /**
+     * 會員端用
+     * @param int|null $type
+     * @param null|int $areaId
+     * @param int $perpage
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function getPaginationByTypeAndSpecialWithRelate($type = null, $areaId = null, int $perpage = 35)
+    {
+        /** @var \Eloquent $shop */
+        $shop = new Shop;
+        $shop = $shop->with(['trademark', 'preview', 'menu']);
+        if (!is_null($type)) {
+            $shop = $shop->where('shop_type', $type);
+        }
+        if (!is_null($areaId)) {
+            $shop = $shop->where('area_id', $areaId);
+        }
+        return $shop
+            ->where('special', 1)
+            ->where('status', 1)
+            ->orderByDesc('id')
+            ->paginate($perpage);
+    }
+
     /**
      * 會員端用
      * @param float $lat

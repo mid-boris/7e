@@ -143,5 +143,12 @@ class NodePermissionTableSeeder extends Seeder
         $nodePmServ->addUriPermissionToNode('/api/1.0/reservation/index', $memberPermissionName);
         $nodePmServ->addUriPermissionToNode('/api/1.0/reservation/send', $memberPermissionName);
         $nodePmServ->addUriPermissionToNode('/api/1.0/shop/measurement', $memberPermissionName);
+        $nodePmServ->addUriPermissionToNode('/api/1.0/specialShop/index', $memberPermissionName);
+        $nodePmServ->addUriPermissionToNode('/api/1.0/specialShop/food', $memberPermissionName);
+        $nodePmServ->addUriPermissionToNode('/api/1.0/specialShop/clothing', $memberPermissionName);
+        $nodePmServ->addUriPermissionToNode('/api/1.0/specialShop/housing', $memberPermissionName);
+        $nodePmServ->addUriPermissionToNode('/api/1.0/specialShop/transportation', $memberPermissionName);
+        $nodePmServ->addUriPermissionToNode('/api/1.0/specialShop/education', $memberPermissionName);
+        $nodePmServ->addUriPermissionToNode('/api/1.0/specialShop/entertainment', $memberPermissionName);
     }
 }

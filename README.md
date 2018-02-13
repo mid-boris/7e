@@ -578,6 +578,24 @@
 | <b>選填參數</b>           |                              |              |                                       |
 |                           | 無                           |              |                                       |
 
+#### 獲得特約商家列表
+
+| 項目                      | 內容                                | 類型         | 說明                                  |
+|---------------------------|-------------------------------------|--------------|---------------------------------------|
+| <b>路徑</b>               | /api/1.0/specialShop/index          |              |                                       |
+|                           | /api/1.0/specialShop/food           |              | 食                                    |
+|                           | /api/1.0/specialShop/clothing       |              | 衣                                    |
+|                           | /api/1.0/specialShop/housing        |              | 住                                    |
+|                           | /api/1.0/specialShop/transportation |              | 行                                    |
+|                           | /api/1.0/specialShop/education      |              | 育                                    |
+|                           | /api/1.0/specialShop/entertainment  |              | 樂                                    |
+| <b>方法</b>               | POST                                |              |                                       |
+| <b>權限</b>               | 檢視                                |              | READ                                  |
+| <b>必填參數</b>           |                                     |              |                                       |
+|                           | area_id                             | integer      | 地區id                                |
+| <b>選填參數</b>           |                                     |              |                                       |
+|                           | 無                                  |              |                                       |
+
 #### 獲得附近商家列表
 
 | 項目                      | 內容                               | 類型         | 說明                                  |

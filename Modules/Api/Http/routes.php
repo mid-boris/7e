@@ -80,6 +80,19 @@ Route::group(['middleware' => 'api', 'prefix' => 'api'], function () {
                     Route::post('entertainment', 'NearByShopController@entertainment');
                 });
 
+                // 特約商家
+                Route::group([
+                    'prefix' => 'specialShop'
+                ], function () {
+                    Route::post('index', 'SpecialShopController@index');
+                    Route::post('food', 'SpecialShopController@food');
+                    Route::post('clothing', 'SpecialShopController@clothing');
+                    Route::post('housing', 'SpecialShopController@housing');
+                    Route::post('transportation', 'SpecialShopController@transportation');
+                    Route::post('education', 'SpecialShopController@education');
+                    Route::post('entertainment', 'SpecialShopController@entertainment');
+                });
+
                 // 公告
                 Route::group([
                     'prefix' => 'announcement'
