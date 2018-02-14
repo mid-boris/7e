@@ -40,6 +40,7 @@ class NodeTableSeeder extends Seeder
 
         $nodeRepo->create('客服專區', 'fa-desktop');
         $nodeRepo->create('客服信件', 'fa-circle-o', '/message', '客服專區');
+        $nodeRepo->create('推播管理', 'fa-circle-o', '/push', '推播管理');
 
         $nodeRepo->create('資料呈現', 'fa-desktop');
         $nodeRepo->create('投票專區', 'fa-circle-o', '/vote', '資料呈現');

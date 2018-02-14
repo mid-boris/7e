@@ -1,0 +1,16 @@
+{
+    "name": "Push",
+    "alias": "push",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Push\\Providers\\PushServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

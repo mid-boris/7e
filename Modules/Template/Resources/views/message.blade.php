@@ -16,7 +16,11 @@
     <section class="content">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">客服信件</h3>
+                <div class="col-md-3">
+                    <form method="get" action="/message">
+                        <input class="form-control" type="text" name="account" placeholder="Search Name" value="{{$account}}">
+                    </form>
+                </div>
                 <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#messageCreateModal">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新增
                 </button>

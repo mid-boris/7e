@@ -40,6 +40,7 @@ Route::group(['middleware' => 'api'], function () {
             Route::get('/shop_analysis', 'TemplateController@shopAnalysis');
             Route::get('/shop_analysis_month', 'TemplateController@shopAnalysisMonth');
             Route::get('/shop_analysis_three_month', 'TemplateController@shopAnalysisThreeMonth');
+            Route::get('/push', 'TemplateController@push');
 
             //資料呈現
             Route::get('/vote', 'TemplateController@vote');
@@ -246,6 +247,16 @@ Route::group(['middleware' => 'api'], function () {
         Route::group(['middleware' => 'permission',], function () {
             Route::get('applied', 'ReservationController@applied');
             Route::get('delete', 'ReservationController@delete');
+        });
+    });
+
+    Route::group([
+        'prefix' => 'push',
+        'namespace' => 'Modules\Template\Http\Controllers'
+    ], function () {
+        /* 需完整權限 (登入、角色的節點權限) */
+        Route::group(['middleware' => 'permission',], function () {
+            Route::post('create', 'PushController@create');
         });
     });
 

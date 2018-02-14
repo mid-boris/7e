@@ -17,6 +17,7 @@ use Modules\Menu\Repositories\MenuRepository;
 use Modules\Message\Repository\MessageRepository;
 use Modules\Popularity\Services\ForumPopularityService;
 use Modules\Popularity\Services\ShopPopularityService;
+use Modules\Push\Services\PushService;
 use Modules\Reservation\Repositories\ReservationRepository;
 use Modules\Shop\Constants\DiscountTypeConstants;
 use Modules\Shop\Repositories\DiscountRepository;
@@ -246,6 +247,7 @@ class TemplateController extends Controller
         $results = $messageRepo->getByFuzzy($account);
         return $this->render('message', [
             'message' => $results,
+            'account' => $account,
             'parameter' => $request->except('page'),
         ]);
     }
@@ -386,6 +388,16 @@ class TemplateController extends Controller
             'popularity' => $popularity,
             'popularityMale' => $popularityMale,
             'popularityFemale' => $popularityFemale,
+        ]);
+    }
+
+    public function push()
+    {
+        /** @var PushService $pushServ */
+        $pushServ = app()->make(PushService::class);
+        $push = $pushServ->list();
+        return $this->render('push', [
+            'push' => $push,
         ]);
     }
 

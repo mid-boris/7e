@@ -106,6 +106,9 @@ class NodePermissionTableSeeder extends Seeder
         $nodePmServ->addUriPermissionToNode('/shop_analysis_month', '客源分析.商家相關');
         $nodePmServ->addUriPermissionToNode('/shop_analysis_three_month', '客源分析.商家相關');
 
+        $nodePmServ->addUriPermissionToNode('/push', '客服專區.推播管理');
+        $nodePmServ->addUriPermissionToNode('/push/create', '客服專區.推播管理');
+
         // 會員app端權限
         $memberPermissionName = '會員app';
         $nodePmServ->addUriPermissionToNode('/api/1.0/user/edit', $memberPermissionName);

@@ -20,11 +20,10 @@ class MessageRepository extends BaseRepository
     {
         /** @var Message $msg */
         $msg = new Message;
-        $msg = $msg->orderNew();
         if (!is_null($account)) {
             $msg = $msg->like($column, $account);
         }
-        return $results = $msg->paginate(35);
+        return $results = $msg->orderByDesc('updated_at')->paginate(35);
     }
 
     /**
