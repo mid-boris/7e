@@ -1,10 +1,13 @@
 <?php
 
+use Modules\RemoteSystem\Src\GoogleFireBase;
+
 Route::group([
     'prefix' => 'test'
 ], function () {
     Route::get('test', function () {
-        dd(strtotime(date('Y-m-d') . ' -30 days'));
+        $serv = app()->make(GoogleFireBase::class);
+        $serv->test();
     });
 });
 
