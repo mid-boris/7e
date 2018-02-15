@@ -76,7 +76,7 @@ class ArticleRepository extends ForumBaseRepository
     public function imageCreate(Article $article, UploadedFile $image)
     {
         // 儲存圖片
-        $fileName = time() . '.' . $image->getClientOriginalExtension();
+        $fileName = microtime(true) . '.' . $image->getClientOriginalExtension();
         $destinationPath = public_path($this->dir);
         $result = $image->move($destinationPath, $fileName);
         if ($result) {
