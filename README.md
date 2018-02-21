@@ -161,35 +161,65 @@
 > 回應
 
     {
-        "current_page": 1,
-        "data": [
-            {
-                "id": 3,
-                "parent_id": 2,
-                "name": "投票專區一",
-                "audit": 1,
-                "status": 1,
-                "sort": 0
-            },
-            {
-                "id": 4,
-                "parent_id": 2,
-                "name": "投票專區二",
-                "audit": 0,
-                "status": 1,
-                "sort": 0
-            }
-        ],
-        "first_page_url": "http://7e.net/api/1.0/forum/vote?page=1",
-        "from": 1,
-        "last_page": 1,
-        "last_page_url": "http://7e.net/api/1.0/forum/vote?page=1",
-        "next_page_url": null,
-        "path": "http://7e.net/api/1.0/forum/vote",
-        "per_page": 35,
-        "prev_page_url": null,
-        "to": 2,
-        "total": 2
+        "forum": {
+            "current_page": 1,
+            "data": [],
+            "first_page_url": "http://7e.net/api/1.0/forum/board?page=1",
+            "from": null,
+            "last_page": 1,
+            "last_page_url": "http://7e.net/api/1.0/forum/board?page=1",
+            "next_page_url": null,
+            "path": "http://7e.net/api/1.0/forum/board",
+            "per_page": 35,
+            "prev_page_url": null,
+            "to": null,
+            "total": 0
+        },
+        "article": {
+            "current_page": 1,
+            "data": [
+                {
+                    "id": 1,
+                    "forum_id": 3,
+                    "parent_id": null,
+                    "title": "標題測試",
+                    "context": "標題測試123",
+                    "audit": 0,
+                    "user_account": "admin",
+                    "user_nick_name": "admin",
+                    "vote_max_count": 1,
+                    "updated_at": "2018-02-14 21:08:23",
+                    "vote_end_time": null,
+                    "avatar": null,
+                    "children_count": 0,
+                    "type_like_count": 1,
+                    "type_unlike_count": 0,
+                    "images": [],
+                    "type_like": [
+                        {
+                            "id": 1,
+                            "article_id": 1,
+                            "user_id": 4,
+                            "like_type": 0
+                        }
+                    ],
+                    "type_unlike": [],
+                    "children": [],
+                    "vote_option": [],
+                    "vote_item": []
+                }
+            ],
+            "first_page_url": "http://7e.net/api/1.0/forum/board?page=1",
+            "from": 1,
+            "last_page": 1,
+            "last_page_url": "http://7e.net/api/1.0/forum/board?page=1",
+            "next_page_url": null,
+            "path": "http://7e.net/api/1.0/forum/board",
+            "per_page": 35,
+            "prev_page_url": null,
+            "to": 1,
+            "total": 1
+        }
     }
 
 #### 取得討論專區
@@ -413,13 +443,33 @@
         }
     }
 
+#### 針對目標文章 Like
+#### 針對目標文章 UnLike
+
+| 項目                      | 內容                       | 類型         | 說明                                  |
+|---------------------------|----------------------------|--------------|---------------------------------------|
+| <b>路徑</b>               | /api/1.0/article/like      |              |                                       |
+|                           | /api/1.0/article/unlike    |              |                                       |
+| <b>方法</b>               | GET                        |              |                                       |
+| <b>權限</b>               | 更新                       |              | UPDATE                                |
+| <b>必填參數</b>           |                            |              |                                       |
+|                           | article_id                 | id           |                                       |
+| <b>選填參數</b>           |                            |              |                                       |
+|                           | 無                         |              |                                       |
+
+> 回應
+
+    {
+        "data": true
+    }
+
 #### 發文、回文
 
 | 項目                      | 內容                       | 類型         | 說明                                  |
 |---------------------------|----------------------------|--------------|---------------------------------------|
 | <b>路徑</b>               | /api/1.0/article/create    |              |                                       |
 | <b>方法</b>               | POST                       |              |                                       |
-| <b>權限</b>               | 檢視                       |              | READ                                  |
+| <b>權限</b>               | 新增                       |              | CREATE                                |
 | <b>必填參數</b>           |                            |              |                                       |
 |                           | title                      | string       | 標題                                  |
 |                           | content                    | string       | 內文                                  |
@@ -446,7 +496,7 @@
 |---------------------------|----------------------------|--------------|---------------------------------------|
 | <b>路徑</b>               | /api/1.0/vote/add          |              |                                       |
 | <b>方法</b>               | POST                       |              |                                       |
-| <b>權限</b>               | 檢視                       |              | READ                                  |
+| <b>權限</b>               | 更新                       |              | UPDATE                                |
 | <b>必填參數</b>           |                            |              |                                       |
 |                           | vote_ids                   | array        | 投票目標ids                           |
 |                           | vote_ids.*                 | id           | 投票目標id                            |

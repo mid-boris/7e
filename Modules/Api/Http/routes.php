@@ -37,6 +37,8 @@ Route::group(['middleware' => 'api', 'prefix' => 'api'], function () {
                     Route::get('index', 'ArticleController@index');
                     Route::get('show', 'ArticleController@show');
                     Route::post('create', 'ArticleController@create');
+                    Route::get('like', 'ArticleController@like');
+                    Route::get('unlike', 'ArticleController@unlike');
                 });
 
                 // 投票

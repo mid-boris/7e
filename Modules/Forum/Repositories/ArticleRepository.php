@@ -4,6 +4,7 @@ namespace Modules\Forum\Repositories;
 use Illuminate\Http\UploadedFile;
 use Modules\Entrust\Utilities\SessionManager;
 use Modules\Forum\Entities\Article;
+use Modules\Forum\Entities\ArticleLike;
 use Modules\Image\Entities\ImageFile;
 
 class ArticleRepository extends ForumBaseRepository
@@ -93,6 +94,19 @@ class ArticleRepository extends ForumBaseRepository
             });
         }
         return $result ? true : false;
+    }
+
+    public function like(int $articleId, int $type)
+    {
+        $article = Article::has('complement')->find($articleId);
+        if (!$article) {
+            $likeModel = new ArticleLike;
+            $likeModel->fill([
+                'article_id' => $articleId,
+                'user_id' => SessionManager::getUserId(),
+                'like_type' => $type,
+            ])->save();
+        }
     }
 
     /**

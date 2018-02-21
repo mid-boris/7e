@@ -4,8 +4,11 @@ namespace Modules\Api\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Modules\Api\Http\Requests\ArticleIndex;
+use Modules\Api\Http\Requests\ArticleLike;
 use Modules\Api\Http\Requests\ArticleShow;
+use Modules\Api\Http\Requests\ArticleUnlike;
 use Modules\Base\Utilities\Response\BaseResponse;
+use Modules\Forum\Constants\ArticleLikeTypeConstants;
 use Modules\Forum\Http\Requests\ArticleCreate;
 use Modules\Forum\Repositories\ArticleRepository;
 use Modules\Forum\Services\ForumService;
@@ -71,6 +74,22 @@ class ArticleController extends Controller
                 }
             }
         }
+        return BaseResponse::response(['data' => true]);
+    }
+
+    public function like(ArticleLike $request)
+    {
+        /** @var ArticleRepository $articleRepo */
+        $articleRepo = app()->make(ArticleRepository::class);
+        $articleRepo->like($request->input('article_id'), ArticleLikeTypeConstants::LIKE);
+        return BaseResponse::response(['data' => true]);
+    }
+
+    public function unlike(ArticleUnlike $request)
+    {
+        /** @var ArticleRepository $articleRepo */
+        $articleRepo = app()->make(ArticleRepository::class);
+        $articleRepo->like($request->input('article_id'), ArticleLikeTypeConstants::UNLIKE);
         return BaseResponse::response(['data' => true]);
     }
 }

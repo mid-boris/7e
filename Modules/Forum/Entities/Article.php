@@ -1,6 +1,7 @@
 <?php
 namespace Modules\Forum\Entities;
 
+use Modules\Forum\Constants\ArticleLikeTypeConstants;
 use Modules\Image\Entities\ImageFile;
 
 /**
@@ -54,5 +55,20 @@ class Article extends ForumBaseModel
     public function test()
     {
         return $this->hasMany(VoteItem::class, 'article_id');
+    }
+
+    public function complement()
+    {
+        return $this->hasMany(ArticleLike::class, 'article_id');
+    }
+
+    public function typeLike()
+    {
+        return $this->hasMany(ArticleLike::class, 'article_id')->where('like_type', ArticleLikeTypeConstants::LIKE);
+    }
+
+    public function typeUnlike()
+    {
+        return $this->hasMany(ArticleLike::class, 'article_id')->where('like_type', ArticleLikeTypeConstants::UNLIKE);
     }
 }

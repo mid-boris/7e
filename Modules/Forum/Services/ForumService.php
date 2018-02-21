@@ -27,8 +27,16 @@ class ForumService
         $article = new Article;
         $articles = $article
             ->orderNew()
-            ->withCount(['children'])
-            ->with(['images'])
+            ->withCount(['children', 'typeLike', 'typeUnlike'])
+            ->with([
+                'images',
+                'typeLike' => function ($query) {
+                    $query->where('user_id', SessionManager::getUserId());
+                },
+                'typeUnlike' => function ($query) {
+                    $query->where('user_id', SessionManager::getUserId());
+                },
+            ])
             ->where(function ($query) use ($forumId) {
             /** @var \Illuminate\Database\Query\Builder $query */
                 $query->whereNull('parent_id')->where('audit', 0)->where('forum_id', $forumId);
