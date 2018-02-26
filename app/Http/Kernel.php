@@ -39,7 +39,7 @@ class Kernel extends HttpKernel
 
         'api' => [
             \Illuminate\Session\Middleware\StartSession::class,
-            'throttle:120,1',
+            'throttle:180,1',
             'bindings',
         ],
 
