@@ -21,7 +21,7 @@ class Area extends AreaBaseModel
 
     public function parent()
     {
-        return $this->belongsTo(static::class, 'id', 'parent_id');
+        return $this->belongsTo(static::class, 'parent_id', 'id');
     }
 
     public function children()
