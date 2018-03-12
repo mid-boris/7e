@@ -178,7 +178,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">E mail</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" placeholder="E mail" name="mail" readonly>
+                                        <input type="text" class="form-control" placeholder="E mail" name="email" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group">
