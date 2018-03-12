@@ -38,6 +38,11 @@ class AccountController extends Controller
         $status = $request->input('status') ?? 0;
         $data = $request->all();
         $data['status'] = $status;
+        if (array_key_exists('password', $data)) {
+            if (is_null($data['password']) || $data['password'] == '') {
+                unset($data['password']);
+            }
+        }
         $this->userRepo->update($data, $request['id']);
         $roleId = $request->input('role');
         if ($roleId > 0) {
