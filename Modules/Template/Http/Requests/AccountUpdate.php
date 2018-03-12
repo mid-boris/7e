@@ -26,7 +26,7 @@ class AccountUpdate extends BaseFormRequest
                 }),
             ],
             'account' => 'required|string|max:32',
-            'password' => 'string|max:32',
+            'password' => 'string|nullable|max:32',
             'nick_name' => 'required|string|max:16',
             'status' => 'sometimes|required|in:1',
             'role' => 'required|numeric|min:0',
