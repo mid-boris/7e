@@ -22,7 +22,7 @@ class UserEdit extends BaseFormRequest
                 'string',
                 Rule::in(AnnouncementConstants::getSupportLanguageCodes()),
             ],
-            'avatar' => 'sometimes|string',
+            'avatar' => 'sometimes|image|mimes:jpg,jpeg|dimensions:max_width=160,max_height=160',
         ];
     }
 }
