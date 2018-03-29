@@ -111,6 +111,7 @@ class UserRepository extends UserBaseRepository
                 $image->save();
 
                 $user->avatar = $result->getFilename();
+                $user->save();
             });
         }
         return $result ? true : false;
