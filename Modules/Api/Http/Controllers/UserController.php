@@ -44,6 +44,6 @@ class UserController extends Controller
             Session::put('user', $user->toArray());
             Session::save();
         }
-        return BaseResponse::response(['data' => $user]);
+        return BaseResponse::response(['data' => true]);
     }
 }
