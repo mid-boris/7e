@@ -19,7 +19,7 @@ class UserController extends Controller
         $gender = $request->input('gender');
         $areaId = $request->input('area_id');
         $language = $request->input('language');
-        $avatar = $request->input('avatar');
+//        $avatar = $request->input('avatar');
         $updatedData = [
             'nick_name' => $nickName,
             'mail' => $mail,
@@ -27,17 +27,23 @@ class UserController extends Controller
             'gender' => $gender,
             'area_id' => $areaId,
             'language' => $language,
-            'avatar' => $avatar,
+//            'avatar' => $avatar,
         ];
         /** @var UserRepository $userRepo */
         $userRepo = app()->make(UserRepository::class);
-        $result = $userRepo->update($updatedData, $userId);
-        // update完成順便更新session manager
-        if ($result) {
+        /** @var \Modules\User\Entities\User|false $user */
+        $user = $userRepo->update($updatedData, $userId);
+        if ($user) {
+            // 新增圖片
+            if (!is_null($request->file('avatar'))) {
+                $userRepo->imageCreate($user, $request->file('avatar'));
+            }
+
+            // update完成順便更新session manager
             $user = $userRepo->getWithRoleById($userId);
             Session::put('user', $user->toArray());
             Session::save();
         }
-        return BaseResponse::response(['data' => $result]);
+        return BaseResponse::response(['data' => $user]);
     }
 }

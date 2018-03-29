@@ -4,9 +4,13 @@ namespace Modules\User\Repositories;
 
 use Modules\Entrust\Utilities\SessionManager;
 use Modules\User\Entities\User;
+use Illuminate\Http\UploadedFile;
+use Modules\Image\Entities\ImageFile;
 
 class UserRepository extends UserBaseRepository
 {
+    private $dir = '/images/user';
+
     public function __construct()
     {
         parent::__construct();
@@ -77,7 +81,8 @@ class UserRepository extends UserBaseRepository
         $user = new User;
         $target = $user->where('id', $id)->first();
         if ($target) {
-            return $target->fill($data)->save();
+            $target->fill($data)->save();
+            return $target;
         }
         return false;
     }
@@ -87,5 +92,27 @@ class UserRepository extends UserBaseRepository
         /** @var \Illuminate\Database\Eloquent\Builder $user */
         $user = new User;
         return $user->where('account', $account)->first();
+    }
+
+    public function imageCreate(User $user, UploadedFile $image)
+    {
+        // 儲存圖片
+        $fileName = microtime(true) . '.' . $image->getClientOriginalExtension();
+        $destinationPath = public_path($this->dir);
+        $result = $image->move($destinationPath, $fileName);
+        if ($result) {
+            \DB::transaction(function () use ($result, $user) {
+                $image = new ImageFile;
+                $image->saved_uri = $result->getFilename();
+                $image->image_size = $result->getSize();
+                list($width, $height) = getimagesize($result->getRealPath());
+                $image->image_width = $width;
+                $image->image_height = $height;
+                $image->save();
+
+                $user->avatar = $result->getFilename();
+            });
+        }
+        return $result ? true : false;
     }
 }

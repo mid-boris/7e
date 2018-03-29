@@ -8,6 +8,7 @@ use Modules\Surprise\Entities\SurpriseItem;
 
 /**
  * Class User
+ * @property string avatar
  * @package Modules\User\Entities
  */
 class User extends UserBaseModel
