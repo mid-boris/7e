@@ -34,6 +34,7 @@ class CreateShopTable extends BaseMigration
             $table->unsignedInteger('area_id')->nullable();
 
             $table->timestamps();
+            $table->softDeletes();
 
             $table->index('name');
             $table->index(['x', 'y']);

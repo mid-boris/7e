@@ -2,6 +2,7 @@
 
 namespace Modules\Shop\Entities;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Area\Entities\Area;
 use Modules\Area\Entities\GoogleArea;
 use Modules\Image\Entities\ImageFile;
@@ -15,6 +16,8 @@ use Modules\Menu\Entities\Menu;
  */
 class Shop extends ShopBaseModel
 {
+    use SoftDeletes;
+
     protected $table = 'shop';
 
     protected $fillable = [
@@ -26,7 +29,7 @@ class Shop extends ShopBaseModel
     ];
 
     protected $hidden = [
-        'created_at', 'updated_at', 'shop_lat', 'shop_lng',
+        'created_at', 'updated_at', 'shop_lat', 'shop_lng', 'deleted_at',
     ];
 
     public function area()
